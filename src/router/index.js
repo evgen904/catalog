@@ -1,27 +1,69 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import store from '../store'
+import guest from './middleware/guest'
+import auth from './middleware/auth'
+import middlewarePipeline from './middlewarePipeline'
 
 Vue.use(VueRouter)
 
+
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '*',
+    name: '404',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/',
+    name: 'Login',
+    component: () => import('@/views/login.vue'),
+    meta: {
+      layout: 'auth',
+      middleware: [
+        guest
+      ]
+    }
+  },
+  {
+    path: '/catalog',
+    name: 'Catalog',
+    component: () => import('@/views/catalog.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    },
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: "history"
+})
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.middleware) {
+    return next()
+  }
+  const middleware = to.meta.middleware
+  const context = {
+    to,
+    from,
+    next,
+    store
+  }
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1)
+  })
 })
 
 export default router
