@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="footer">
     Footer
   </div>
 </template>
@@ -11,5 +11,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+.footer {
+  height: 60px;
+  border-top: 1px solid #ccc;
+}
 </style>
