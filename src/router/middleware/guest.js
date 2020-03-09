@@ -5,7 +5,7 @@ export default function guest ({ next, store }){
 
   if(store.getters.auth.loggedIn || cookies.auth){
     return next({
-      name: 'Catalog'
+      name: 'Orders'
     })
   }
 

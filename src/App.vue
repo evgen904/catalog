@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <vue-extend-layouts/>
+    <transition name="fade" mode="out-in">
+      <vue-extend-layouts/>
+    </transition>
   </div>
 </template>
 
@@ -27,6 +29,12 @@
 </script>
 
 <style lang="scss">
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
 * {
   box-sizing: border-box;
 }
@@ -34,6 +42,12 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
+  font-family: Arial;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: Arial;
+  padding: 0;
+  margin: 0;
 }
 #app {
   height: 100%;

@@ -41,6 +41,39 @@ const routes = [
         auth
       ]
     },
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    component: () => import('@/views/order.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    },
+  },
+  {
+    path: '/orders',
+    name: 'Orders',
+    component: () => import('@/views/orders.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    },
+  },
+  {
+    path: '/selection',
+    name: 'Selection',
+    component: () => import('@/views/selection.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    },
   }
 ]
 

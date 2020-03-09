@@ -2,7 +2,9 @@
   <div class="wrapper">
     <Header />
     <div class="wrapper--main">
-      <router-view/>
+      <transition name="fade" mode="out-in">
+        <router-view/>
+      </transition>
     </div>
     <Footer />
   </div>
@@ -22,6 +24,12 @@
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
 .wrapper {
   display: flex;
   flex-direction: column;

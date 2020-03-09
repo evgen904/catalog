@@ -3,7 +3,7 @@
     <form @submit.prevent="submit">
       <div>
         <label>
-          Login<br>
+          Login - admin<br>
           <input
             v-model="userLogin.login"
             type="text"
@@ -16,7 +16,7 @@
       </div>
       <div>
         <label>
-          Password<br>
+          Password - 123456<br>
           <input
             v-model="userLogin.password"
             type="password"
