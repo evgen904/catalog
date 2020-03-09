@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "11.10.1"
+    "node": "> 4.0.0",
+    "npm": "> 2.0.0"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,6 +13,8 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "compression": "^1.7.4",
+    "connect-history-api-fallback": "^1.6.0",
     "cookie": "^0.4.0",
     "core-js": "^3.6.4",
     "express": "^4.17.1",
