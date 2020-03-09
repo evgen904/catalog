@@ -1,5 +1,9 @@
+import Сookie from 'cookie'
+
 export default function guest ({ next, store }){
-  if(store.getters.auth.loggedIn){
+  const cookies = Сookie.parse(document.cookie);
+
+  if(store.getters.auth.loggedIn || cookies.auth){
     return next({
       name: 'Catalog'
     })
