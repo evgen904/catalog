@@ -1,5 +1,7 @@
 # good-lock
 
+https://good-lock904.herokuapp.com/
+
 ## Project setup
 ```
 npm install
