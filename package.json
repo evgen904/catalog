@@ -2,15 +2,21 @@
   "name": "good-lock",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "11.10.1"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node server.js"
   },
   "dependencies": {
     "cookie": "^0.4.0",
     "core-js": "^3.6.4",
+    "express": "^4.17.1",
     "js-cookie": "^2.2.1",
+    "serve-static": "^1.14.1",
     "vue": "^2.6.11",
     "vue-extend-layout": "^2.0.6",
     "vue-router": "^3.1.5",
