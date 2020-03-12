@@ -50,7 +50,7 @@
     <template v-else-if="state=='forgot'">
       <form @submit.prevent="forgot">
         <div class="form--desk">
-          Введите адрес электронной почты или номер телефона, указанный при регистрации. Мы вышлем вам новый пароль.
+          Введите адрес электронной почты, указанный при регистрации. Мы вышлем вам новый пароль.
         </div>
         <div class="form--error">
           <template v-if="user && user.loginError != ''">
