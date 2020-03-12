@@ -36,6 +36,7 @@
   min-height: 100%;
   &--main {
     flex: auto;
+    padding: 0 20px 34px;
   }
 }
 </style>

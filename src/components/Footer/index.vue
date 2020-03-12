@@ -1,6 +1,14 @@
 <template>
   <div class="footer">
-    Footer
+    <div class="footer--copy-site">
+      © Апекс Секьюрити.
+    </div>
+    <div class="footer--address">
+      108803, г. Москва, п. Сосенское, д. Сосенки, ул. Сосновая, д. 1Б, этаж 7, офис 701-727
+    </div>
+    <div class="footer--copy">
+      Создание сайта: <a target="_blank" href="https://www.webreforma.ru/">WebReforma</a>
+    </div>
   </div>
 </template>
 
@@ -12,7 +20,15 @@
 
 <style lang="scss" scoped>
 .footer {
-  height: 60px;
-  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 86px;
+  background: #fff;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #313131;
+  padding: 0 20px;
 }
 </style>

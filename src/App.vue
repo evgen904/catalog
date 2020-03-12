@@ -56,7 +56,9 @@ h1,h2,h3,h4,h5,h6 {
 #app {
   height: 100%;
 }
-  .text-left {
-    text-align: left;
-  }
+a {
+  color: #f6921e;
+  text-decoration: none;
+}
+
 </style>
