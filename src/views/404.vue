@@ -9,7 +9,7 @@
       <router-link class="btn black" :to="{name: 'Dashboard'}">Вернуться на главную</router-link>
     </div>
     <div class="img-404">
-      <img src="../assets/404.png" alt="">
+      <img src="../assets/404.jpg" alt="">
     </div>
     <div>
       <router-link class="btn white" :to="{name: 'Catalog'}">Каталог</router-link>
