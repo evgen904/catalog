@@ -31,7 +31,7 @@ export default new Vuex.Store({
                     "success": true,
                     "data": {
                       "user": {
-                        login: "admin",
+                        login: "admin@mail.ru",
                         password: "123456"
                       }
                     },

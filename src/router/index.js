@@ -43,6 +43,17 @@ const routes = [
     },
   },
   {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('@/views/dashboard.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    },
+  },
+  {
     path: '/order',
     name: 'Order',
     component: () => import('@/views/order.vue'),
