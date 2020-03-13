@@ -3,9 +3,15 @@ import Vuex from 'vuex'
 //import Сookie from 'cookie'
 import Сookies from 'js-cookie'
 
+import dashboard from "./modules/dashboard";
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    dashboard
+  },
+
   state: {
     user: {
       loggedIn: false,

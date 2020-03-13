@@ -9,11 +9,22 @@
 
 <script>
   import Head from '@/components/Head';
+  import { mapActions } from "vuex";
 
   export default {
     name: 'Dashboard',
     components: {
       Head
+    },
+    mounted() {
+      this.getNotifications();
+      this.getMutualSettlement();
+      this.getOrders();
+      this.getLegendOrders();
+      this.getLegendMutualSettlements();
+    },
+    methods: {
+      ...mapActions("dashboard", ["getNotifications", "getMutualSettlement", "getOrders", "getLegendOrders", "getLegendMutualSettlements"])
     }
   }
 </script>
