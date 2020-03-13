@@ -60,5 +60,33 @@ a {
   color: #f6921e;
   text-decoration: none;
 }
-
+.table {
+  border-collapse: collapse;
+  border: none;
+  border-spacing: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  tr:nth-child(even) {
+    td {
+      background-color: #F8F8F8;
+    }
+  }
+  td, td {
+    padding: 10px 8px;
+    margin: 0;
+    vertical-align: top;
+    border-collapse: collapse;
+    border: 1px solid #DBDBDB;
+    border-spacing: 0;
+    font-weight: normal;
+    font-size: 12px;
+    color: #313131;
+  }
+  th {
+    font-size: 14px;
+    color: #8A8A8A;
+    padding: 12px 8px;
+  }
+}
 </style>
