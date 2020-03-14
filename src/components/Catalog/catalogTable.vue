@@ -1,50 +1,46 @@
 <template>
   <div class="catalog-table" v-if="folders.length">
-    <table class="table no-bg">
-      <tr class="head">
-        <td rowspan="2" width="36%">Наименование</td>
-        <td rowspan="2" width="8%">Код</td>
-        <td rowspan="2" width="10%">Отстаток</td>
-        <td rowspan="2" width="10%">По согласованию </td>
-        <td colspan="2" width="16%">Цена</td>
-        <td rowspan="2" width="10%">Минибокс</td>
-        <td rowspan="2" width="10%">Упаковка</td>
-      </tr>
-      <tr class="head">
-        <td class="bg-none">Дилерская</td>
-        <td class="bg-none">Базовая</td>
-      </tr>
-
-      <tr
-          v-for="item in folders" :key="item.id">
-        <td>
-          <span
-            class="link-folder"
-            :class="{'child': item.childrens.length}"
-            @click="openFolder"
-          >
-            <img class="ico-arrow" src="../../assets/arrow.svg" alt="">
-            <img class="ico-folder" src="../../assets/folder.svg" alt="">
-            {{ item.title }}
-          </span>
-        </td>
-        <td>{{ item.code }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <div class="catalog-menu--head">
+      <div>
+        <div>Наименование</div>
+        <div>Код</div>
+        <div>Отстаток</div>
+        <div>По согласованию</div>
+        <div>Цена</div>
+        <div></div>
+        <div>Минибокс</div>
+        <div>Упаковка</div>
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div>Дилерская</div>
+        <div>Базовая</div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <ul class="catalog-menu" v-if="folders.length">
+      <CatalogMenu
+        v-for="item in folders"
+        :key="item.id"
+        :item="item"
+      ></CatalogMenu>
+    </ul>
   </div>
 </template>
 
 <script>
   import { mapState, mapActions } from "vuex";
+  import CatalogMenu from "./catalogMenu";
 
   export default {
     name: "catalogTable",
+    components: {
+      CatalogMenu
+    },
     mounted() {
       this.getFolders();
       this.getProducts();
@@ -56,7 +52,7 @@
       ...mapActions('catalog', ['getFolders', 'getProducts']),
       openFolder() {
 
-      }
+      },
     }
   }
 </script>
@@ -64,6 +60,7 @@
 <style lang="scss" scoped>
 .catalog-table {
   margin-bottom: 18px;
+  font-size: 12px;
   .link-folder {
     &.child {
       cursor: pointer;
@@ -75,6 +72,87 @@
     .ico-folder {
       margin-right: 6px;
       vert-align: middle;
+    }
+  }
+  .catalog-menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    &--head {
+      > div {
+        display: flex;
+        width: 100%;
+        > div {
+          border: 1px solid #ccc;
+          margin-right: -1px;
+          margin-bottom: -1px;
+          padding: 5px;
+          &:nth-child(1) {
+            width: 36%;
+          }
+          &:nth-child(2) {
+            width: 8%;
+          }
+          &:nth-child(3) {
+            width: 10%;
+          }
+          &:nth-child(4) {
+            width: 10%;
+          }
+          &:nth-child(5) {
+            width: 8%;
+          }
+          &:nth-child(6) {
+            width: 8%;
+          }
+          &:nth-child(7) {
+            width: 10%;
+          }
+          &:nth-child(8) {
+            width: 10%;
+            margin-right: 0;
+          }
+        }
+        &:nth-child(1) {
+          > div {
+            &:nth-child(6) {
+              border-left-color: #fff;
+            }
+          }
+        }
+        &:nth-child(2) {
+          > div {
+            &:nth-child(1) {
+              border-top-color: #fff;
+            }
+            &:nth-child(2) {
+              border-top-color: #fff;
+            }
+            &:nth-child(3) {
+              border-top-color: #fff;
+            }
+            &:nth-child(4) {
+              border-top-color: #fff;
+            }
+            &:nth-child(5) {
+              width: 8%;
+            }
+            &:nth-child(6) {
+              width: 8%;
+            }
+            &:nth-child(7) {
+              width: 10%;
+              margin-right: -1px;
+              border-top-color: #fff;
+            }
+            &:nth-child(8) {
+              width: 10%;
+              margin-right: 0;
+              border-top-color: #fff;
+            }
+          }
+        }
+      }
     }
   }
 }
