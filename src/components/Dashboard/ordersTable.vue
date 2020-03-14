@@ -128,6 +128,9 @@
     font-size: 12px;
     color: #313131;
     padding: 24px 0 10px;
+    span {
+      margin-right: 10px;
+    }
   }
 }
 </style>

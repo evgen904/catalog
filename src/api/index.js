@@ -1,5 +1,6 @@
 //import HTTP from "./http-common";
 import Dashboard from "./dashboard/";
+import Сatalog from "./catalog/";
 
 /**
  * API
@@ -8,5 +9,6 @@ import Dashboard from "./dashboard/";
  */
 export {
   //HTTP,
-  Dashboard
+  Dashboard,
+  Сatalog
 };
