@@ -1,4 +1,5 @@
 import { Dashboard } from "@/api/index.js";
+import Vue from "vue";
 
 const state = {
   notifications: [],
@@ -89,6 +90,9 @@ const mutations = {
   setLegendMutualSettlements(state, value) {
     state.legendMutualSettlements = value;
   },
+  setCombineOrderName(state, value) {
+    Vue.set(state.orders[value.index], "combineOrder", value.value);
+  }
 };
 
 export default {

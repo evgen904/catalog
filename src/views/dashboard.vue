@@ -20,7 +20,6 @@
   import OrdersTable from '@/components/Dashboard/ordersTable.vue';
   import { mapActions } from "vuex";
 
-
   export default {
     name: 'Dashboard',
     components: {
@@ -43,12 +42,30 @@
 </script>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  // border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  width: 3px;
+  background: transparent;
+  // border-radius: 10px;
+
+  box-shadow: inset 0 0 0 2px #C4C4C4;
+  border: 3px solid transparent;
+}
 .dashboard {
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   display: flex;
   width: 100%;
+  height: calc(100vh - 260px);
   padding: 20px;
+  overflow: auto;
   &--left {
     width: 65%;
     padding-right: 10px;

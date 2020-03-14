@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="mutual-settlement">
     <h2>Взаиморассчеты</h2>
     <table class="table" v-if="mutualSettlement.length">
-      <tr>
+      <tr class="head">
         <td width="30%">Дата</td>
         <td width="70%">Сумма</td>
       </tr>
@@ -11,7 +11,7 @@
         <td width="70%" class="text-right">{{ item.sum | sum }}</td>
       </tr>
     </table>
-    <div v-if="legendMutualSettlements">
+    <div class="mutual-settlement--legend" v-if="legendMutualSettlements">
       Легенда:
       <span
         :class="{
@@ -37,5 +37,17 @@
 </script>
 
 <style lang="scss" scoped>
-
+.mutual-settlement {
+  margin-bottom: 50px;
+  h2 {
+    padding-top: 34px;
+    margin-bottom: 26px;
+  }
+  &--legend {
+    font-weight: 500;
+    font-size: 12px;
+    color: #313131;
+    padding: 24px 0 0;
+  }
+}
 </style>

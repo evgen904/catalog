@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="notifications">
     <h2>Уведомления</h2>
     <table class="table" v-if="notifications.length">
-      <tr>
+      <tr class="head">
         <td width="30%">Дата</td>
         <td width="70%">Сообщение</td>
       </tr>
@@ -26,5 +26,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.notifications {
+  padding-bottom: 30px;
+}
 </style>

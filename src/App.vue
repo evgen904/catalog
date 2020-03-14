@@ -86,11 +86,20 @@ a {
   padding: 0;
   margin: 0;
   width: 100%;
-  tr:nth-child(even) {
-    td {
-      background-color: #F8F8F8;
-      &.bg-none {
-        background-color: transparent;
+  tr {
+    &:nth-child(even) {
+      td {
+        background-color: #F8F8F8;
+        &.bg-none {
+          background-color: transparent;
+        }
+      }
+    }
+    &.head {
+      td {
+        font-weight: 500;
+        font-size: 14px;
+        color: #8A8A8A;
       }
     }
   }
@@ -126,7 +135,58 @@ a {
 .color-green {
   color: #217c01 !important;
 }
+.color-black {
+  color: #000000 !important;
+}
+.style-checkbox {
+  vertical-align:top;
+  width:0;
+  height:12px;
+  padding: 0;
+  margin: 0;
+  + label {
+    cursor:pointer;
+  }
+  &:not(checked) {
+    opacity:0;
+  }
+  &:not(checked) + label {
+    position:relative;
+  }
+  &:not(checked) + label:before {
+    content:'';
+    position:absolute;
+    display: block;
+    top:50%;
+    margin-top: -4px;
+    left:-6px;
+    width: 12px;
+    height: 12px;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  &:not(checked) + label:after {
+    content:'';
+    position:absolute;
+    display: block;
+    top:50%;
+    margin-top: -4px;
+    left:-6px;
+    width: 12px;
+    height: 12px;
+    background:#F6921E url('./assets/checkbox.svg') 50% 50% no-repeat;
+    opacity:0;
+    transition:all .2s;
+    border-radius: 2px;
+  }
+  &:checked + label:after {
+    opacity:1;
+  }
+}
 .btn {
+  outline-style: none;
   cursor: pointer;
   display: inline-block;
   vertical-align: top;
@@ -136,6 +196,7 @@ a {
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  border: none;
   &.black {
     background: #313131;
     color: #FFFFFF;
