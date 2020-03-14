@@ -16,7 +16,7 @@ export default () => {
             {
               "success": true,
               "data": {
-                "products": [
+                "product": [
                   {
                     id: 1,
                     combineOrder: false,

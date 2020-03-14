@@ -1,23 +1,62 @@
 <template>
   <div>
-    <Head title="Каталог" path="Каталог товаров" />
-    Catalog <br>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto at consectetur consequatur corporis culpa cupiditate delectus deleniti distinctio dolorum eius eligendi excepturi fugiat fugit id, illo inventore laborum magni maxime molestias natus nisi nostrum placeat quae quam quis recusandae repellendus vero vitae voluptatibus. Ab animi asperiores, aspernatur dicta distinctio doloremque, enim, harum labore nisi nobis numquam placeat quidem quod quos repudiandae rerum sed veritatis. Accusantium molestiae nisi odit perspiciatis tempore temporibus! Accusamus, adipisci aliquid animi architecto beatae cum delectus distinctio facilis harum id itaque libero magni minus nemo neque nesciunt nihil, non omnis, possimus reiciendis repellendus saepe sapiente sint tempore voluptatem voluptates voluptatibus. Architecto cupiditate, dolorem doloremque earum itaque nemo nesciunt nisi quam sequi ut. Asperiores culpa eveniet ex impedit incidunt itaque laudantium molestias necessitatibus porro quibusdam. Ad, harum quaerat. Consequatur cum cumque dolore dolores hic ipsa labore libero nostrum odit placeat quam, quis, ullam. Animi assumenda at autem commodi, culpa delectus, enim est excepturi exercitationem explicabo hic inventore iusto libero magnam maiores minus mollitia nisi nobis numquam officiis omnis pariatur praesentium provident qui quo, reiciendis reprehenderit similique sit voluptas voluptate. A, at excepturi exercitationem explicabo harum ipsa ipsam iusto, laborum minima porro, quaerat recusandae suscipit. Assumenda beatae dignissimos ea eligendi nam pariatur, sint. Commodi cumque, debitis esse hic nisi soluta veniam! Ab accusamus adipisci alias aliquam animi aperiam, aspernatur at commodi consectetur cumque delectus distinctio dolore doloremque eligendi error explicabo facilis hic id illo itaque iure iusto libero maiores modi natus nesciunt nobis nostrum porro provident quae recusandae repellat saepe similique totam veniam veritatis vero! Aliquid asperiores, autem corporis ducimus eligendi enim eveniet facilis inventore iure labore laborum magnam minus nisi non nostrum odio quidem quod ratione repellendus vitae. Atque commodi ea esse fuga ipsam, laboriosam placeat quas voluptas. Alias, consectetur culpa debitis dolor ea fugiat id nihil placeat? Ab ad aliquam at autem consequatur delectus et, eum ipsa magnam maxime, molestias nisi non porro provident repellat sequi, tempore? Adipisci asperiores atque cum cupiditate dignissimos dolores doloribus ducimus enim eos, eum eveniet illum labore laboriosam minima, mollitia nam natus nobis praesentium quaerat quos reprehenderit sapiente sint sit sunt vero. Ab architecto eos quam quod, sequi tempora tenetur vel. Accusantium alias, animi aspernatur, autem consectetur consequatur consequuntur deserunt dolore eos et eveniet exercitationem facilis fuga in incidunt ipsum iusto labore maiores minus molestiae necessitatibus nemo neque nisi obcaecati omnis perspiciatis placeat praesentium provident ratione repudiandae rerum saepe sint sit tempora tenetur veniam voluptatem! Aliquid aspernatur atque beatae consequatur delectus doloribus ea eligendi ex, impedit iste, neque, pariatur provident quo velit vero? At beatae cupiditate dolore doloremque earum eligendi est eum, excepturi explicabo facere illo nam nihil numquam odio omnis placeat quae quibusdam quo rem sed sint tempore tenetur vero voluptatem, voluptates! Adipisci autem commodi cupiditate ducimus earum eum ex maxime natus numquam ratione reiciendis vel, vero voluptate! Ab animi cumque, ea excepturi id inventore ipsa iure, laborum necessitatibus nesciunt nulla optio perspiciatis porro quisquam quo! Impedit, ipsam, voluptates? Deleniti doloremque eveniet ipsum magni molestias necessitatibus nostrum officia omnis repudiandae.
-    <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto at consectetur consequatur corporis culpa cupiditate delectus deleniti distinctio dolorum eius eligendi excepturi fugiat fugit id, illo inventore laborum magni maxime molestias natus nisi nostrum placeat quae quam quis recusandae repellendus vero vitae voluptatibus. Ab animi asperiores, aspernatur dicta distinctio doloremque, enim, harum labore nisi nobis numquam placeat quidem quod quos repudiandae rerum sed veritatis. Accusantium molestiae nisi odit perspiciatis tempore temporibus! Accusamus, adipisci aliquid animi architecto beatae cum delectus distinctio facilis harum id itaque libero magni minus nemo neque nesciunt nihil, non omnis, possimus reiciendis repellendus saepe sapiente sint tempore voluptatem voluptates voluptatibus. Architecto cupiditate, dolorem doloremque earum itaque nemo nesciunt nisi quam sequi ut. Asperiores culpa eveniet ex impedit incidunt itaque laudantium molestias necessitatibus porro quibusdam. Ad, harum quaerat. Consequatur cum cumque dolore dolores hic ipsa labore libero nostrum odit placeat quam, quis, ullam. Animi assumenda at autem commodi, culpa delectus, enim est excepturi exercitationem explicabo hic inventore iusto libero magnam maiores minus mollitia nisi nobis numquam officiis omnis pariatur praesentium provident qui quo, reiciendis reprehenderit similique sit voluptas voluptate. A, at excepturi exercitationem explicabo harum ipsa ipsam iusto, laborum minima porro, quaerat recusandae suscipit. Assumenda beatae dignissimos ea eligendi nam pariatur, sint. Commodi cumque, debitis esse hic nisi soluta veniam! Ab accusamus adipisci alias aliquam animi aperiam, aspernatur at commodi consectetur cumque delectus distinctio dolore doloremque eligendi error explicabo facilis hic id illo itaque iure iusto libero maiores modi natus nesciunt nobis nostrum porro provident quae recusandae repellat saepe similique totam veniam veritatis vero! Aliquid asperiores, autem corporis ducimus eligendi enim eveniet facilis inventore iure labore laborum magnam minus nisi non nostrum odio quidem quod ratione repellendus vitae. Atque commodi ea esse fuga ipsam, laboriosam placeat quas voluptas. Alias, consectetur culpa debitis dolor ea fugiat id nihil placeat? Ab ad aliquam at autem consequatur delectus et, eum ipsa magnam maxime, molestias nisi non porro provident repellat sequi, tempore? Adipisci asperiores atque cum cupiditate dignissimos dolores doloribus ducimus enim eos, eum eveniet illum labore laboriosam minima, mollitia nam natus nobis praesentium quaerat quos reprehenderit sapiente sint sit sunt vero. Ab architecto eos quam quod, sequi tempora tenetur vel. Accusantium alias, animi aspernatur, autem consectetur consequatur consequuntur deserunt dolore eos et eveniet exercitationem facilis fuga in incidunt ipsum iusto labore maiores minus molestiae necessitatibus nemo neque nisi obcaecati omnis perspiciatis placeat praesentium provident ratione repudiandae rerum saepe sint sit tempora tenetur veniam voluptatem! Aliquid aspernatur atque beatae consequatur delectus doloribus ea eligendi ex, impedit iste, neque, pariatur provident quo velit vero? At beatae cupiditate dolore doloremque earum eligendi est eum, excepturi explicabo facere illo nam nihil numquam odio omnis placeat quae quibusdam quo rem sed sint tempore tenetur vero voluptatem, voluptates! Adipisci autem commodi cupiditate ducimus earum eum ex maxime natus numquam ratione reiciendis vel, vero voluptate! Ab animi cumque, ea excepturi id inventore ipsa iure, laborum necessitatibus nesciunt nulla optio perspiciatis porro quisquam quo! Impedit, ipsam, voluptates? Deleniti doloremque eveniet ipsum magni molestias necessitatibus nostrum officia omnis repudiandae.
+    <Head title="Добро пожаловать! Campaign name" path="Каталог товаров" />
+    <div class="catalog">
+      <div class="catalog--title">
+        Каталог товаров
+      </div>
+      <Search />
+      <CatalogTable />
+      <router-link class="btn orange" :to="{name: 'Order'}">
+        <img src="../assets/plus.svg" alt="">
+        Создать заказ
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
   import Head from '@/components/Head';
+  import Search from '@/components/Search';
+  import CatalogTable from '@/components/Catalog/catalogTable.vue';
 
   export default {
     name: 'Catalog',
     components: {
-      Head
+      Head,
+      Search,
+      CatalogTable
     }
   }
 </script>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  // border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  width: 3px;
+  background: transparent;
+  // border-radius: 10px;
 
+  box-shadow: inset 0 0 0 2px #C4C4C4;
+  border: 3px solid transparent;
+}
+.catalog {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  height: calc(100vh - 270px);
+  padding: 20px;
+  overflow: auto;
+  &--title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
 </style>

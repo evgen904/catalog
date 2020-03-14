@@ -1,4 +1,6 @@
+import getFolders from "./getFolders";
 import getProducts from "./getProducts";
+import getProduct from "./getProduct";
 
 /**
  * Данные для Каталога
@@ -6,5 +8,7 @@ import getProducts from "./getProducts";
  * @module Catalog
  */
 export default {
-  getProducts
+  getFolders,
+  getProducts,
+  getProduct
 };

@@ -4,12 +4,14 @@ import Vuex from 'vuex'
 import Сookies from 'js-cookie'
 
 import dashboard from "./modules/dashboard";
+import catalog from "./modules/catalog";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    dashboard
+    dashboard,
+    catalog
   },
 
   state: {

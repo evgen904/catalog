@@ -86,20 +86,22 @@ a {
   padding: 0;
   margin: 0;
   width: 100%;
-  tr {
-    &:nth-child(even) {
-      td {
-        background-color: #F8F8F8;
-        &.bg-none {
-          background-color: transparent;
+  &:not(.no-bg) {
+    tr {
+      &:nth-child(even) {
+        td {
+          background-color: #F8F8F8;
+          &.bg-none {
+            background-color: transparent;
+          }
         }
       }
-    }
-    &.head {
-      td {
-        font-weight: 500;
-        font-size: 14px;
-        color: #8A8A8A;
+      &.head {
+        td {
+          font-weight: 500;
+          font-size: 14px;
+          color: #8A8A8A;
+        }
       }
     }
   }
