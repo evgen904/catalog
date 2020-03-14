@@ -34,7 +34,7 @@ export default () => {
                     title: "Хорошие замки - тест",
                     order: 5656456,
                     reserve: 3453453,
-                    reserveStatus: "red",
+                    reserveStatus: "color-red",
                     reservationPeriod: "2020-02-14T12:12:12"
                   },
                   {
@@ -44,7 +44,7 @@ export default () => {
                     title: "Хорошие замки - тест 2",
                     order: 57657567,
                     reserve: 234234234,
-                    reserveStatus: "red",
+                    reserveStatus: "color-red",
                     reservationPeriod: "2020-02-15T12:12:12"
                   },
                   {
@@ -64,7 +64,7 @@ export default () => {
                     title: "Хорошие замки - тест 4",
                     order: 456456546,
                     reserve: 234234234,
-                    reserveStatus: "green",
+                    reserveStatus: "color-green",
                     reservationPeriod: "2020-02-16T12:12:12"
                   },
                   {
@@ -84,7 +84,7 @@ export default () => {
                     title: "Хорошие замки - тест 6",
                     order: 567567567,
                     reserve: 234234234,
-                    reserveStatus: "green",
+                    reserveStatus: "color-green",
                     reservationPeriod: "2020-02-18T12:12:12"
                   },
                   {

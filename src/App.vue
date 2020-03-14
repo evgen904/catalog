@@ -51,7 +51,26 @@ body {
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Roboto', sans-serif;
   padding: 0;
-  margin: 0;
+  margin: 0 0 10px;
+  font-weight: normal;
+}
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 18px;
+}
+h3 {
+  font-size: 16px;
+}
+h4 {
+  font-size: 15px;
+}
+h5 {
+  font-size: 12px;
+}
+h6 {
+  font-size: 11px;
 }
 #app {
   height: 100%;
@@ -70,6 +89,9 @@ a {
   tr:nth-child(even) {
     td {
       background-color: #F8F8F8;
+      &.bg-none {
+        background-color: transparent;
+      }
     }
   }
   td, td {
@@ -97,5 +119,48 @@ a {
 }
 .text-center {
   text-align: center;
+}
+.color-red {
+  color: #ff0000 !important;
+}
+.color-green {
+  color: #217c01 !important;
+}
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 2px;
+  padding: 8px 14px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  &.black {
+    background: #313131;
+    color: #FFFFFF;
+  }
+  &.white {
+    background: #FFFFFF;
+    border: 2px solid #F6921E;
+    border-radius: 2px;
+    font-size: 13px;
+    line-height: 15px;
+    color: #F6921E;
+    padding: 8px 18px;
+  }
+  &.orange {
+    background: linear-gradient(250.8deg, #FF8900 14.93%, #FFAB2D 86.64%), #FFA133;
+    border-radius: 2px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+    padding: 10px 18px;
+    img {
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  }
 }
 </style>

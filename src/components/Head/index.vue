@@ -2,7 +2,7 @@
   <div class="head">
     <div>
       <h2>{{ title }}</h2>
-      <PathHead />
+      <PathHead v-if="path && path != ''" :path="path" />
     </div>
     <div>
       <router-link class="btn white" :to="{name:'Catalog'}">Каталог</router-link>
@@ -17,6 +17,10 @@
     name: 'Head',
     props: {
       title: {
+        type: String,
+        default: ''
+      },
+      path: {
         type: String,
         default: ''
       }

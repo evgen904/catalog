@@ -1,16 +1,19 @@
 <template>
   <div class="path">
     <router-link :to="{name:'Dashboard'}">Главная</router-link> /
-    <router-link :to="{name:'Order'}">Заказ</router-link> /
-    <router-link :to="{name:'Catalog'}">Каталог</router-link> /
-    <router-link :to="{name:'Selection'}">Подбор</router-link> /
-    <router-link :to="{path:'/404'}">404</router-link>
+    <span>{{ path }}</span>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'PathHead'
+    name: 'PathHead',
+    props: {
+      path: {
+        type: String,
+        default: ''
+      }
+    },
   }
 </script>
 

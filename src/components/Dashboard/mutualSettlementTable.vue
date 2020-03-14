@@ -1,28 +1,27 @@
 <template>
   <div>
     <h2>Взаиморассчеты</h2>
-    <table class="table">
+    <table class="table" v-if="mutualSettlement.length">
       <tr>
-        <td>2</td>
-        <td>2</td>
+        <td width="30%">Дата</td>
+        <td width="70%">Сумма</td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
+      <tr v-for="item in mutualSettlement" :key="item.id">
+        <td width="30%">{{ item.date | date }}</td>
+        <td width="70%" class="text-right">{{ item.sum | sum }}</td>
       </tr>
     </table>
+    <div v-if="legendMutualSettlements">
+      Легенда:
+      <span
+        :class="{
+          'color-red': !legendMutualSettlements.val,
+          'color-green': legendMutualSettlements.val
+        }"
+      >
+        {{ legendMutualSettlements.status }}
+      </span>
+    </div>
   </div>
 </template>
 
