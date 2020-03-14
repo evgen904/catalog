@@ -3,13 +3,10 @@
     <Head title="Добро пожаловать! Campaign name" />
     <div class="dashboard">
       <div class="dashboard--left">
-        <div class="dashboard--title">Заказы</div>
         <OrdersTable />
       </div>
       <div class="dashboard--right">
-        <div class="dashboard--title">Взаиморассчеты</div>
         <MutualSettlementTable />
-        <div class="dashboard--title">Уведомления</div>
         <NotificationsTable />
       </div>
     </div>

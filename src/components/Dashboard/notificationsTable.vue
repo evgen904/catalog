@@ -1,33 +1,23 @@
 <template>
   <div>
+    <h2>Уведомления</h2>
     <table class="table">
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
+      <tr v-for="item in notifications" :key="item.id">
+        <td>{{ item.date | date }}</td>
+        <td class="text-right">{{ item.message }}</td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+  import { mapState } from "vuex";
+
   export default {
-    name: "notificationsTable"
+    name: "notificationsTable",
+    computed: {
+      ...mapState('dashboard', ['notifications'])
+    }
   }
 </script>
 

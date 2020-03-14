@@ -89,4 +89,13 @@ a {
     padding: 12px 8px;
   }
 }
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
 </style>

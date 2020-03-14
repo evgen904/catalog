@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Взаиморассчеты</h2>
     <table class="table">
       <tr>
         <td>2</td>
@@ -26,8 +27,13 @@
 </template>
 
 <script>
+  import { mapState } from "vuex";
+
   export default {
-    name: "mutualSettlementTable"
+    name: "mutualSettlementTable",
+    computed: {
+      ...mapState('dashboard', ['mutualSettlement', 'legendMutualSettlements'])
+    }
   }
 </script>
 
