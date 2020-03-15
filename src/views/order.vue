@@ -49,18 +49,20 @@
           Подбор товаров
         </button>
       </div>
-
+      <OrderTable />
     </div>
   </div>
 </template>
 
 <script>
   import Head from '@/components/Head';
+  import OrderTable from '@/components/Order/orderTable.vue';
 
   export default {
     name: 'Order',
     components: {
-      Head
+      Head,
+      OrderTable
     }
   }
 </script>
