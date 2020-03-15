@@ -3,10 +3,10 @@
     <div class="tr">
       <div>
         <span
-          class="link-folder"
-          :class="{'child':item.children && item.children.length || productsFolder.length}"
-          @click="toggle"
-          @dblclick="makeFolder"
+            class="link-folder"
+            :class="{'child':item.children && item.children.length || productsFolder.length}"
+            @click="toggle"
+            @dblclick="makeFolder"
         >
           <span class="ico-arrow" :class="{'open': isOpen}"></span>
           <img class="ico-folder" src="../../assets/folder.svg" alt="">
@@ -14,6 +14,8 @@
         </span>
       </div>
       <div>{{ item.code }}</div>
+      <div></div>
+      <div></div>
       <div></div>
       <div></div>
       <div></div>
@@ -43,6 +45,8 @@
           </span>
         </div>
         <div>{{ prod.code }}</div>
+        <div>{{ prod.order }}</div>
+        <div>{{ prod.reserve }}</div>
         <div>{{ prod.remainder }}</div>
         <div>{{ prod.byAgreement }}</div>
         <div>{{ prod.priceDealer | sum }}</div>
@@ -122,133 +126,139 @@
 </script>
 
 <style lang="scss" scoped>
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-size: 12px;
-    color: #313131;
-    li {
-      .link-folder {
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        user-select: none;
-        &.child {
-          cursor: pointer;
-          .ico-arrow {
-            opacity: 1;
-          }
-        }
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+  color: #313131;
+  li {
+    .link-folder {
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      user-select: none;
+      &.child {
+        cursor: pointer;
         .ico-arrow {
-          display: inline-block;
-          vertical-align: middle;
+          opacity: 1;
+        }
+      }
+      .ico-arrow {
+        display: inline-block;
+        vertical-align: middle;
+        width: 6px;
+        height: 6px;
+        position: relative;
+        margin-right: 10px;
+        opacity: 0;
+        &:after {
+          content: '';
+          display: block;
           width: 6px;
           height: 6px;
-          position: relative;
-          margin-right: 10px;
-          opacity: 0;
+          background: url('../../assets/arrow.svg') 0 0 no-repeat;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        &.open {
           &:after {
-            content: '';
-            display: block;
-            width: 6px;
-            height: 6px;
-            background: url('../../assets/arrow.svg') 0 0 no-repeat;
-            position: absolute;
-            top: 0;
-            left: 0;
-          }
-          &.open {
-            &:after {
-              top: -3px;
-              transform: rotate(180deg);
-            }
-          }
-        }
-        .ico-folder {
-          margin-right: 6px;
-          vert-align: middle;
-        }
-      }
-      &.level-1 {
-        .tr {
-          > div {
-            &:nth-child(1) {
-              padding-left: 14px;
-            }
+            top: -3px;
+            transform: rotate(180deg);
           }
         }
       }
-      &.level-2 {
-        .tr {
-          > div {
-            &:nth-child(1) {
-              padding-left: 30px;
-            }
-          }
-        }
+      .ico-folder {
+        margin-right: 6px;
+        vert-align: middle;
       }
-      &.level-3 {
-        .tr {
-          > div {
-            &:nth-child(1) {
-              padding-left: 46px;
-            }
-          }
-        }
-      }
+    }
+    &.level-1 {
       .tr {
-        display: flex;
-        width: 100%;
         > div {
-          border: 1px solid #ccc;
-          margin-right: -1px;
-          margin-bottom: -1px;
-          padding: 12px 8px;
           &:nth-child(1) {
-            width: 36%;
-          }
-          &:nth-child(2) {
-            width: 8%;
-          }
-          &:nth-child(3) {
-            width: 10%;
-          }
-          &:nth-child(4) {
-            width: 10%;
-          }
-          &:nth-child(5) {
-            width: 8%;
-          }
-          &:nth-child(6) {
-            width: 8%;
-          }
-          &:nth-child(7) {
-            width: 10%;
-          }
-          &:nth-child(8) {
-            width: 10%;
-            margin-right: 0;
+            padding-left: 14px;
           }
         }
       }
-      ul {
-        padding: 0;
-        margin: 0;
-        list-style: none;
+    }
+    &.level-2 {
+      .tr {
+        > div {
+          &:nth-child(1) {
+            padding-left: 30px;
+          }
+        }
       }
     }
-  }
-  .style-checkbox + label {
-    &:after, &:before {
-      margin-top: -6px;
-      margin-left: 4px;
+    &.level-3 {
+      .tr {
+        > div {
+          &:nth-child(1) {
+            padding-left: 46px;
+          }
+        }
+      }
+    }
+    .tr {
+      display: flex;
+      width: 100%;
+      > div {
+        border: 1px solid #ccc;
+        margin-right: -1px;
+        margin-bottom: -1px;
+        padding: 12px 8px;
+        &:nth-child(1) {
+          width: 33%;
+        }
+        &:nth-child(2) {
+          width: 7%;
+        }
+        &:nth-child(3) {
+          width: 8%;
+        }
+        &:nth-child(4) {
+          width: 8%;
+        }
+        &:nth-child(5) {
+          width: 8%;
+        }
+        &:nth-child(6) {
+          width: 8%;
+        }
+        &:nth-child(7) {
+          width: 6%;
+        }
+        &:nth-child(8) {
+          width: 6%;
+        }
+        &:nth-child(9) {
+          width: 8%;
+        }
+        &:nth-child(10) {
+          width: 8%;
+          margin-right: 0;
+        }
+      }
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
   }
-  .prod-title {
-    cursor: pointer;
-    padding-left: 16px;
-    &:hover {
-      text-decoration: underline;
-    }
+}
+.style-checkbox + label {
+  &:after, &:before {
+    margin-top: -6px;
+    margin-left: 4px;
   }
+}
+.prod-title {
+  cursor: pointer;
+  padding-left: 16px;
+  &:hover {
+    text-decoration: underline;
+  }
+}
 </style>

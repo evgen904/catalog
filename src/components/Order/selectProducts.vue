@@ -1,38 +1,40 @@
 <template>
   <div>
-    <template v-if="folders.length">
-      <div class="catalog-table">
-        <div class="catalog-menu--head">
-          <div>
-            <div>Наименование</div>
-            <div>Код</div>
-            <div>Отстаток</div>
-            <div>По согласованию</div>
-            <div>Цена</div>
-            <div></div>
-            <div>Минибокс</div>
-            <div>Упаковка</div>
-          </div>
-          <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>Дилерская</div>
-            <div>Базовая</div>
-            <div></div>
-            <div></div>
-          </div>
+    <div class="catalog-table" v-if="folders.length">
+      <div class="catalog-menu--head">
+        <div>
+          <div>Наименование</div>
+          <div>Код</div>
+          <div>Заказ</div>
+          <div>Резерв</div>
+          <div>Отстаток</div>
+          <div>По согласованию</div>
+          <div>Цена</div>
+          <div></div>
+          <div>Минибокс</div>
+          <div>Упаковка</div>
         </div>
-        <ul class="catalog-menu">
-          <CatalogMenu
-            v-for="item in folders"
-            :key="item.id"
-            :item="item"
-          ></CatalogMenu>
-        </ul>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div>Дилерская</div>
+          <div>Базовая</div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-    </template>
+      <ul class="catalog-menu">
+        <CatalogMenu
+          v-for="item in folders"
+          :key="item.id"
+          :item="item"
+        ></CatalogMenu>
+      </ul>
+    </div>
     <div class="loader" v-else>
       <baseLoader />
     </div>
@@ -40,12 +42,12 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from "vuex";
+  import { mapState, mapActions, mapMutations } from "vuex";
   import CatalogMenu from "./catalogMenu";
   import baseLoader from "../Base/baseLoader";
 
   export default {
-    name: "catalogTable",
+    name: "selectProducts",
     components: {
       CatalogMenu,
       baseLoader
@@ -53,12 +55,17 @@
     mounted() {
       this.getFolders();
       this.getProducts();
+      this.setModal(false);
+    },
+    destroyed() {
+      this.setModal(false);
     },
     computed: {
       ...mapState('catalog', ['folders'])
     },
     methods: {
-      ...mapActions('catalog', ['getFolders', 'getProducts'])
+      ...mapActions('catalog', ['getFolders', 'getProducts']),
+      ...mapMutations("catalog", ["setModal"]),
     }
   }
 </script>
@@ -71,7 +78,6 @@
   height: 100px;
 }
 .catalog-table {
-  margin-bottom: 18px;
   font-size: 12px;
   .link-folder {
     &.child {
@@ -104,16 +110,16 @@
           margin-bottom: -1px;
           padding: 12px 8px;
           &:nth-child(1) {
-            width: 36%;
+            width: 33%;
           }
           &:nth-child(2) {
-            width: 8%;
+            width: 7%;
           }
           &:nth-child(3) {
-            width: 10%;
+            width: 8%;
           }
           &:nth-child(4) {
-            width: 10%;
+            width: 8%;
           }
           &:nth-child(5) {
             width: 8%;
@@ -122,16 +128,22 @@
             width: 8%;
           }
           &:nth-child(7) {
-            width: 10%;
+            width: 6%;
           }
           &:nth-child(8) {
-            width: 10%;
+            width: 6%;
+          }
+          &:nth-child(9) {
+            width: 8%;
+          }
+          &:nth-child(10) {
+            width: 8%;
             margin-right: 0;
           }
         }
         &:nth-child(1) {
           > div {
-            &:nth-child(6) {
+            &:nth-child(8) {
               border-left-color: #fff;
             }
           }
@@ -152,18 +164,24 @@
               border-top-color: #fff;
             }
             &:nth-child(5) {
-              width: 8%;
+              border-top-color: #fff;
             }
             &:nth-child(6) {
-              width: 8%;
+              border-top-color: #fff;
             }
             &:nth-child(7) {
-              width: 10%;
+              width: 6%;
+            }
+            &:nth-child(8) {
+              width: 6%;
+            }
+            &:nth-child(9) {
+              width: 8%;
               margin-right: -1px;
               border-top-color: #fff;
             }
-            &:nth-child(8) {
-              width: 10%;
+            &:nth-child(10) {
+              width: 8%;
               margin-right: 0;
               border-top-color: #fff;
             }

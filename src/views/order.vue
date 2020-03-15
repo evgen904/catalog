@@ -1,6 +1,9 @@
 <template>
   <div>
     <Head title="Добро пожаловать! Campaign name" path="Заказ" />
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
     <div class="order">
       <div class="order--title">Заказ: Хорошие замки - Самостоятельная заявка </div>
       <div class="order--fields">
@@ -36,17 +39,17 @@
         </div>
       </div>
       <div class="order--btn">
-        <button class="btn black">
+        <router-link :to="{name: 'Selection'}" class="btn black">
           <img src="../assets/selection.svg" alt="">
           Подбор товаров
-        </button>
+        </router-link>
         <button class="btn black">
           <img src="../assets/download.svg" alt="">
-          Подбор товаров
+          Загрузить заказ из файла
         </button>
         <button class="btn black">
           <img src="../assets/upload-order.svg" alt="">
-          Подбор товаров
+          Выгрузить заказ в файл
         </button>
       </div>
       <OrderTable />
@@ -68,7 +71,13 @@
 </script>
 
 <style lang="scss" scoped>
-  ::-webkit-scrollbar {
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+::-webkit-scrollbar {
   width: 10px;
   background: transparent;
 }

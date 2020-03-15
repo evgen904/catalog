@@ -1,6 +1,6 @@
 <template>
   <div class="mutual-settlement">
-    <h2>Взаиморассчеты</h2>
+    <h2>Взаиморасчеты</h2>
     <template v-if="mutualSettlement.length">
       <table class="table" >
         <tr class="head">

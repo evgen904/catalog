@@ -26,7 +26,7 @@
       </tr>
 
       <tr
-        v-for="(index) in 4"
+        v-for="(index) in 10"
         :key="index"
       >
         <td class="text-center">

@@ -3,18 +3,28 @@
     <transition name="fade" mode="out-in">
       <vue-extend-layouts/>
     </transition>
+    <BaseModal ref="modalProduct">
+      <div slot="head">
+        <portal-target name="product-head" />
+      </div>
+      <div slot="body">
+        <portal-target name="product-body" />
+      </div>
+    </BaseModal>
   </div>
 </template>
 
 <script>
   import VueExtendLayouts from 'vue-extend-layout'
   import Сookie from 'cookie'
-  import { mapMutations } from "vuex";
+  import { mapState, mapMutations } from "vuex";
+  import BaseModal from '@/components/Base/baseModal.vue';
 
   export default {
     name: 'App',
     components: {
-      VueExtendLayouts
+      VueExtendLayouts,
+      BaseModal
     },
     mounted() {
       const cookies = Сookie.parse(document.cookie);
@@ -22,8 +32,21 @@
         this.setLoggedIn(true);
       }
     },
+    computed: {
+      ...mapState('catalog', ['modal'])
+    },
     methods: {
       ...mapMutations(['setLoggedIn']),
+      ...mapMutations("catalog", ["setModal"])
+    },
+    watch: {
+      modal(val) {
+        if (val) {
+          this.$refs.modalProduct.show();
+        } else {
+          this.$refs.modalProduct.close();
+        }
+      }
     }
   }
 </script>
@@ -213,13 +236,19 @@ a {
     padding: 8px 18px;
   }
   &.orange {
-    background: linear-gradient(250.8deg, #FF8900 14.93%, #FFAB2D 86.64%), #FFA133;
+    background: linear-gradient(255.53deg, #FF8900 13.86%, #FFAB2D 86.44%), #FFA133;
     border-radius: 2px;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     color: #FFFFFF;
     padding: 10px 18px;
+    &:hover {
+      background: linear-gradient(255.53deg, #FF8900 13.86%, #FFAB2D 86.44%), #FFA133;
+    }
+    &:active {
+      background: linear-gradient(255.53deg, #FF8900 13.86%, #FFAB2D 86.44%), #FFA133;
+    }
     img {
       vertical-align: middle;
       margin-right: 4px;
