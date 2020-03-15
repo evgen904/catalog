@@ -3,7 +3,8 @@ import { Сatalog } from "@/api/index.js";
 const state = {
   folders: [],
   product: null,
-  products: []
+  products: [],
+  modal: false
 };
 
 const getters = {};
@@ -56,6 +57,9 @@ const mutations = {
   },
   setProducts(state, value) {
     state.products = value;
+  },
+  setModal(state, value) {
+    state.modal = value;
   }
 };
 

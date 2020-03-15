@@ -12,6 +12,14 @@
         Создать заказ
       </router-link>
     </div>
+    <BaseModal ref="modalProduct">
+      <div slot="head">
+        <portal-target name="product-head" />
+      </div>
+      <div slot="body">
+        <portal-target name="product-body" />
+      </div>
+    </BaseModal>
   </div>
 </template>
 
@@ -19,13 +27,28 @@
   import Head from '@/components/Head';
   import Search from '@/components/Search';
   import CatalogTable from '@/components/Catalog/catalogTable.vue';
+  import BaseModal from '@/components/Base/baseModal.vue';
+  import { mapState } from "vuex";
 
   export default {
     name: 'Catalog',
     components: {
       Head,
       Search,
-      CatalogTable
+      CatalogTable,
+      BaseModal
+    },
+    computed: {
+      ...mapState('catalog', ['modal'])
+    },
+    watch: {
+      modal(val) {
+        if (val) {
+          this.$refs.modalProduct.show();
+        } else {
+          this.$refs.modalProduct.close();
+        }
+      }
     }
   }
 </script>

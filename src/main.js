@@ -5,9 +5,11 @@ import router from './router'
 import store from './store'
 import DateFilter from '@/common/date.filter';
 import SumFilter from '@/common/sum.filter';
+import PortalVue from 'portal-vue'
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate);
+Vue.use(PortalVue)
 Vue.filter('date', DateFilter)
 Vue.filter('sum', SumFilter)
 
