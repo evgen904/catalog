@@ -1,45 +1,54 @@
 <template>
-  <div class="catalog-table" v-if="folders.length">
-    <div class="catalog-menu--head">
-      <div>
-        <div>Наименование</div>
-        <div>Код</div>
-        <div>Отстаток</div>
-        <div>По согласованию</div>
-        <div>Цена</div>
-        <div></div>
-        <div>Минибокс</div>
-        <div>Упаковка</div>
+  <div>
+    <template v-if="folders.length">
+      <div class="catalog-table">
+        <div class="catalog-menu--head">
+          <div>
+            <div>Наименование</div>
+            <div>Код</div>
+            <div>Отстаток</div>
+            <div>По согласованию</div>
+            <div>Цена</div>
+            <div></div>
+            <div>Минибокс</div>
+            <div>Упаковка</div>
+          </div>
+          <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>Дилерская</div>
+            <div>Базовая</div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <ul class="catalog-menu">
+          <CatalogMenu
+            v-for="item in folders"
+            :key="item.id"
+            :item="item"
+          ></CatalogMenu>
+        </ul>
       </div>
-      <div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div>Дилерская</div>
-        <div>Базовая</div>
-        <div></div>
-        <div></div>
-      </div>
+    </template>
+    <div class="loader" v-else>
+      <baseLoader />
     </div>
-    <ul class="catalog-menu" v-if="folders.length">
-      <CatalogMenu
-        v-for="item in folders"
-        :key="item.id"
-        :item="item"
-      ></CatalogMenu>
-    </ul>
   </div>
 </template>
 
 <script>
   import { mapState, mapActions } from "vuex";
   import CatalogMenu from "./catalogMenu";
+  import baseLoader from "../Base/baseLoader";
 
   export default {
     name: "catalogTable",
     components: {
-      CatalogMenu
+      CatalogMenu,
+      baseLoader
     },
     mounted() {
       this.getFolders();
@@ -58,6 +67,12 @@
 </script>
 
 <style lang="scss" scoped>
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
 .catalog-table {
   margin-bottom: 18px;
   font-size: 12px;

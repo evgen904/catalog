@@ -1,6 +1,6 @@
 <template>
   <transition name="base-modal--slide">
-    <div v-if="visible" class="base-modal">
+    <div v-if="modal" class="base-modal">
       <div class="base-modal--head">
         <slot name="head"></slot>
       </div>
@@ -15,28 +15,24 @@
 </template>
 
 <script>
-  import { mapMutations } from "vuex";
+  import { mapState, mapMutations } from "vuex";
 
   export default {
     name: "BaseModal",
-    data() {
-      return {
-        visible: false
-      }
+    computed: {
+      ...mapState('catalog', ['modal'])
     },
     methods: {
-      ...mapMutations("catalog", ["setModal"]),
+      ...mapMutations("catalog", ["setModal", "setProduct"]),
       show() {
-        this.visible = true;
+        this.setModal(true);
       },
       close() {
-        this.visible = false;
+        this.setModal(false);
+        setTimeout(() => {
+          this.setProduct(null);
+        },500)
       },
-    },
-    watch: {
-      visible(val) {
-        this.setModal(val);
-      }
     }
   }
 </script>
@@ -65,7 +61,7 @@
   z-index: 200;
   background: #FFFFFF;
   border: 1px solid #DBDBDB;
-  padding: 20px 4px 20px 20px;
+  padding: 20px 4px 10px 20px;
   width: 100%;
   max-width: 945px;
   &--slide-enter-active,
@@ -94,7 +90,7 @@
     margin-bottom: 10px;
   }
   &--body {
-    max-height: calc(100vh - 260px);
+    max-height: calc(100vh - 310px);
     overflow: auto;
     padding: 0 16px 0 0;
   }

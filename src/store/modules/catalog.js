@@ -22,12 +22,13 @@ const actions = {
       throw e
     }
   },
-  async getProduct({ commit }) {
+  async getProduct({ commit }, idProduct) {
     try {
       const notifications = await Сatalog.getProduct();
 
-      if (notifications.data && notifications.data.data.product) {
-        commit('setProduct', notifications.data.data.product)
+      if (notifications.data && notifications.data.data.product.length) {
+        const product = notifications.data.data.product.find(item => item.code == idProduct);
+        commit('setProduct', product)
       }
     } catch (e) {
       console.log(e);

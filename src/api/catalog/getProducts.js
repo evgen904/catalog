@@ -33,7 +33,7 @@ export default () => {
                 {
                   id: 2,
                   combineOrder: false,
-                  code: "45747756",
+                  code: "234234234",
                   idFolder: "666",
                   title: "Девиатор Врезной - НБ 8.04.002",
                   remainder: "15",
@@ -46,7 +46,7 @@ export default () => {
                 {
                   id: 3,
                   combineOrder: false,
-                  code: "325235235",
+                  code: "003728515",
                   idFolder: "777",
                   title: "Девиатор Врезной - НБ 8.04.002",
                   remainder: "15",
@@ -59,7 +59,7 @@ export default () => {
                 {
                   id: 4,
                   combineOrder: false,
-                  code: "547547",
+                  code: "234234234",
                   idFolder: "222",
                   title: "Девиатор Врезной - НБ 8.04.002",
                   remainder: "15",
