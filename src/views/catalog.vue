@@ -28,7 +28,7 @@
   import Search from '@/components/Search';
   import CatalogTable from '@/components/Catalog/catalogTable.vue';
   import BaseModal from '@/components/Base/baseModal.vue';
-  import { mapState } from "vuex";
+  import { mapState, mapMutations } from "vuex";
 
   export default {
     name: 'Catalog',
@@ -37,6 +37,12 @@
       Search,
       CatalogTable,
       BaseModal
+    },
+    mounted() {
+      this.setModal(false);
+    },
+    methods: {
+      ...mapMutations("catalog", ["setModal"]),
     },
     computed: {
       ...mapState('catalog', ['modal'])
