@@ -43,6 +43,32 @@ export default () => {
                   minibox: "",
                   packaging: "10"
                 },
+                {
+                  id: 3,
+                  combineOrder: false,
+                  code: "325235235",
+                  idFolder: "777",
+                  title: "Девиатор Врезной - НБ 8.04.002",
+                  remainder: "15",
+                  byAgreement: false,
+                  priceDealer: 512.04,
+                  priceBasic: 2560.20,
+                  minibox: "",
+                  packaging: "10"
+                },
+                {
+                  id: 4,
+                  combineOrder: false,
+                  code: "547547",
+                  idFolder: "222",
+                  title: "Девиатор Врезной - НБ 8.04.002",
+                  remainder: "15",
+                  byAgreement: false,
+                  priceDealer: 512.04,
+                  priceBasic: 2560.20,
+                  minibox: "",
+                  packaging: "10"
+                }
               ]
             },
             "errors": []

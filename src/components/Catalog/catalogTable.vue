@@ -82,11 +82,15 @@
       > div {
         display: flex;
         width: 100%;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        color: #8A8A8A;
         > div {
           border: 1px solid #ccc;
           margin-right: -1px;
           margin-bottom: -1px;
-          padding: 5px;
+          padding: 12px 8px;
           &:nth-child(1) {
             width: 36%;
           }
@@ -122,6 +126,7 @@
         }
         &:nth-child(2) {
           > div {
+            padding: 5px 8px;
             &:nth-child(1) {
               border-top-color: #fff;
             }
