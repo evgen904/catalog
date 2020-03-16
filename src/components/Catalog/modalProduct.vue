@@ -69,10 +69,10 @@
 </script>
 
 <style lang="scss" scoped>
+.loader {
+  height: 520px;
+}
 .product {
-  .loader {
-    height: 520px;
-  }
   &--code {
     color: #313131;
     font-size: 14px;
