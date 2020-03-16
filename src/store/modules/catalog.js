@@ -5,7 +5,9 @@ const state = {
   folders: [],
   product: null,
   products: [],
-  modal: false
+  searchProducts: [],
+  modal: false,
+  searchText: ''
 };
 
 const getters = {};
@@ -65,6 +67,12 @@ const mutations = {
   },
   setCombineOrderName(state, value) {
     Vue.set(state.products[value.index], "combineOrder", value.value);
+  },
+  setSearchText(state, value) {
+    state.searchText = value;
+  },
+  setSearchProducts(state, value) {
+    state.searchProducts = value;
   }
 };
 

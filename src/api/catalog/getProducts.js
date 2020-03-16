@@ -41,7 +41,7 @@ export default () => {
                   order: "",
                   reserve: "",
                   idFolder: "666",
-                  title: "Девиатор Врезной - НБ 8.04.002",
+                  title: "Замок Девиатор Врезной - НБ 8.04.002",
                   remainder: "15",
                   byAgreement: false,
                   priceDealer: 512.04,

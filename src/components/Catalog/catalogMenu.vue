@@ -1,5 +1,5 @@
 <template>
-  <li :class="`level-${item.level}`">
+  <li :class="`level-${item.level}`" v-if="item.children && item.children.length || productsFolder.length">
     <div class="tr">
       <div>
         <span
@@ -8,7 +8,7 @@
           @click="toggle"
           @dblclick="makeFolder"
         >
-          <span class="ico-arrow" :class="{'open': isOpen}"></span>
+          <span class="ico-arrow" :class="{'open': isOpen || searchProducts.length}"></span>
           <img class="ico-folder" src="../../assets/folder.svg" alt="">
           {{ item.title }}
         </span>
@@ -26,7 +26,7 @@
         class="tr product"
         v-for="prod in productsFolder"
         :key="prod.id"
-        v-show="isOpen"
+        v-show="isOpen || searchProducts.length"
       >
         <div>
           <input
@@ -51,7 +51,7 @@
         <div class="text-right">{{ prod.packaging }}</div>
       </div>
     </template>
-    <ul v-show="isOpen" v-if="isFolder">
+    <ul v-show="isOpen || searchProducts.length" v-if="isFolder">
       <catalogMenu
         v-for="(child, index) in item.children"
         :key="index"
@@ -87,9 +87,17 @@
       }
     },
     computed: {
-      ...mapState('catalog', ['products', 'modal', 'product']),
+      ...mapState('catalog', ['modal', 'product', 'searchText', 'searchProducts']),
+      ...mapState('catalog', { productsState: 'products' }),
+      productsSelected() {
+        if (this.searchProducts.length) {
+          return this.searchProducts;
+        } else {
+          return this.productsState;
+        }
+      },
       productsFolder() {
-        return this.products.filter(el => el.idFolder == this.item.idFolder);
+        return this.productsSelected.filter(el => el.idFolder == this.item.idFolder);
       },
       isFolder: function () {
         return this.item.children &&
@@ -112,7 +120,7 @@
       },
       setCombineOrder(val, elem) {
         this.setCombineOrderName({
-          index: this.products.findIndex(item => item.code === elem.code),
+          index: this.productsState.findIndex(item => item.code === elem.code),
           value: val.target.checked
         });
       },

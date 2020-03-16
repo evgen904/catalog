@@ -2,22 +2,78 @@
   <div class="search">
     <form @submit.prevent="search">
       <label>
-        <input type="text" placeholder="Введите название или код товара">
+        <input
+          type="text"
+          placeholder="Введите название или код товара"
+          v-model="searchVal"
+        >
         <button>
           <img src="../../assets/search.svg" alt="">
         </button>
       </label>
     </form>
+    <div v-if="searchProducts.length && searchVal.length >= 3">
+      Найдено {{ searchProducts.length }}
+    </div>
   </div>
 </template>
 
 <script>
+  import { mapState, mapMutations } from "vuex";
+  import _ from "lodash";
+
   export default {
     name: "Search",
-    methods: {
-      search() {
+    computed: {
+      ...mapState('catalog', ['searchText', 'products', 'searchProducts', 'folders']),
+      searchVal: {
+        get() {
+          return this.searchText;
+        },
+        set(val) {
+          this.setSearchText(val);
+          let resultSearch = [];
+          let idFolders = [];
 
+          if (val.length >= 3) {
+            for (let prop in this.products) {
+              if (
+                  this.products[prop]['title'].toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+                  this.products[prop]['code'].toLowerCase().indexOf(val.toLowerCase()) > -1
+              ) {
+                resultSearch.push(this.products[prop]);
+                idFolders.push(this.products[prop]['idFolder']);
+              }
+            }
+            this.setSearchProducts(resultSearch);
+
+
+            idFolders = _.sortedUniq(idFolders);
+
+            // for (let folder of idFolders) {
+            //
+            //   for (let item in this.folders) {
+            //
+            //     if (this.folders[item]['idFolder'] == folder) {
+            //
+            //     }
+            //
+            //
+            //   }
+            //
+            //
+            // }
+
+
+
+          } else {
+            this.setSearchProducts([]);
+          }
+        }
       }
+    },
+    methods: {
+      ...mapMutations("catalog", ["setSearchText", "setSearchProducts"])
     }
   }
 </script>

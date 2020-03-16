@@ -1,6 +1,7 @@
 <template>
   <div>
     <template v-if="folders.length">
+      <br>
       <div class="catalog-table">
         <div class="catalog-menu--head">
           <div>
