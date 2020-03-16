@@ -3,7 +3,7 @@
     <transition name="fade" mode="out-in">
       <vue-extend-layouts/>
     </transition>
-    <BaseModal v-if="cookiesAuth" ref="modalProduct">
+    <BaseModal v-if="user.loggedIn" ref="modalProduct">
       <div slot="head">
         <portal-target name="product-head" />
       </div>
@@ -26,20 +26,15 @@
       VueExtendLayouts,
       BaseModal
     },
-    data() {
-      return {
-        cookiesAuth: false
-      }
-    },
     mounted() {
       const cookies = Сookie.parse(document.cookie);
       if (cookies.auth) {
         this.setLoggedIn(true);
-        this.cookiesAuth = true;
       }
     },
     computed: {
-      ...mapState('catalog', ['modal'])
+      ...mapState('catalog', ['modal']),
+      ...mapState(['user'])
     },
     methods: {
       ...mapMutations(['setLoggedIn']),
