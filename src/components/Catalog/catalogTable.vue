@@ -49,11 +49,15 @@
       baseLoader
     },
     mounted() {
-      this.getFolders();
-      this.getProducts();
+      if (!this.folders.length) {
+        this.getFolders();
+      }
+      if (!this.products.length) {
+        this.getProducts();
+      }
     },
     computed: {
-      ...mapState('catalog', ['folders'])
+      ...mapState('catalog', ['folders', 'products'])
     },
     methods: {
       ...mapActions('catalog', ['getFolders', 'getProducts'])
