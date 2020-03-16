@@ -63,22 +63,6 @@
 .fade-enter, .fade-leave-active {
   opacity: 0;
 }
-::-webkit-scrollbar {
-  width: 10px;
-  background: transparent;
-}
-::-webkit-scrollbar-track {
-  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  // border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  width: 3px;
-  background: transparent;
-  // border-radius: 10px;
-
-  box-shadow: inset 0 0 0 2px #C4C4C4;
-  border: 3px solid transparent;
-}
 .order {
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
