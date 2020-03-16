@@ -36,7 +36,6 @@
 
 <style lang="scss" scoped>
 .notifications {
-  padding-bottom: 30px;
   &--loader {
     display: flex;
     align-items: center;

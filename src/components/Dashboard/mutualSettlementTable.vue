@@ -47,7 +47,6 @@
 
 <style lang="scss" scoped>
 .mutual-settlement {
-  margin-bottom: 50px;
   h2 {
     padding-top: 34px;
     margin-bottom: 26px;

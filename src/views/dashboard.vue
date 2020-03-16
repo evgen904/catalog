@@ -6,8 +6,12 @@
         <OrdersTable />
       </div>
       <div class="dashboard--right">
-        <MutualSettlementTable />
-        <NotificationsTable />
+        <div class="block-1">
+          <MutualSettlementTable />
+        </div>
+        <div class="block-2">
+          <NotificationsTable />
+        </div>
       </div>
     </div>
   </div>
@@ -42,37 +46,34 @@
 </script>
 
 <style lang="scss" scoped>
-::-webkit-scrollbar {
-  width: 10px;
-  background: transparent;
-}
-::-webkit-scrollbar-track {
-  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  // border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  width: 3px;
-  background: transparent;
-  // border-radius: 10px;
-
-  box-shadow: inset 0 0 0 2px #C4C4C4;
-  border: 3px solid transparent;
-}
 .dashboard {
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   display: flex;
   width: 100%;
   height: calc(100vh - 260px);
-  padding: 20px;
+  padding: 20px 16px 20px 20px;
   overflow: auto;
   &--left {
     width: 65%;
-    padding-right: 10px;
+    padding-right: 4px;
+    height: calc(100vh - 300px);
+    overflow: auto;
   }
   &--right {
     width: 35%;
-    padding-left: 10px;
+    padding-left: 16px;
+    .block-1 {
+      height: calc(50vh - 190px);
+      overflow: auto;
+      margin-bottom: 40px;
+      padding-right: 4px;
+    }
+    .block-2 {
+      height: calc(50vh - 150px);
+      overflow: auto;
+      padding-right: 4px;
+    }
   }
   &--title {
     font-weight: normal;

@@ -106,6 +106,136 @@ export default () => {
                     reserve: 45645654,
                     reserveStatus: "none",
                     reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 10,
+                    combineOrder: false,
+                    idOrder: "4567356546",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 11,
+                    combineOrder: false,
+                    idOrder: "4573436",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 12,
+                    combineOrder: false,
+                    idOrder: "54737567",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 13,
+                    combineOrder: false,
+                    idOrder: "346456364",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 14,
+                    combineOrder: false,
+                    idOrder: "78657887",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 15,
+                    combineOrder: false,
+                    idOrder: "56783566",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 16,
+                    combineOrder: false,
+                    idOrder: "34567537",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 17,
+                    combineOrder: false,
+                    idOrder: "5645845",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 18,
+                    combineOrder: false,
+                    idOrder: "2356756757",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 19,
+                    combineOrder: false,
+                    idOrder: "57346546456",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 20,
+                    combineOrder: false,
+                    idOrder: "556563654645",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 21,
+                    combineOrder: false,
+                    idOrder: "3463565463564",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
+                  },
+                  {
+                    id: 22,
+                    combineOrder: false,
+                    idOrder: "6785678578756",
+                    title: "Хорошие замки - тест 8",
+                    order: 356464664,
+                    reserve: 45645654,
+                    reserveStatus: "none",
+                    reservationPeriod: "2020-02-20T12:12:12"
                   }
                 ]
               },
