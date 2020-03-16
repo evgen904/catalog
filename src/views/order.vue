@@ -38,20 +38,6 @@
           </div>
         </div>
       </div>
-      <div class="order--btn">
-        <router-link :to="{name: 'Selection'}" class="btn black">
-          <img src="../assets/selection.svg" alt="">
-          Подбор товаров
-        </router-link>
-        <button class="btn black">
-          <img src="../assets/download.svg" alt="">
-          Загрузить заказ из файла
-        </button>
-        <button class="btn black">
-          <img src="../assets/upload-order.svg" alt="">
-          Выгрузить заказ в файл
-        </button>
-      </div>
       <OrderTable />
     </div>
   </div>
@@ -142,19 +128,6 @@
             width: 290px;
           }
         }
-      }
-    }
-  }
-  &--btn {
-    display: flex;
-    margin-bottom: 16px;
-    .btn {
-      font-size: 13px;
-      height: 28px;
-      margin-right: 10px;
-      img {
-        margin-right: 6px;
-        vertical-align: middle;
       }
     }
   }

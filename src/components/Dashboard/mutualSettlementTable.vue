@@ -24,9 +24,7 @@
         </span>
       </div>
     </template>
-    <div class="mutual-settlement--loader" v-else>
-      <baseLoader />
-    </div>
+    <baseLoader v-else />
   </div>
 </template>
 
@@ -51,10 +49,7 @@
     padding-top: 34px;
     margin-bottom: 26px;
   }
-  &--loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .loader {
     height: 200px;
   }
   &--legend {

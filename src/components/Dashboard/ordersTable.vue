@@ -69,9 +69,7 @@
       </div>
       <PopupPanel :total="orders.length" :checkboxSelected="checkboxSelected" />
     </template>
-    <div v-else class="orders--loader">
-      <baseLoader />
-    </div>
+    <baseLoader v-else />
   </div>
 </template>
 
@@ -127,10 +125,7 @@
 
 <style lang="scss" scoped>
 .orders {
-  &--loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .loader {
     height: 500px;
   }
   &--btn {

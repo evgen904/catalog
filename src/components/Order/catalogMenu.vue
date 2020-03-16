@@ -101,7 +101,7 @@
       }
     },
     methods: {
-      ...mapMutations("catalog", ["setModal"]),
+      ...mapMutations("catalog", ["setModal", "setCombineOrderName"]),
       ...mapActions('catalog', ['getProduct']),
       toggle: function () {
         if (this.isFolder) {
@@ -114,8 +114,11 @@
           this.isOpen = true
         }
       },
-      setCombineOrder() {
-
+      setCombineOrder(val, elem) {
+        this.setCombineOrderName({
+          index: this.products.findIndex(item => item.code === elem.code),
+          value: val.target.checked
+        });
       },
       showModal(codeProduct) {
         this.getProduct(codeProduct);

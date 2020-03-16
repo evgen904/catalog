@@ -1,4 +1,5 @@
 import { Сatalog } from "@/api/index.js";
+import Vue from "vue";
 
 const state = {
   folders: [],
@@ -61,6 +62,9 @@ const mutations = {
   },
   setModal(state, value) {
     state.modal = value;
+  },
+  setCombineOrderName(state, value) {
+    Vue.set(state.products[value.index], "combineOrder", value.value);
   }
 };
 

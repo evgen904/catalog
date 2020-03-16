@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="catalog-table" v-if="folders.length">
+  <div class="catalog-table">
+    <div v-if="folders.length">
       <div class="catalog-menu--head">
         <div>
           <div>Наименование</div>
@@ -35,9 +35,7 @@
         ></CatalogMenu>
       </ul>
     </div>
-    <div class="loader" v-else>
-      <baseLoader />
-    </div>
+    <baseLoader v-else />
   </div>
 </template>
 
@@ -53,15 +51,19 @@
       baseLoader
     },
     mounted() {
-      this.getFolders();
-      this.getProducts();
+      if (!this.folders.length) {
+        this.getFolders();
+      }
+      if (!this.products) {
+        this.getProducts();
+      }
       this.setModal(false);
     },
     destroyed() {
       this.setModal(false);
     },
     computed: {
-      ...mapState('catalog', ['folders'])
+      ...mapState('catalog', ['folders', 'products'])
     },
     methods: {
       ...mapActions('catalog', ['getFolders', 'getProducts']),
@@ -72,13 +74,14 @@
 
 <style lang="scss" scoped>
 .loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100px;
 }
 .catalog-table {
   font-size: 12px;
+  max-height: 300px;
+  overflow: auto;
+  padding-bottom: 1px;
+  padding-right: 10px;
   .link-folder {
     &.child {
       cursor: pointer;

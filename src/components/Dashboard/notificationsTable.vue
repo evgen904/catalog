@@ -13,9 +13,7 @@
         </tr>
       </table>
     </template>
-    <div class="notifications--loader" v-else>
-      <baseLoader />
-    </div>
+    <baseLoader v-else />
   </div>
 </template>
 
@@ -36,10 +34,7 @@
 
 <style lang="scss" scoped>
 .notifications {
-  &--loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .loader {
     height: 200px;
   }
 }

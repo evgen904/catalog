@@ -29,6 +29,8 @@ export default () => {
                   byAgreement: true,
                   priceDealer: 914.86,
                   priceBasic: 1089.12,
+                  residue: 123123,
+                  orderPrice: 65454,
                   minibox: "",
                   packaging: "10"
                 },
@@ -44,6 +46,8 @@ export default () => {
                   byAgreement: false,
                   priceDealer: 512.04,
                   priceBasic: 2560.20,
+                  residue: 123123,
+                  orderPrice: 65454,
                   minibox: "",
                   packaging: "10"
                 },
@@ -59,6 +63,8 @@ export default () => {
                   byAgreement: false,
                   priceDealer: 512.04,
                   priceBasic: 2560.20,
+                  residue: 123123,
+                  orderPrice: 65454,
                   minibox: "",
                   packaging: "10"
                 },
@@ -74,6 +80,8 @@ export default () => {
                   byAgreement: false,
                   priceDealer: 512.04,
                   priceBasic: 2560.20,
+                  residue: 123123,
+                  orderPrice: 65454,
                   minibox: "",
                   packaging: "10"
                 }

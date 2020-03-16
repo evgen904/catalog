@@ -1,5 +1,7 @@
 <template>
-  <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <div class="loader">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
 </template>
 
 <script>
@@ -9,6 +11,11 @@
 </script>
 
 <style lang="scss" scoped>
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .lds-roller {
   display: inline-block;
   position: relative;

@@ -33,9 +33,7 @@
         </ul>
       </div>
     </template>
-    <div class="loader" v-else>
-      <baseLoader />
-    </div>
+    <baseLoader v-else />
   </div>
 </template>
 
@@ -65,9 +63,6 @@
 
 <style lang="scss" scoped>
 .loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100px;
 }
 .catalog-table {

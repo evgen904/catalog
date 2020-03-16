@@ -7,10 +7,14 @@
       </div>
       <Search />
       <CatalogTable />
-      <router-link class="btn orange" :to="{name: 'Order'}">
+      <router-link v-if="selectProducts" class="btn orange" :to="{name: 'Order'}">
         <img src="../assets/plus.svg" alt="">
         Создать заказ
       </router-link>
+      <span v-else class="btn orange c-default" title="Выберете товары">
+        <img src="../assets/plus.svg" alt="">
+        Создать заказ
+      </span>
     </div>
   </div>
 </template>
@@ -19,7 +23,7 @@
   import Head from '@/components/Head';
   import Search from '@/components/Search';
   import CatalogTable from '@/components/Catalog/catalogTable.vue';
-  import { mapMutations } from "vuex";
+  import { mapMutations, mapState } from "vuex";
 
   export default {
     name: 'Catalog',
@@ -27,6 +31,18 @@
       Head,
       Search,
       CatalogTable
+    },
+    computed: {
+      ...mapState('catalog', ['products']),
+      selectProducts() {
+        let count = 0;
+        for (let i=0; i < this.products.length; i++) {
+          if (this.products[i]['combineOrder']) {
+            count++;
+          }
+        }
+        return count;
+      }
     },
     mounted() {
       this.setModal(false);

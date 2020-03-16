@@ -32,7 +32,7 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   width: 100%;
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
   margin-bottom: 30px;
   overflow: auto;
   max-height: 900px;

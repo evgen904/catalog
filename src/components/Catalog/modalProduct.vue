@@ -42,9 +42,7 @@
         </div>
       </div>
     </template>
-    <div class="product--loader" v-else>
-      <baseLoader />
-    </div>
+    <baseLoader v-else />
   </div>
 </template>
 
@@ -72,10 +70,7 @@
 
 <style lang="scss" scoped>
 .product {
-  &--loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .loader {
     height: 520px;
   }
   &--code {
