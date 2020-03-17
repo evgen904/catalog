@@ -54,7 +54,7 @@
       if (!this.folders.length) {
         this.getFolders();
       }
-      if (!this.products) {
+      if (!this.products.length) {
         this.getProducts();
       }
       this.setModal(false);

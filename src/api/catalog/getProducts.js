@@ -20,6 +20,7 @@ export default () => {
                 {
                   id: 1,
                   combineOrder: false,
+                  combineOrderSelected: false,
                   code: "003728515",
                   order: "",
                   reserve: "",
@@ -37,6 +38,7 @@ export default () => {
                 {
                   id: 2,
                   combineOrder: false,
+                  combineOrderSelected: false,
                   code: "4563567567",
                   order: "",
                   reserve: "",
@@ -54,6 +56,7 @@ export default () => {
                 {
                   id: 3,
                   combineOrder: false,
+                  combineOrderSelected: false,
                   code: "234234234",
                   order: "",
                   reserve: "",
@@ -71,6 +74,7 @@ export default () => {
                 {
                   id: 4,
                   combineOrder: false,
+                  combineOrderSelected: false,
                   code: "5645434535",
                   order: "",
                   reserve: "",

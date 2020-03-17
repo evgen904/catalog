@@ -68,11 +68,17 @@ const mutations = {
   setCombineOrderName(state, value) {
     Vue.set(state.products[value.index], "combineOrder", value.value);
   },
+  setCombineOrderSel(state, value) {
+    Vue.set(state.products[value.index], "combineOrderSelected", value.value);
+  },
   setSearchText(state, value) {
     state.searchText = value;
   },
   setSearchProducts(state, value) {
     state.searchProducts = value;
+  },
+  setOrder(state, value) {
+    Vue.set(state.products[value.index], "order", value.value);
   }
 };
 

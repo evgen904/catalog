@@ -18,12 +18,15 @@
       <tr class="head">
         <td rowspan="2" width="34" class="text-center">
           <template v-if="productsSelected.length">
-            <input
-              id="allCheckboxOrders"
-              type="checkbox"
-              class="style-checkbox"
-            >
-            <label for="allCheckboxOrders"></label>
+            <div style="opacity: 0;">
+              <input
+                  id="allCheckboxOrders"
+                  type="checkbox"
+                  class="style-checkbox"
+                  v-model="allProd"
+              >
+              <label for="allCheckboxOrders"></label>
+            </div>
           </template>
         </td>
         <td rowspan="2" width="34%">Номенклатура</td>
@@ -51,6 +54,9 @@
               :id="`id-${index}`"
               type="checkbox"
               class="style-checkbox"
+              @change="setCombineOrderSelected($event, item)"
+              :value="item.combineOrderSelected"
+              :checked="item.combineOrderSelected"
             >
             <label :for="`id-${index}`"></label>
           </td>
@@ -97,7 +103,7 @@
         <img src="../../assets/save.svg" alt="">
         Записать заказ
       </button>
-      <button class="btn black">
+      <button @click="delProducts" class="btn black" v-if="delProdCount">
         <img src="../../assets/del.svg" alt="">
         Удалить из заказа
       </button>
@@ -106,7 +112,7 @@
 </template>
 
 <script>
-  import { mapState } from "vuex";
+  import { mapState, mapMutations } from "vuex";
 
   export default {
     name: "Ordertable",
@@ -114,6 +120,47 @@
       ...mapState('catalog', ['products']),
       productsSelected() {
         return this.products.filter(item => item.combineOrder)
+      },
+      delProdCount() {
+        return this.products.filter(item => item.combineOrderSelected).length;
+      }
+    },
+    data() {
+      return {
+        allProd: false
+      }
+    },
+    watch: {
+      allProd(val) {
+        for (let i = 0; i < this.products.length; i++) {
+          this.setCombineOrderSel({
+            index: i,
+            value: val
+          });
+        }
+      }
+    },
+    methods: {
+      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName"]),
+      setCombineOrderSelected(val, elem) {
+        this.setCombineOrderSel({
+          index: this.products.findIndex(item => item.code === elem.code),
+          value: val.target.checked
+        });
+      },
+      delProducts() {
+        for (let item of this.productsSelected) {
+          if (item.combineOrderSelected) {
+            this.setCombineOrderName({
+              index: this.products.findIndex(el => el.code === item.code),
+              value: false
+            });
+            this.setCombineOrderSel({
+              index: this.products.findIndex(el => el.code === item.code),
+              value: false
+            });
+          }
+        }
       }
     }
   }

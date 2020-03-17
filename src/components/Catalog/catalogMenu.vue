@@ -44,7 +44,9 @@
         </div>
         <div>{{ prod.code }}</div>
         <div>{{ prod.remainder }}</div>
-        <div>{{ prod.byAgreement }}</div>
+        <div>
+          <img :src="require(`../../assets/check-${prod.byAgreement}.svg`)" alt="">
+        </div>
         <div>{{ prod.priceDealer | sum }}</div>
         <div>{{ prod.priceBasic | sum }}</div>
         <div>{{ prod.minibox }}</div>

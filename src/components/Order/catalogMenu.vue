@@ -45,7 +45,14 @@
           </span>
         </div>
         <div>{{ prod.code }}</div>
-        <div>{{ prod.order }}</div>
+        <div>
+          <input
+              type="text"
+              class="order-input"
+              :value="prod.order"
+              @input="setOrderProd($event, prod)"
+          >
+        </div>
         <div>{{ prod.reserve }}</div>
         <div>{{ prod.remainder }}</div>
         <div>{{ prod.byAgreement }}</div>
@@ -101,7 +108,7 @@
       }
     },
     methods: {
-      ...mapMutations("catalog", ["setModal", "setCombineOrderName"]),
+      ...mapMutations("catalog", ["setModal", "setCombineOrderName", "setOrder"]),
       ...mapActions('catalog', ['getProduct']),
       toggle: function () {
         if (this.isFolder) {
@@ -123,6 +130,12 @@
       showModal(codeProduct) {
         this.getProduct(codeProduct);
         this.setModal(true);
+      },
+      setOrderProd(event, elem) {
+        this.setOrder({
+          index: this.products.findIndex(item => item.code === elem.code),
+          value: event.target.value
+        });
       }
     }
   }
@@ -264,4 +277,13 @@ ul {
     text-decoration: underline;
   }
 }
+  .order-input {
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
