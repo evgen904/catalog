@@ -2,15 +2,15 @@
   <div class="order-table">
     <div class="order-table--btn pt-10">
       <router-link :to="{name: 'Selection'}" class="btn black fw-normal">
-        <img src="../../assets/selection.svg" alt="">
+        <img src="@/assets/selection.svg" alt="">
         Подбор товаров
       </router-link>
       <button class="btn black fw-normal">
-        <img src="../../assets/download.svg" alt="">
+        <img src="@/assets/download.svg" alt="">
         Загрузить заказ из файла
       </button>
       <button class="btn black fw-normal" v-if="productsSelected.length">
-        <img src="../../assets/upload-order.svg" alt="">
+        <img src="@/assets/upload-order.svg" alt="">
         Выгрузить заказ в файл
       </button>
     </div>
@@ -98,11 +98,11 @@
     </table>
     <div class="order-table--btn" v-if="productsSelected.length">
       <button class="btn black fw-normal">
-        <img src="../../assets/save.svg" alt="">
+        <img src="@/assets/save.svg" alt="">
         Записать заказ
       </button>
       <button @click="delProducts" class="btn black fw-normal" v-if="delProdCount">
-        <img src="../../assets/del.svg" alt="">
+        <img src="@/assets/del.svg" alt="">
         Удалить из заказа
       </button>
     </div>

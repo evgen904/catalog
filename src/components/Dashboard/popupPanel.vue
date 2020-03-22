@@ -15,11 +15,11 @@
       </div>
       <div>
         <button class="btn black">
-          <img src="../../assets/upload.svg" alt="">
+          <img src="@/assets/upload.svg" alt="">
           Выгрузить в файл
         </button>
         <button class="btn black">
-          <img src="../../assets/combine-orders.svg" alt="">
+          <img src="@/assets/combine-orders.svg" alt="">
           Объединить заказы
         </button>
       </div>

@@ -9,7 +9,7 @@
             @dblclick="makeFolder"
         >
           <span class="ico-arrow" :class="{'open': isOpen}"></span>
-          <img class="ico-folder" src="../../assets/folder.svg" alt="">
+          <img class="ico-folder" src="@/assets/folder.svg" alt="">
           {{ item.title }}
         </span>
       </div>

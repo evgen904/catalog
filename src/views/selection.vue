@@ -6,7 +6,7 @@
     <Search />
     <div class="selection--btn">
       <router-link class="btn black fw-normal" :to="{name: 'Order'}">
-        <img src="../assets/done.svg" alt="">
+        <img src="@/assets/done.svg" alt="">
         Завершить подбор
       </router-link>
     </div>

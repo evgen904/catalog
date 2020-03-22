@@ -2,16 +2,16 @@
   <div class="header">
     <div class="header--logo">
       <router-link :to="{name: 'Dashboard'}">
-        <img src="../../assets/logo-head.svg" alt="">
+        <img src="@/assets/logo-head.svg" alt="">
       </router-link>
     </div>
     <div class="header--exit">
       <a href="tel:+7 (499) 747-57-58">
-        <img src="../../assets/phone.svg" alt="">
+        <img src="@/assets/phone.svg" alt="">
         +7 (499) 747-57-58
       </a>
       <span @click="logout">
-        <img src="../../assets/exit.svg" alt="">
+        <img src="@/assets/exit.svg" alt="">
         Выход
       </span>
     </div>

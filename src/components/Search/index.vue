@@ -8,7 +8,7 @@
           v-model="searchVal"
         >
         <button>
-          <img src="../../assets/search.svg" alt="">
+          <img src="@/assets/search.svg" alt="">
         </button>
       </label>
     </form>

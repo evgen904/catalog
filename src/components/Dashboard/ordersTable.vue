@@ -3,7 +3,7 @@
     <h2>Заказы</h2>
     <div class="orders--btn">
       <router-link class="btn orange" :to="{name: 'Order'}">
-        <img src="../../assets/plus.svg" alt="">
+        <img src="@/assets/plus.svg" alt="">
         Создать заказ
       </router-link>
     </div>

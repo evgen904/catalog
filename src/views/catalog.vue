@@ -8,7 +8,7 @@
       <Search />
       <CatalogTable />
       <router-link class="btn orange" :class="{'c-default': !selectProducts}" :to="{name: 'Order'}">
-        <img src="../assets/plus.svg" alt="">
+        <img src="@/assets/plus.svg" alt="">
         Создать заказ
       </router-link>
     </div>

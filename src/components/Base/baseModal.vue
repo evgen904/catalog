@@ -8,7 +8,7 @@
         <slot name="body"></slot>
       </div>
       <div class="base-modal--close" @click="close">
-        <img src="../../assets/close.svg" alt="">
+        <img src="@/assets/close.svg" alt="">
       </div>
     </div>
   </transition>

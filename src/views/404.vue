@@ -9,12 +9,12 @@
       <router-link class="btn black" :to="{name: 'Dashboard'}">Вернуться на главную</router-link>
     </div>
     <div class="img-404">
-      <img src="../assets/404.jpg" alt="">
+      <img src="@/assets/404.jpg" alt="">
     </div>
     <div>
       <router-link class="btn white" :to="{name: 'Catalog'}">Каталог</router-link>
       <router-link class="btn orange" :to="{name: 'Order'}">
-        <img src="../assets/plus.svg" alt="">
+        <img src="@/assets/plus.svg" alt="">
         Создать заказ
       </router-link>
     </div>

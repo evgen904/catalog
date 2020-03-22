@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div class="form--logo">
-      <img src="../assets/logo.svg" alt="">
+      <img src="@/assets/logo.svg" alt="">
     </div>
     <template v-if="state=='auth'">
       <form @submit.prevent="auth">
