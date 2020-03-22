@@ -1,15 +1,15 @@
 <template>
   <div class="order-table">
     <div class="order-table--btn pt-10">
-      <router-link :to="{name: 'Selection'}" class="btn black">
+      <router-link :to="{name: 'Selection'}" class="btn black fw-normal">
         <img src="../../assets/selection.svg" alt="">
         Подбор товаров
       </router-link>
-      <button class="btn black">
+      <button class="btn black fw-normal">
         <img src="../../assets/download.svg" alt="">
         Загрузить заказ из файла
       </button>
-      <button class="btn black" v-if="productsSelected.length">
+      <button class="btn black fw-normal" v-if="productsSelected.length">
         <img src="../../assets/upload-order.svg" alt="">
         Выгрузить заказ в файл
       </button>
@@ -18,15 +18,13 @@
       <tr class="head">
         <td rowspan="2" width="34" class="text-center">
           <template v-if="productsSelected.length">
-            <div style="opacity: 0;">
-              <input
-                  id="allCheckboxOrders"
-                  type="checkbox"
-                  class="style-checkbox"
-                  v-model="allProd"
-              >
-              <label for="allCheckboxOrders"></label>
-            </div>
+            <input
+              id="allCheckboxOrders"
+              type="checkbox"
+              class="style-checkbox"
+              v-model="allProd"
+            >
+            <label for="allCheckboxOrders"></label>
           </template>
         </td>
         <td rowspan="2" width="34%">Номенклатура</td>
@@ -99,11 +97,11 @@
       </template>
     </table>
     <div class="order-table--btn" v-if="productsSelected.length">
-      <button class="btn black">
+      <button class="btn black fw-normal">
         <img src="../../assets/save.svg" alt="">
         Записать заказ
       </button>
-      <button @click="delProducts" class="btn black" v-if="delProdCount">
+      <button @click="delProducts" class="btn black fw-normal" v-if="delProdCount">
         <img src="../../assets/del.svg" alt="">
         Удалить из заказа
       </button>
@@ -123,20 +121,18 @@
       },
       delProdCount() {
         return this.products.filter(item => item.combineOrderSelected).length;
-      }
-    },
-    data() {
-      return {
-        allProd: false
-      }
-    },
-    watch: {
-      allProd(val) {
-        for (let i = 0; i < this.products.length; i++) {
-          this.setCombineOrderSel({
-            index: i,
-            value: val
-          });
+      },
+      allProd: {
+        get() {
+          return (this.productsSelected.length == this.delProdCount) ? true : false;
+        },
+        set(val) {
+          for (let i = 0; i < this.products.length; i++) {
+            this.setCombineOrderSel({
+              index: i,
+              value: val
+            });
+          }
         }
       }
     },
@@ -161,6 +157,7 @@
             });
           }
         }
+        this.allProd = (this.productsSelected.length == this.delProdCount) ? true : false;
       }
     }
   }

@@ -239,8 +239,12 @@ a {
   font-size: 14px;
   line-height: 16px;
   border: none;
+  &.fw-normal {
+    font-weight: normal;
+  }
   &.c-default {
     cursor: default;
+    pointer-events: none;
   }
   &.black {
     background: #313131;

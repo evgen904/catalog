@@ -38,6 +38,15 @@ export default () => {
                       },
                       {
                         url: "https://www.avtoall.ru/product_pictures/big/058/001561_4.jpg"
+                      },
+                      {
+                        url: "https://www.avtoall.ru/product_pictures/big/e7a/001561_2.jpg"
+                      },
+                      {
+                        url: "https://www.avtoall.ru/product_pictures/big/3fd/001561_3.jpg"
+                      },
+                      {
+                        url: "https://www.avtoall.ru/product_pictures/big/058/001561_4.jpg"
                       }
                     ],
                     specifications: [

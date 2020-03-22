@@ -5,7 +5,7 @@
     </div>
     <Search />
     <div class="selection--btn">
-      <router-link class="btn black" :to="{name: 'Order'}">
+      <router-link class="btn black fw-normal" :to="{name: 'Order'}">
         <img src="../assets/done.svg" alt="">
         Завершить подбор
       </router-link>

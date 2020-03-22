@@ -12,16 +12,23 @@
         <div class="product--body">
           <div class="product--left" v-if="product.media.length">
             <div class="img-product">
-              <img :src="product.media[activeImg]['url']" alt="">
+              <img loading="lazy" :src="product.media[activeImg]['url']" alt="">
             </div>
             <div class="list-img-product">
-              <div
-                v-for="(item, index) in product.media"
-                :key="index"
-                @click="activeImg = index"
-              >
-                <img :src="item.url" alt="">
-              </div>
+              <hooper :settings="hooperSettings">
+                <slide
+                  v-for="(item, index) in product.media"
+                  :key="index"
+                  :index="index"
+                >
+                  <div
+                    @click="activeImg = index"
+                    class="img-slide"
+                  >
+                    <img loading="lazy" :src="item.url" alt="">
+                  </div>
+                </slide>
+              </hooper>
             </div>
           </div>
           <div class="product--right">
@@ -48,11 +55,15 @@
 
 <script>
   import baseLoader from "../Base/baseLoader";
+  import { Hooper, Slide } from 'hooper';
+  import 'hooper/dist/hooper.css';
 
   export default {
     name: "modalProduct",
     components: {
-      baseLoader
+      baseLoader,
+      Hooper,
+      Slide
     },
     props: {
       product: {
@@ -62,7 +73,15 @@
     },
     data() {
       return {
-        activeImg: 0
+        activeImg: 0,
+        hooperSettings: {
+          itemsToShow: 4,
+          itemsToSlide: 1,
+          transition: 600,
+          keysControl: false,
+          infiniteScroll: true,
+          wheelControl: true
+        }
       }
     }
   }
@@ -107,8 +126,19 @@
     }
     .list-img-product {
       display: flex;
-      flex-wrap: wrap;
-      > div {
+      margin: 0 0 10px -15px;
+      .hooper {
+        height: 82px;
+        &:focus {
+          outline: none;
+        }
+      }
+      .slider-preview {
+        &:focus {
+          outline: none;
+        }
+      }
+      .img-slide {
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -116,7 +146,7 @@
         width: 95px;
         height: 81px;
         border: 1px solid #DBDBDB;
-        margin: 0 15px 10px 0;
+        margin: 0 15px 10px;
         &:nth-child(4n) {
           margin-right: 0;
         }

@@ -45,7 +45,7 @@
         <div>{{ prod.code }}</div>
         <div>{{ prod.remainder }}</div>
         <div>
-          <img :src="require(`../../assets/check-${prod.byAgreement}.svg`)" alt="">
+          <img class="icon-status" :class="{'red': !prod.byAgreement}" :src="require(`../../assets/check-${prod.byAgreement}.svg`)" alt="">
         </div>
         <div>{{ prod.priceDealer | sum }}</div>
         <div>{{ prod.priceBasic | sum }}</div>
@@ -262,6 +262,12 @@
     padding-left: 16px;
     &:hover {
       text-decoration: underline;
+    }
+  }
+  .icon-status {
+    margin-bottom: -4px;
+    &.red {
+      width: 14px;
     }
   }
 </style>

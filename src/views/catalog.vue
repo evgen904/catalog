@@ -7,14 +7,10 @@
       </div>
       <Search />
       <CatalogTable />
-      <router-link v-if="selectProducts" class="btn orange" :to="{name: 'Order'}">
+      <router-link class="btn orange" :class="{'c-default': !selectProducts}" :to="{name: 'Order'}">
         <img src="../assets/plus.svg" alt="">
         Создать заказ
       </router-link>
-      <span v-else class="btn orange c-default" title="Выберете товары">
-        <img src="../assets/plus.svg" alt="">
-        Создать заказ
-      </span>
     </div>
   </div>
 </template>

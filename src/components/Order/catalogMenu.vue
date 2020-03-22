@@ -47,10 +47,10 @@
         <div>{{ prod.code }}</div>
         <div>
           <input
-              type="text"
-              class="order-input"
-              :value="prod.order"
-              @input="setOrderProd($event, prod)"
+            type="text"
+            class="order-input"
+            :value="prod.order"
+            @input="setOrderProd($event, prod)"
           >
         </div>
         <div>{{ prod.reserve }}</div>
@@ -277,13 +277,13 @@ ul {
     text-decoration: underline;
   }
 }
-  .order-input {
-    border: none;
-    background: transparent;
-    font-size: 13px;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
+.order-input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>

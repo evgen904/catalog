@@ -94,20 +94,18 @@
           }
         }
         return count;
-      }
-    },
-    data() {
-      return {
-        allCheckboxOrders: false,
-      }
-    },
-    watch: {
-      allCheckboxOrders(val) {
-        for (let i = 0; i < this.orders.length; i++) {
-          this.setCombineOrderName({
-            index: i,
-            value: val
-          });
+      },
+      allCheckboxOrders: {
+        get() {
+          return (this.checkboxSelected == this.orders.length) ? true : false;
+        },
+        set(val) {
+          for (let i = 0; i < this.orders.length; i++) {
+            this.setCombineOrderName({
+              index: i,
+              value: val
+            });
+          }
         }
       }
     },
