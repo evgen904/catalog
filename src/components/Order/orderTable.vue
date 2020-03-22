@@ -1,7 +1,20 @@
 <template>
   <div class="order-table">
     <div class="order-table--btn pt-10">
-      <router-link :to="{name: 'Selection'}" class="btn black fw-normal">
+      <router-link
+        :to="{
+          name: 'SelectionId',
+          params: {
+            id: String(orderState.order)
+          }
+        }"
+        class="btn black fw-normal"
+        v-if="orderState"
+      >
+        <img src="@/assets/selection.svg" alt="">
+        Подбор товаров
+      </router-link>
+      <router-link :to="{name: 'Selection'}" class="btn black fw-normal" v-else>
         <img src="@/assets/selection.svg" alt="">
         Подбор товаров
       </router-link>
@@ -60,7 +73,14 @@
           </td>
           <td>{{ item.title }}</td>
           <td>{{ item.code }}</td>
-          <td>{{ item.order }}</td>
+          <td>
+            <input
+              type="text"
+              class="order-input"
+              :value="item.order"
+              @input="setOrderProd($event, item)"
+            >
+          </td>
           <td>{{ item.reserve }}</td>
           <td>{{ item.remainder }}</td>
           <td>{{ item.residue }}</td>
@@ -114,6 +134,12 @@
 
   export default {
     name: "Ordertable",
+    props: {
+      orderState: {
+        type: Object,
+        default: null
+      }
+    },
     computed: {
       ...mapState('catalog', ['products']),
       productsSelected() {
@@ -137,7 +163,13 @@
       }
     },
     methods: {
-      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName"]),
+      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName", "setOrder"]),
+      setOrderProd(event, elem) {
+        this.setOrder({
+          index: this.products.findIndex(item => item.code === elem.code),
+          value: event.target.value
+        });
+      },
       setCombineOrderSelected(val, elem) {
         this.setCombineOrderSel({
           index: this.products.findIndex(item => item.code === elem.code),
@@ -193,5 +225,14 @@
       }
     }
   }
+}
+.order-input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

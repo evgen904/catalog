@@ -3,6 +3,8 @@
     <div class="form--logo">
       <img src="@/assets/logo.svg" alt="">
     </div>
+
+    <!--авторизация-->
     <template v-if="state=='auth'">
       <form @submit.prevent="auth">
         <div class="form--error">
@@ -43,10 +45,12 @@
         </div>
         <div class="form--bot">
           <span @click="state = 'forgot'">Забыли пароль?</span>
-          <span @click="state = 'registration'">Регистрация</span>
+          <!--<span @click="state = 'registration'">Регистрация</span>-->
         </div>
       </form>
     </template>
+
+    <!--забыли пароль-->
     <template v-else-if="state=='forgot'">
       <form @submit.prevent="forgot">
         <div class="form--desk">
@@ -73,6 +77,8 @@
         </div>
       </form>
     </template>
+
+    <!--регистрация-->
     <template v-else-if="state=='registration'">
       <form @submit.prevent="registration">
         <div class="form--error">

@@ -5,7 +5,7 @@
       <PathHead v-if="path && path != ''" :path="path" />
     </div>
     <div>
-      <router-link class="btn white" :to="{name:'Catalog'}">Каталог</router-link>
+      <router-link class="btn white" :to="{name:'Catalog'}" target="_blank">Каталог</router-link>
     </div>
   </div>
 </template>

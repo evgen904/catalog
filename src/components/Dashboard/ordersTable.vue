@@ -2,7 +2,7 @@
   <div class="orders">
     <h2>Заказы</h2>
     <div class="orders--btn">
-      <router-link class="btn orange" :to="{name: 'Order'}">
+      <router-link class="btn orange" :to="{name: 'Order'}" target="_blank">
         <img src="@/assets/plus.svg" alt="">
         Создать заказ
       </router-link>
@@ -41,7 +41,17 @@
             >
             <label :for="`id-order-${item.idOrder}`"></label>
           </td>
-          <td>{{ item.title }}</td>
+          <td class="link-order">
+            <router-link
+              :to="{
+                name: 'OrderId',
+                params: { id: item.order },
+              }"
+              target="_blank"
+            >
+              {{ item.title }}
+            </router-link>
+          </td>
           <td>{{ item.idOrder }}</td>
           <td>{{ item.order | sum }}</td>
           <td :class="item.reserveStatus">{{ item.reserve | sum }}</td>
@@ -136,6 +146,15 @@
     padding: 24px 0 10px;
     span {
       margin-right: 10px;
+    }
+  }
+  .link-order {
+    a {
+      color: #313131;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

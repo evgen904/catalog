@@ -22,7 +22,7 @@
   import MutualSettlementTable from '@/components/Dashboard/mutualSettlementTable.vue';
   import NotificationsTable from '@/components/Dashboard/notificationsTable.vue';
   import OrdersTable from '@/components/Dashboard/ordersTable.vue';
-  import { mapActions } from "vuex";
+  import { mapActions, mapState } from "vuex";
 
   export default {
     name: 'Dashboard',
@@ -32,10 +32,15 @@
       NotificationsTable,
       OrdersTable
     },
+    computed: {
+        ...mapState('dashboard', ['orders'])
+    },
     mounted() {
       this.getNotifications();
       this.getMutualSettlement();
-      this.getOrders();
+      if (!this.orders.length) {
+        this.getOrders();
+      }
       this.getLegendOrders();
       this.getLegendMutualSettlements();
     },

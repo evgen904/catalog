@@ -5,7 +5,11 @@
     </div>
     <Search />
     <div class="selection--btn">
-      <router-link class="btn black fw-normal" :to="{name: 'Order'}">
+      <router-link class="btn black fw-normal" :to="{name: 'OrderId', params: { id: id }}" v-if="id">
+        <img src="@/assets/done.svg" alt="">
+        Завершить подбор
+      </router-link>
+      <router-link class="btn black fw-normal" :to="{name: 'Order'}" v-else>
         <img src="@/assets/done.svg" alt="">
         Завершить подбор
       </router-link>
@@ -20,6 +24,11 @@
 
   export default {
     name: 'Selection',
+    props: {
+      id: {
+        type: String
+      }
+    },
     components: {
       Search,
       SelectProducts

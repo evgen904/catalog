@@ -76,6 +76,32 @@ const routes = [
         },
       }
     ]
+  },
+  {
+    path: '/order/:id',
+    name: 'OrderId',
+    props: true,
+    component: () => import('@/views/order.vue'),
+    meta: {
+      layout: 'default',
+      middleware: [
+        auth
+      ]
+    },
+    children: [
+      {
+        path: 'selection',
+        name: 'SelectionId',
+        props: true,
+        component: () => import('@/views/selection.vue'),
+        meta: {
+          layout: 'default',
+          middleware: [
+            auth
+          ]
+        },
+      }
+    ]
   }
 ]
 

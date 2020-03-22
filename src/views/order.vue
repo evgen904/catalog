@@ -5,8 +5,40 @@
       <router-view/>
     </transition>
     <div class="order">
-      <div class="order--title">Заказ: Хорошие замки - Самостоятельная заявка </div>
-      <div class="order--fields">
+      <div class="order--title">Заказ: <span v-if="orderState">{{ orderState.title }}</span></div>
+      <div class="order--fields" v-if="orderState">
+        <div class="row">
+          <div class="title">Код:</div>
+          <div class="input">
+            <input class="code" type="text" :value="orderState.code">
+          </div>
+        </div>
+        <div class="row">
+          <div class="title">Номер:</div>
+          <div class="input">
+            <input class="number" type="text" :value="orderState.order">
+          </div>
+        </div>
+        <div class="row">
+          <div class="title">Наименование:</div>
+          <div class="input">
+            <input class="name-field" type="text" :value="orderState.nameOrder">
+          </div>
+        </div>
+        <div class="row">
+          <div class="title">Срок резервирования:</div>
+          <div class="input">
+            <input class="period" type="text" :value="orderState.reservationPeriod | date">
+          </div>
+        </div>
+        <div class="row">
+          <div class="title">Надпись на наклейке:</div>
+          <div class="input">
+            <input class="sticker" type="text" :value="orderState.sticker">
+          </div>
+        </div>
+      </div>
+      <div class="order--fields" v-else>
         <div class="row">
           <div class="title">Код:</div>
           <div class="input">
@@ -38,7 +70,7 @@
           </div>
         </div>
       </div>
-      <OrderTable />
+      <OrderTable :orderState="orderState" />
     </div>
   </div>
 </template>
@@ -46,12 +78,55 @@
 <script>
   import Head from '@/components/Head';
   import OrderTable from '@/components/Order/orderTable.vue';
+  import { mapState, mapActions, mapMutations } from "vuex";
 
   export default {
     name: 'Order',
+    props: {
+      id: {
+        type: String,
+        required: true
+      }
+    },
     components: {
       Head,
       OrderTable
+    },
+    computed: {
+      ...mapState('dashboard', ['orders']),
+      ...mapState('catalog', ['products']),
+      orderState() {
+        const order = this.orders.find(item => Number(item.order) == Number(this.id));
+
+        if (order && order.products.length) {
+          for(let prod of order.products) {
+            let indexProd = this.products.findIndex(item => item.code == prod.id);
+
+            if (indexProd !== -1) {
+              this.setCombineOrderName({
+                index: indexProd,
+                value: true
+              });
+            }
+
+          }
+        }
+
+        return order;
+      }
+    },
+    methods: {
+      ...mapActions("dashboard", ["getOrders"]),
+      ...mapActions("catalog", ["getProducts"]),
+      ...mapMutations("catalog", ["setCombineOrderName"]),
+    },
+    mounted() {
+      if (!this.orders.length) {
+        this.getOrders();
+      }
+      if (!this.products.length) {
+        this.getProducts();
+      }
     }
   }
 </script>
@@ -106,7 +181,7 @@
             width: 336px;
           }
           &.period {
-            width: 78px;
+            width: 90px;
           }
           &.sticker {
             width: 290px;
