@@ -72,7 +72,7 @@
 }
 .catalog-table {
   margin-bottom: 18px;
-  font-size: 12px;
+  font-size: 14px;
   .link-folder {
     &.child {
       cursor: pointer;

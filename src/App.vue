@@ -153,11 +153,11 @@ a {
     border: 1px solid #DBDBDB;
     border-spacing: 0;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     color: #313131;
   }
   th {
-    font-size: 14px;
+    font-size: 16px;
     color: #8A8A8A;
     padding: 12px 8px;
   }

@@ -139,7 +139,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    font-size: 12px;
+    font-size: 14px;
     color: #313131;
     li {
       .link-folder {

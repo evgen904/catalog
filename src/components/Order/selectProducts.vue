@@ -77,7 +77,7 @@
   height: 100px;
 }
 .catalog-table {
-  font-size: 12px;
+  font-size: 14px;
   max-height: 300px;
   overflow: auto;
   padding-bottom: 1px;

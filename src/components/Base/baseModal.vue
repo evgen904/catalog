@@ -74,7 +74,7 @@
     margin-bottom: 10px;
   }
   &--body {
-    max-height: calc(100vh - 310px);
+    max-height: calc(100vh - 280px);
     overflow: auto;
     padding: 0 16px 0 0;
   }

@@ -38,7 +38,7 @@
   text-align: center;
   margin: 30px 0 0;
   padding: 20px 0;
-  min-height: calc(100vh - 210px);
+  min-height: calc(100vh - 160px);
   h4 {
     font-weight: bold;
     font-size: 35px;

@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 86px;
+  height: 34px;
   background: #fff;
   font-weight: normal;
   font-size: 12px;

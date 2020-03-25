@@ -56,26 +56,26 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   display: flex;
   width: 100%;
-  height: calc(100vh - 260px);
+  height: calc(100vh - 204px);
   padding: 20px 16px 20px 20px;
   overflow: auto;
   &--left {
     width: 65%;
     padding-right: 4px;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 244px);
     overflow: auto;
   }
   &--right {
     width: 35%;
     padding-left: 16px;
     .block-1 {
-      height: calc(50vh - 190px);
+      height: calc(50vh - 144px);
       overflow: auto;
       margin-bottom: 40px;
       padding-right: 4px;
     }
     .block-2 {
-      height: calc(50vh - 150px);
+      height: calc(50vh - 144px);
       overflow: auto;
       padding-right: 4px;
     }

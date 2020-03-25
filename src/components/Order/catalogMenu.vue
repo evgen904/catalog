@@ -146,7 +146,7 @@ ul {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-size: 12px;
+  font-size: 14px;
   color: #313131;
   li {
     .link-folder {
@@ -280,7 +280,7 @@ ul {
 .order-input {
   border: none;
   background: transparent;
-  font-size: 13px;
+  font-size: 14px;
   padding: 0;
   margin: 0;
   width: 100%;

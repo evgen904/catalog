@@ -98,7 +98,7 @@
     margin-bottom: 10px;
   }
   &--pack {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
     color: #313131;
     margin-bottom: 12px;
