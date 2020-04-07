@@ -26,6 +26,16 @@
         <img src="@/assets/upload-order.svg" alt="">
         Выгрузить заказ в файл
       </button>
+      <div v-if="productsSelected.length">
+        <button class="btn black fw-normal">
+          <img src="@/assets/save.svg" alt="">
+          Записать заказ
+        </button>
+        <button @click="delProducts" class="btn black fw-normal" v-if="delProdCount">
+          <img src="@/assets/del.svg" alt="">
+          Удалить из заказа
+        </button>
+      </div>
     </div>
     <table class="table">
       <tr class="head">
@@ -71,11 +81,11 @@
             >
             <label :for="`id-${index}`"></label>
           </td>
-          <td>{{ item.title }}</td>
+          <td><span @click="showModal(item.code)" class="prod-link">{{ item.title }}</span></td>
           <td>{{ item.code }}</td>
           <td>
             <input
-              type="text"
+              type="number"
               class="order-input"
               :value="item.order"
               @input="setOrderProd($event, item)"
@@ -116,24 +126,26 @@
         </tr>
       </template>
     </table>
-    <div class="order-table--btn" v-if="productsSelected.length">
-      <button class="btn black fw-normal">
-        <img src="@/assets/save.svg" alt="">
-        Записать заказ
-      </button>
-      <button @click="delProducts" class="btn black fw-normal" v-if="delProdCount">
-        <img src="@/assets/del.svg" alt="">
-        Удалить из заказа
-      </button>
-    </div>
+    <portal to="product-head" v-if="modal">
+      <modalHead v-if="product" :title="product.title" />
+    </portal>
+    <portal to="product-body" v-if="modal">
+      <modalProduct :product="product" />
+    </portal>
   </div>
 </template>
 
 <script>
-  import { mapState, mapMutations } from "vuex";
+  import { mapState, mapMutations, mapActions } from "vuex";
+  import modalHead from '@/components/Catalog/modalHead.vue';
+  import modalProduct from '@/components/Catalog/modalProduct.vue';
 
   export default {
     name: "Ordertable",
+    components: {
+      modalHead,
+      modalProduct
+    },
     props: {
       orderState: {
         type: Object,
@@ -141,7 +153,7 @@
       }
     },
     computed: {
-      ...mapState('catalog', ['products']),
+      ...mapState('catalog', ['products', 'modal', 'product']),
       productsSelected() {
         return this.products.filter(item => item.combineOrder)
       },
@@ -163,11 +175,15 @@
       }
     },
     methods: {
-      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName", "setOrder"]),
+      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName", "setOrder", "setModal"]),
+      ...mapActions('catalog', ['getProduct']),
       setOrderProd(event, elem) {
+        if (Number(event.target.value) < 0) {
+          event.target.value = 0;
+        }
         this.setOrder({
           index: this.products.findIndex(item => item.code === elem.code),
-          value: event.target.value
+          value: Number(event.target.value)
         });
       },
       setCombineOrderSelected(val, elem) {
@@ -190,6 +206,10 @@
           }
         }
         this.allProd = (this.productsSelected.length == this.delProdCount) ? true : false;
+      },
+      showModal(codeProduct) {
+        this.getProduct(codeProduct);
+        this.setModal(true);
       }
     }
   }
@@ -227,12 +247,28 @@
   }
 }
 .order-input {
-  border: none;
+  border: 1px solid #ccc;
   background: transparent;
   font-size: 13px;
-  padding: 0;
+  padding: 0 6px;
   margin: 0;
   width: 100%;
   height: 100%;
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &:hover,
+  &:focus {
+    -moz-appearance: textfield;
+  }
+}
+.prod-link {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>

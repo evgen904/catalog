@@ -1,72 +1,88 @@
 <template>
   <div>
-    <Head title="Добро пожаловать! Campaign name" path="Заказ" />
+    <Head path="Заказ" />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
     <div class="order">
       <div class="order--title">Заказ: <span v-if="orderState">{{ orderState.title }}</span></div>
       <div class="order--fields" v-if="orderState">
-        <div class="row">
-          <div class="title">Код:</div>
-          <div class="input">
-            <input class="code" type="text" :value="orderState.code">
+        <div class="col-wrap">
+          <div class="col">
+            <div class="row">
+              <div class="title">Код:</div>
+              <div class="input">
+                <input class="code" type="text" disabled="disabled" :value="orderState.code">
+              </div>
+            </div>
+            <div class="row">
+              <div class="title">Номер:</div>
+              <div class="input">
+                <input class="number" type="text" :value="orderState.order">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="title">Номер:</div>
-          <div class="input">
-            <input class="number" type="text" :value="orderState.order">
+          <div class="col">
+            <div class="row">
+              <div class="title">Наименование:</div>
+              <div class="input">
+                <input class="name-field" type="text" :value="orderState.nameOrder">
+              </div>
+            </div>
+            <div class="row">
+              <div class="title">Надпись на наклейке:</div>
+              <div class="input">
+                <input class="sticker" type="text" :value="orderState.sticker">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="title">Наименование:</div>
-          <div class="input">
-            <input class="name-field" type="text" :value="orderState.nameOrder">
-          </div>
-        </div>
-        <div class="row">
-          <div class="title">Срок резервирования:</div>
-          <div class="input">
-            <input class="period" type="text" :value="orderState.reservationPeriod | date">
-          </div>
-        </div>
-        <div class="row">
-          <div class="title">Надпись на наклейке:</div>
-          <div class="input">
-            <input class="sticker" type="text" :value="orderState.sticker">
+          <div class="col">
+            <div class="row">
+              <div class="title">Срок резервирования:</div>
+              <div class="input">
+                <input class="period" type="text" disabled="disabled" :value="orderState.reservationPeriod | date">
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="order--fields" v-else>
-        <div class="row">
-          <div class="title">Код:</div>
-          <div class="input">
-            <input class="code" type="text">
+        <div class="col-wrap">
+          <div class="col">
+            <div class="row">
+              <div class="title">Код:</div>
+              <div class="input">
+                <input class="code" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="title">Номер:</div>
+              <div class="input">
+                <input class="number" type="text">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="title">Номер:</div>
-          <div class="input">
-            <input class="number" type="text">
+          <div class="col">
+            <div class="row">
+              <div class="title">Наименование:</div>
+              <div class="input">
+                <input class="name-field" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="title">Надпись на наклейке:</div>
+              <div class="input">
+                <input class="sticker" type="text">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="title">Наименование:</div>
-          <div class="input">
-            <input class="name-field" type="text">
-          </div>
-        </div>
-        <div class="row">
-          <div class="title">Срок резервирования:</div>
-          <div class="input">
-            <input class="period" type="text">
-          </div>
-        </div>
-        <div class="row">
-          <div class="title">Надпись на наклейке:</div>
-          <div class="input">
-            <input class="sticker" type="text">
+          <div class="col">
+            <div class="row">
+              <div class="title">Срок резервирования:</div>
+              <div class="input">
+                <input class="period" type="text">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +158,7 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   width: 100%;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 200px);
   padding: 20px;
   overflow: auto;
   &--title {
@@ -150,7 +166,27 @@
     margin-bottom: 10px;
   }
   &--fields {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    .col-wrap {
+      display: flex;
+      .col {
+        margin-right: 30px;
+        &:nth-child(1) {
+          .row {
+            .title {
+              min-width: 44px;
+            }
+          }
+        }
+        &:nth-child(2) {
+          .row {
+            .title {
+              min-width: 134px;
+            }
+          }
+        }
+      }
+    }
     .row {
       display: flex;
       align-items: center;
@@ -159,7 +195,6 @@
         font-weight: 500;
         font-size: 12px;
         color: #313131;
-        width: 134px;
         margin-right: 10px;
       }
       .input {
@@ -171,14 +206,15 @@
           height: 24px;
           font-size: 12px;
           color: #313131;
+          background: #fff;
           &.code {
-            width: 125px;
+            width: 150px;
           }
           &.number {
             width: 150px;
           }
           &.name-field {
-            width: 336px;
+            width: 290px;
           }
           &.period {
             width: 90px;

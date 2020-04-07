@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head title="Добро пожаловать! Campaign name" path="Каталог товаров" />
+    <Head path="Каталог товаров" />
     <div class="catalog">
       <div class="catalog--title">
         Каталог товаров
@@ -57,7 +57,7 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   width: 100%;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 200px);
   padding: 20px;
   overflow: auto;
   &--title {

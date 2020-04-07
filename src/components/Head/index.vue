@@ -1,7 +1,7 @@
 <template>
   <div class="head">
     <div>
-      <h2>{{ title }}</h2>
+      <h2 v-if="title != ''">{{ title }}</h2>
       <PathHead v-if="path && path != ''" :path="path" />
     </div>
     <div>
@@ -35,6 +35,7 @@
 .head {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 18px 0;
   h2 {
     font-size: 18px;

@@ -47,7 +47,7 @@
         <div>{{ prod.code }}</div>
         <div>
           <input
-            type="text"
+            type="number"
             class="order-input"
             :value="prod.order"
             @input="setOrderProd($event, prod)"
@@ -132,9 +132,19 @@
         this.setModal(true);
       },
       setOrderProd(event, elem) {
+        if (Number(event.target.value) < 0) {
+          event.target.value = 0;
+        }
+
+        let selectedProduct = (Number(event.target.value) > 0) ? true : false;
+        this.setCombineOrderName({
+          index: this.products.findIndex(item => item.code === elem.code),
+          value: selectedProduct
+        });
+
         this.setOrder({
           index: this.products.findIndex(item => item.code === elem.code),
-          value: event.target.value
+          value: Number(event.target.value)
         });
       }
     }
@@ -278,12 +288,22 @@ ul {
   }
 }
 .order-input {
-  border: none;
+  border: 1px solid #ccc;
   background: transparent;
   font-size: 14px;
-  padding: 0;
+  padding: 0 6px;
   margin: 0;
   width: 100%;
   height: 100%;
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &:hover,
+  &:focus {
+    -moz-appearance: textfield;
+  }
 }
 </style>
