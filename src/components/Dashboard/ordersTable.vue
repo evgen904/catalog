@@ -8,7 +8,7 @@
       </router-link>
     </div>
     <template v-if="orders.length">
-      <div class="table-wrap">
+      <div class="table-wrap" ref="tableOrders">
         <table class="table" v-if="orders.length">
           <tr class="head">
             <td rowspan="2" width="34" class="text-center">
@@ -30,7 +30,11 @@
             <td class="bg-none">Заказ</td>
             <td class="bg-none">Резерв</td>
           </tr>
-          <tr v-for="item in orders" :key="item.id">
+          <tr
+            v-for="(item, index) in orders"
+            :key="item.id"
+            :class="{'selected' : index == selectOrder}"
+          >
             <td class="text-center">
               <input
                 :id="`id-order-${item.idOrder}`"
@@ -129,6 +133,44 @@
           value: val.target.checked
         });
       }
+    },
+    mounted() {
+      document.onkeyup = () => {
+        let key = window.event.keyCode;
+        if (key == 13) {
+          if (this.selectOrder !== null) {
+            let routeData = this.$router.resolve({name: 'OrderId', params: { id: this.orders[this.selectOrder]['order'] }});
+            window.open(routeData.href, '_blank');
+          }
+        }
+        if (key == 38) {
+          if (this.selectOrder === null || this.selectOrder <= 0) {
+            this.selectOrder = 0;
+          } else {
+            this.selectOrder--
+            this.$refs.tableOrders.scrollTop = this.$refs.tableOrders.querySelector(
+                ".selected"
+            ).offsetTop-60;
+          }
+        }
+        if (key == 40) {
+          if (this.selectOrder === null) {
+            this.selectOrder = 0;
+          } else {
+            if (this.selectOrder < this.orders.length-1) {
+              this.selectOrder++
+              this.$refs.tableOrders.scrollTop = this.$refs.tableOrders.querySelector(
+                  ".selected"
+              ).offsetTop;
+            }
+          }
+        }
+      }
+    },
+    data() {
+      return {
+        selectOrder: null
+      }
     }
   }
 </script>
@@ -162,6 +204,13 @@
   .table-wrap {
     height: calc(100vh - 330px);
     overflow: auto;
+    .table {
+      tr.selected {
+        td {
+          background: #e4e4e4;
+        }
+      }
+    }
   }
 }
 </style>
