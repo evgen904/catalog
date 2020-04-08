@@ -29,18 +29,20 @@
         v-show="isOpen || searchProducts.length"
       >
         <div>
-          <input
-            :id="`id-order-${prod.code}`"
-            type="checkbox"
-            class="style-checkbox"
-            @change="setCombineOrder($event, prod)"
-            :value="prod.combineOrder"
-            :checked="prod.combineOrder"
-          >
-          <label :for="`id-order-${prod.code}`"></label>
-          <span @click="showModal(prod.code)" class="prod-title">
-            {{ prod.title }}
-          </span>
+          <div class="prod-link">
+            <input
+              :id="`id-order-${prod.code}`"
+              type="checkbox"
+              class="style-checkbox"
+              @change="setCombineOrder($event, prod)"
+              :value="prod.combineOrder"
+              :checked="prod.combineOrder"
+            >
+            <label :for="`id-order-${prod.code}`"></label>
+            <span @click="showModal(prod.code)" class="prod-title">
+              {{ prod.title }}
+            </span>
+          </div>
         </div>
         <div>{{ prod.code }}</div>
         <div>{{ prod.remainder }}</div>
@@ -256,6 +258,9 @@
       margin-top: -6px;
       margin-left: 4px;
     }
+  }
+  .prod-link {
+    padding-left: 16px;
   }
   .prod-title {
     cursor: pointer;

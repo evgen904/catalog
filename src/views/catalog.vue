@@ -57,7 +57,7 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   width: 100%;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 180px);
   padding: 20px;
   overflow: auto;
   &--title {

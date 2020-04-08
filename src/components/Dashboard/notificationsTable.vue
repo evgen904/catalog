@@ -7,9 +7,18 @@
           <td width="30%">Дата</td>
           <td width="70%">Сообщение</td>
         </tr>
-        <tr v-for="item in notifications" :key="item.id">
+        <tr v-for="(item, index) in notifications" :key="item.id">
           <td width="30%">{{ item.date | date }}</td>
-          <td width="70%" class="text-right">{{ item.message }}</td>
+          <td width="70%">
+            <div class="toggle-block">
+              <span @click="toggleNote(item, index)" class="toggle-block--btn">
+                {{ item.message }}
+              </span>
+              <div v-if="item.visibleNote" class="toggle-block--note">
+                {{ item.note }}
+              </div>
+            </div>
+          </td>
         </tr>
       </table>
     </template>
@@ -18,7 +27,7 @@
 </template>
 
 <script>
-  import { mapState } from "vuex";
+  import { mapState, mapMutations } from "vuex";
   import baseLoader from "../Base/baseLoader";
 
   export default {
@@ -26,8 +35,22 @@
     components: {
       baseLoader
     },
+    data() {
+      return {
+        notificationsLocal: []
+      }
+    },
     computed: {
-      ...mapState('dashboard', ['notifications'])
+      ...mapState('dashboard', ['notifications']),
+    },
+    methods: {
+      ...mapMutations("dashboard", ["setNotificationsVisible"]),
+      toggleNote(item, index) {
+        this.setNotificationsVisible({
+          index: index,
+          value: !item.visibleNote
+        });
+      }
     }
   }
 </script>
@@ -36,6 +59,20 @@
 .notifications {
   .loader {
     height: 200px;
+  }
+}
+.toggle-block {
+  margin-bottom: -10px;
+  &--btn {
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &--note {
+    padding: 10px 0;
   }
 }
 </style>

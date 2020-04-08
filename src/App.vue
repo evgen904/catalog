@@ -145,7 +145,7 @@ a {
       }
     }
   }
-  td, td {
+  td, th {
     padding: 10px 8px;
     margin: 0;
     vertical-align: top;

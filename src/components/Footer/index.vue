@@ -6,8 +6,11 @@
     <div class="footer--address">
       108803, г. Москва, п. Сосенское, д. Сосенки, ул. Сосновая, д. 1Б, этаж 7, офис 701-727
     </div>
-    <div class="footer--copy">
-      Создание сайта: <a target="_blank" href="https://www.webreforma.ru/">WebReforma</a>
+    <div class="footer--tel">
+      <a href="tel:+7 (499) 747-57-58">
+        <img src="@/assets/phone.svg" alt="">
+        +7 (499) 747-57-58
+      </a>
     </div>
   </div>
 </template>
@@ -30,5 +33,16 @@
   line-height: 14px;
   color: #313131;
   padding: 0 20px;
+  &--tel {
+    a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: bold;
+      img {
+        vertical-align: text-top;
+        margin-right: 12px;
+      }
+    }
+  }
 }
 </style>

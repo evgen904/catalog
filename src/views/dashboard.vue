@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head title="Добро пожаловать! Campaign name" />
+    <Head />
     <div class="dashboard">
       <div class="dashboard--left">
         <OrdersTable />
@@ -56,7 +56,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   display: flex;
   width: 100%;
-  height: calc(100vh - 204px);
+  height: calc(100vh - 170px);
   padding: 20px 16px 20px 20px;
   overflow: auto;
   &--left {
@@ -85,6 +85,11 @@
     font-size: 20px;
     line-height: 23px;
     color: #313131;
+  }
+  /deep/ .table {
+    td, th {
+      padding: 5px 8px;
+    }
   }
 }
 </style>

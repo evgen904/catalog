@@ -92,6 +92,9 @@ const mutations = {
   },
   setCombineOrderName(state, value) {
     Vue.set(state.orders[value.index], "combineOrder", value.value);
+  },
+  setNotificationsVisible(state, value) {
+    Vue.set(state.notifications[value.index], "visibleNote", value.value);
   }
 };
 
