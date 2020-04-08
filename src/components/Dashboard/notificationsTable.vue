@@ -1,28 +1,30 @@
 <template>
   <div class="notifications">
     <h2>Уведомления</h2>
-    <template v-if="notifications.length">
-      <table class="table">
-        <tr class="head">
-          <td width="30%">Дата</td>
-          <td width="70%">Сообщение</td>
-        </tr>
-        <tr v-for="(item, index) in notifications" :key="item.id">
-          <td width="30%">{{ item.date | date }}</td>
-          <td width="70%">
-            <div class="toggle-block">
+    <div class="table-wrap">
+      <template v-if="notifications.length">
+        <table class="table">
+          <tr class="head">
+            <td width="30%">Дата</td>
+            <td width="70%">Сообщение</td>
+          </tr>
+          <tr v-for="(item, index) in notifications" :key="item.id">
+            <td width="30%">{{ item.date | date }}</td>
+            <td width="70%">
+              <div class="toggle-block">
               <span @click="toggleNote(item, index)" class="toggle-block--btn">
                 {{ item.message }}
               </span>
-              <div v-if="item.visibleNote" class="toggle-block--note">
-                {{ item.note }}
+                <div v-if="item.visibleNote" class="toggle-block--note">
+                  {{ item.note }}
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </template>
-    <baseLoader v-else />
+            </td>
+          </tr>
+        </table>
+      </template>
+      <baseLoader v-else />
+    </div>
   </div>
 </template>
 
@@ -60,19 +62,23 @@
   .loader {
     height: 200px;
   }
-}
-.toggle-block {
-  margin-bottom: -10px;
-  &--btn {
-    display: inline-block;
-    vertical-align: top;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
+  .table-wrap {
+    height: calc(50vh - 190px);
+    overflow: auto;
   }
-  &--note {
-    padding: 10px 0;
+  .toggle-block {
+    margin-bottom: -10px;
+    &--btn {
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &--note {
+      padding: 10px 0;
+    }
   }
 }
 </style>

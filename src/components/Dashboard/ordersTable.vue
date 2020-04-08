@@ -8,56 +8,58 @@
       </router-link>
     </div>
     <template v-if="orders.length">
-      <table class="table" v-if="orders.length">
-        <tr class="head">
-          <td rowspan="2" width="34" class="text-center">
-            <input
-              id="allCheckboxOrders"
-              type="checkbox"
-              class="style-checkbox"
-              :value="false"
-              v-model="allCheckboxOrders"
-            >
-            <label for="allCheckboxOrders"></label>
-          </td>
-          <td rowspan="2" width="30%">Заказ</td>
-          <td rowspan="2" width="20%">№ Заказа</td>
-          <td colspan="2" width="30%">Сумма</td>
-          <td rowspan="2" width="16%">Срок резервирования</td>
-        </tr>
-        <tr class="head">
-          <td class="bg-none">Заказ</td>
-          <td class="bg-none">Резерв</td>
-        </tr>
-        <tr v-for="item in orders" :key="item.id">
-          <td class="text-center">
-            <input
-              :id="`id-order-${item.idOrder}`"
-              type="checkbox"
-              class="style-checkbox"
-              @change="setCombineOrder($event, item)"
-              :value="item.combineOrder"
-              :checked="item.combineOrder"
-            >
-            <label :for="`id-order-${item.idOrder}`"></label>
-          </td>
-          <td class="link-order">
-            <router-link
-              :to="{
-                name: 'OrderId',
-                params: { id: item.order },
-              }"
-              target="_blank"
-            >
-              {{ item.title }}
-            </router-link>
-          </td>
-          <td>{{ item.idOrder }}</td>
-          <td>{{ item.order | sum }}</td>
-          <td :class="item.reserveStatus">{{ item.reserve | sum }}</td>
-          <td class="text-right">{{ item.reservationPeriod | date }}</td>
-        </tr>
-      </table>
+      <div class="table-wrap">
+        <table class="table" v-if="orders.length">
+          <tr class="head">
+            <td rowspan="2" width="34" class="text-center">
+              <input
+                id="allCheckboxOrders"
+                type="checkbox"
+                class="style-checkbox"
+                :value="false"
+                v-model="allCheckboxOrders"
+              >
+              <label for="allCheckboxOrders"></label>
+            </td>
+            <td rowspan="2" width="30%">Заказ</td>
+            <td rowspan="2" width="20%">№ Заказа</td>
+            <td colspan="2" width="30%">Сумма</td>
+            <td rowspan="2" width="16%">Срок резервирования</td>
+          </tr>
+          <tr class="head">
+            <td class="bg-none">Заказ</td>
+            <td class="bg-none">Резерв</td>
+          </tr>
+          <tr v-for="item in orders" :key="item.id">
+            <td class="text-center">
+              <input
+                :id="`id-order-${item.idOrder}`"
+                type="checkbox"
+                class="style-checkbox"
+                @change="setCombineOrder($event, item)"
+                :value="item.combineOrder"
+                :checked="item.combineOrder"
+              >
+              <label :for="`id-order-${item.idOrder}`"></label>
+            </td>
+            <td class="link-order">
+              <router-link
+                :to="{
+                  name: 'OrderId',
+                  params: { id: item.order },
+                }"
+                target="_blank"
+              >
+                {{ item.title }}
+              </router-link>
+            </td>
+            <td>{{ item.idOrder }}</td>
+            <td>{{ item.order | sum }}</td>
+            <td :class="item.reserveStatus">{{ item.reserve | sum }}</td>
+            <td class="text-right">{{ item.reservationPeriod | date }}</td>
+          </tr>
+        </table>
+      </div>
       <div class="orders--legend" v-if="legendOrders">
         Легенда:
         <span
@@ -156,6 +158,10 @@
         text-decoration: underline;
       }
     }
+  }
+  .table-wrap {
+    height: calc(100vh - 330px);
+    overflow: auto;
   }
 }
 </style>

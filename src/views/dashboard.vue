@@ -62,21 +62,15 @@
   &--left {
     width: 65%;
     padding-right: 4px;
-    height: calc(100vh - 244px);
-    overflow: auto;
   }
   &--right {
     width: 35%;
     padding-left: 16px;
     .block-1 {
-      height: calc(50vh - 144px);
-      overflow: auto;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
       padding-right: 4px;
     }
     .block-2 {
-      height: calc(50vh - 144px);
-      overflow: auto;
       padding-right: 4px;
     }
   }
