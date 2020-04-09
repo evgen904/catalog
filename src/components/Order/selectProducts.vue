@@ -1,6 +1,6 @@
 <template>
-  <div class="catalog-table">
-    <div v-if="folders.length">
+  <div class="catalog-table" ref="catalogTable">
+    <div class="catalog-table--in" v-if="folders.length">
       <div class="catalog-menu--head">
         <div>
           <div>Наименование</div>
@@ -27,7 +27,7 @@
           <div></div>
         </div>
       </div>
-      <ul class="catalog-menu">
+      <ul class="catalog-menu" ref="catalogMenu">
         <CatalogMenu
           v-for="item in folders"
           :key="item.id"
@@ -58,12 +58,85 @@
         this.getProducts();
       }
       this.setModal(false);
+
+      // откл. скролл у body по нажатию вверх, вниз
+      let NAVIGATION = [38, 40]
+      document.body.addEventListener("keydown", function(event) {
+        if (-1 != NAVIGATION.indexOf(event.keyCode))
+          event.preventDefault();
+      })
+
+      // по нажатию вверх, вниз, появляется возможность открывать папки, управлять таблицей
+      document.onkeyup = (e) => {
+        let key = window.event.keyCode;
+
+        if (key == 13) {
+          if (this.selectItem !== null) {
+            let linkFolder = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.link-folder');
+            let prodTitle = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .prod-title');
+
+            if (linkFolder) {
+              linkFolder.dispatchEvent(new Event("click"));
+              if (this.modal) {
+                this.setModal(false);
+              }
+            }
+            if (prodTitle && !linkFolder) {
+              prodTitle.dispatchEvent(new Event("click"));
+            }
+          }
+        }
+        if (key == 38) {
+          e.preventDefault();
+          if (this.selectItem === null || this.selectItem <= 0) {
+            this.selectItem = 0;
+            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+          } else {
+            this.selectItem--
+
+            for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+              if (this.selectItem == i) {
+                this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
+                this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop;
+              } else {
+                this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+              }
+            }
+          }
+        }
+        if (key == 40) {
+          e.preventDefault();
+          if (this.selectItem === null) {
+            this.selectItem = 0;
+            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+          } else {
+
+            if (this.selectItem < this.$refs.catalogMenu.querySelectorAll('li').length-1) {
+              this.selectItem++
+
+              for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+                if (this.selectItem == i) {
+                  this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
+                  this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop;
+                } else {
+                  this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+                }
+              }
+            }
+          }
+        }
+      }
     },
     destroyed() {
       this.setModal(false);
     },
     computed: {
-      ...mapState('catalog', ['folders', 'products'])
+      ...mapState('catalog', ['folders', 'products', 'modal'])
+    },
+    data() {
+      return {
+        selectItem: null
+      }
     },
     methods: {
       ...mapActions('catalog', ['getFolders', 'getProducts']),
@@ -82,6 +155,20 @@
   overflow: auto;
   padding-bottom: 1px;
   padding-right: 10px;
+  &--in {
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background: #fff;
+      width: 9px;
+    }
+  }
   .link-folder {
     &.child {
       cursor: pointer;

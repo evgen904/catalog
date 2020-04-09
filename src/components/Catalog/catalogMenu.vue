@@ -1,5 +1,5 @@
 <template>
-  <li :class="`level-${item.level}`" v-if="item.children && item.children.length || productsFolder.length">
+  <li :class="`level-${item.level}`">
     <div class="tr">
       <div>
         <span
@@ -21,12 +21,11 @@
       <div></div>
       <div></div>
     </div>
-    <template v-if="productsFolder.length">
-      <div
+    <ul class="products" v-if="productsFolder.length && isOpen">
+      <li
         class="tr product"
         v-for="prod in productsFolder"
         :key="prod.id"
-        v-show="isOpen || searchProducts.length"
       >
         <div>
           <div class="prod-link">
@@ -53,9 +52,9 @@
         <div>{{ prod.priceBasic | sum }}</div>
         <div>{{ prod.minibox }}</div>
         <div class="text-right">{{ prod.packaging }}</div>
-      </div>
-    </template>
-    <ul v-show="isOpen || searchProducts.length" v-if="isFolder">
+      </li>
+    </ul>
+    <ul v-if="isFolder && (isOpen || searchProducts.length)">
       <catalogMenu
         v-for="(child, index) in item.children"
         :key="index"
@@ -144,6 +143,16 @@
     font-size: 14px;
     color: #313131;
     li {
+      &.selected {
+        > div {
+          &:nth-child(1).tr {
+            background: #F8F8F8;
+          }
+        }
+      }
+      &.tr.product.selected {
+        background: #F8F8F8;
+      }
       .link-folder {
         -moz-user-select: none;
         -khtml-user-select: none;

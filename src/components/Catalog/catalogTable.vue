@@ -25,7 +25,7 @@
             <div></div>
           </div>
         </div>
-        <ul class="catalog-menu">
+        <ul class="catalog-menu" ref="catalogMenu">
           <CatalogMenu
             v-for="item in folders"
             :key="item.id"
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from "vuex";
+  import { mapState, mapActions, mapMutations } from "vuex";
   import CatalogMenu from "./catalogMenu";
   import baseLoader from "../Base/baseLoader";
 
@@ -56,11 +56,73 @@
       if (!this.products.length) {
         this.getProducts();
       }
+      document.onkeyup = () => {
+        let key = window.event.keyCode;
+
+        if (key == 13) {
+          if (this.selectItem !== null) {
+            let linkFolder = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.link-folder');
+            let prodTitle = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .prod-title');
+
+            if (linkFolder) {
+              linkFolder.dispatchEvent(new Event("click"));
+              if (this.modal) {
+                this.setModal(false);
+              }
+            }
+            if (prodTitle && !linkFolder) {
+              prodTitle.dispatchEvent(new Event("click"));
+            }
+          }
+        }
+        if (key == 38) {
+
+          if (this.selectItem === null || this.selectItem <= 0) {
+            this.selectItem = 0;
+            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+          } else {
+            this.selectItem--
+
+            for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+              if (this.selectItem == i) {
+                this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
+              } else {
+                this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+              }
+            }
+          }
+        }
+        if (key == 40) {
+          if (this.selectItem === null) {
+            this.selectItem = 0;
+            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+          } else {
+
+            if (this.selectItem < this.$refs.catalogMenu.querySelectorAll('li').length-1) {
+              this.selectItem++
+
+              for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+                if (this.selectItem == i) {
+                  this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
+                } else {
+                  this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+                }
+              }
+            }
+          }
+        }
+      }
     },
     computed: {
-      ...mapState('catalog', ['folders', 'products'])
+      ...mapState('catalog', ['folders', 'products', 'modal'])
+    },
+    data() {
+      return {
+        selectItem: null
+      }
     },
     methods: {
+      ...mapMutations("catalog", ["setModal"]),
       ...mapActions('catalog', ['getFolders', 'getProducts'])
     }
   }
@@ -73,6 +135,18 @@
 .catalog-table {
   margin-bottom: 18px;
   font-size: 14px;
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #fff;
+    width: 7px;
+  }
   .link-folder {
     &.child {
       cursor: pointer;
