@@ -1,7 +1,6 @@
 <template>
   <div>
     <template v-if="folders.length">
-      <br>
       <div class="catalog-table">
         <div class="catalog-menu--head">
           <div>
@@ -133,7 +132,6 @@
   height: 100px;
 }
 .catalog-table {
-  margin-bottom: 18px;
   font-size: 14px;
   position: relative;
   &:after {
@@ -165,6 +163,10 @@
     margin: 0;
     list-style: none;
     &--head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #fff;
       > div {
         display: flex;
         width: 100%;

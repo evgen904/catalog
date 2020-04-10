@@ -97,7 +97,7 @@
             for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
               if (this.selectItem == i) {
                 this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
-                this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop;
+                this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop-80;
               } else {
                 this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
               }
@@ -117,7 +117,7 @@
               for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
                 if (this.selectItem == i) {
                   this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
-                  this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop;
+                  this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop-80;
                 } else {
                   this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
                 }
@@ -187,6 +187,10 @@
     margin: 0;
     list-style: none;
     &--head {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 2;
       > div {
         display: flex;
         width: 100%;

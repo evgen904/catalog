@@ -6,7 +6,9 @@
         Каталог товаров
       </div>
       <Search />
-      <CatalogTable />
+      <div class="catalog--table">
+        <CatalogTable />
+      </div>
       <router-link class="btn orange" :class="{'c-default': !selectProducts}" :to="{name: 'Order'}">
         <img src="@/assets/plus.svg" alt="">
         Создать заказ
@@ -63,6 +65,12 @@
   &--title {
     font-size: 20px;
     margin-bottom: 10px;
+  }
+  &--table {
+    overflow: auto;
+    max-height: calc(100vh - 360px);
+    margin-bottom: 18px;
+    padding-bottom: 1px;
   }
 }
 </style>
