@@ -5,8 +5,8 @@
       <template v-if="notifications.length">
         <table class="table">
           <tr class="head">
-            <td width="30%">Дата</td>
-            <td width="70%">Сообщение</td>
+            <td width="30%"><div>Дата</div></td>
+            <td width="70%"><div>Сообщение</div></td>
           </tr>
           <tr v-for="(item, index) in notifications" :key="item.id">
             <td width="30%">{{ item.date | date }}</td>
@@ -65,6 +65,39 @@
   .table-wrap {
     height: calc(50vh - 190px);
     overflow: auto;
+    padding-bottom: 1px;
+    .table {
+      position: relative;
+      tr {
+        &:first-child {
+          td {
+            position: sticky;
+            z-index: 1;
+            top: 0;
+            padding: 0;
+            border-bottom: none;
+            &:first-child {
+              > div {
+                border-left: none;
+                border-right: none;
+                margin-right: 0;
+              }
+            }
+            &:last-child {
+              > div {
+                border-left: none;
+              }
+            }
+            > div {
+              padding: 5px 8px;
+              background: #fff;
+              border: 1px solid #DBDBDB;
+              margin: -1px -1px -1px 0;
+            }
+          }
+        }
+      }
+    }
   }
   .toggle-block {
     margin-bottom: -10px;

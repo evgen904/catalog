@@ -12,23 +12,25 @@
         <table class="table" v-if="orders.length">
           <tr class="head">
             <td rowspan="2" width="34" class="text-center">
-              <input
-                id="allCheckboxOrders"
-                type="checkbox"
-                class="style-checkbox"
-                :value="false"
-                v-model="allCheckboxOrders"
-              >
-              <label for="allCheckboxOrders"></label>
+              <div>
+                <input
+                  id="allCheckboxOrders"
+                  type="checkbox"
+                  class="style-checkbox"
+                  :value="false"
+                  v-model="allCheckboxOrders"
+                >
+                <label for="allCheckboxOrders"></label>
+              </div>
             </td>
-            <td rowspan="2" width="30%">Заказ</td>
-            <td rowspan="2" width="20%">№ Заказа</td>
-            <td colspan="2" width="30%">Сумма</td>
-            <td rowspan="2" width="16%">Срок резервирования</td>
+            <td rowspan="2" width="30%"><div>Заказ</div></td>
+            <td rowspan="2" width="20%"><div>№ Заказа</div></td>
+            <td colspan="2" width="30%"><div>Сумма</div></td>
+            <td rowspan="2" width="16%"><div>Срок резервирования</div></td>
           </tr>
           <tr class="head">
-            <td class="bg-none">Заказ</td>
-            <td class="bg-none">Резерв</td>
+            <td class="bg-none"><div>Заказ</div></td>
+            <td class="bg-none"><div>Резерв</div></td>
           </tr>
           <tr
             v-for="(item, index) in orders"
@@ -205,6 +207,42 @@
     height: calc(100vh - 330px);
     overflow: auto;
     .table {
+      position: relative;
+      tr.head {
+        &:nth-child(1) {
+          td {
+            &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(5)  {
+              > div {
+                min-height: 58px;
+              }
+            }
+            &:nth-child(4) {
+              > div {
+                border-bottom-color: #fff;
+              }
+            }
+          }
+        }
+        td {
+          background: #fff;
+          position: sticky;
+          top: 0;
+          padding: 0;
+          z-index: 1;
+          > div {
+            padding: 5px 8px;
+            margin: -1px -1px -1px 0;
+            background: #fff;
+            border: 1px solid #DBDBDB;
+            border-left: none;
+          }
+        }
+        &:nth-child(2) {
+          td {
+            top: 29px;
+          }
+        }
+      }
       tr.selected {
         td {
           background: #e4e4e4;
