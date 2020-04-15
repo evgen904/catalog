@@ -24,7 +24,7 @@
             <div></div>
           </div>
         </div>
-        <ul class="catalog-menu" ref="catalogMenu">
+        <ul class="catalog-menu select-first" ref="catalogMenu">
           <CatalogMenu
             v-for="item in folders"
             :key="item.id"
@@ -59,6 +59,11 @@
         let key = window.event.keyCode;
 
         if (key == 13) {
+          if (this.$refs.catalogMenu.classList.contains('select-first')) {
+            this.$refs.catalogMenu.classList.remove('select-first')
+            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+          }
+
           if (this.selectItem !== null) {
             let linkFolder = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.link-folder');
             let prodTitle = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .prod-title');
@@ -75,6 +80,9 @@
           }
         }
         if (key == 38) {
+          if (this.$refs.catalogMenu.classList.contains('select-first')) {
+            this.$refs.catalogMenu.classList.remove('select-first')
+          }
 
           if (this.selectItem === null || this.selectItem <= 0) {
             this.selectItem = 0;
@@ -92,6 +100,10 @@
           }
         }
         if (key == 40) {
+          if (this.$refs.catalogMenu.classList.contains('select-first')) {
+            this.$refs.catalogMenu.classList.remove('select-first')
+          }
+
           if (this.selectItem === null) {
             this.selectItem = 0;
             this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
@@ -117,7 +129,7 @@
     },
     data() {
       return {
-        selectItem: null
+        selectItem: 0
       }
     },
     methods: {
@@ -178,7 +190,7 @@
           border: 1px solid #ccc;
           margin-right: -1px;
           margin-bottom: -1px;
-          padding: 12px 8px;
+          padding: 5px 8px;
           &:nth-child(1) {
             width: 36%;
           }

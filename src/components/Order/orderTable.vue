@@ -37,95 +37,99 @@
         </button>
       </div>
     </div>
-    <table class="table">
-      <tr class="head">
-        <td rowspan="2" width="34" class="text-center">
-          <template v-if="productsSelected.length">
-            <input
-              id="allCheckboxOrders"
-              type="checkbox"
-              class="style-checkbox"
-              v-model="allProd"
-            >
-            <label for="allCheckboxOrders"></label>
-          </template>
-        </td>
-        <td rowspan="2" width="34%">Номенклатура</td>
-        <td rowspan="2" width="8%">Код</td>
-        <td colspan="3" width="28%">Количество</td>
-        <td rowspan="2" width="8%">Отстаток</td>
-        <td rowspan="2" width="8%">Цена</td>
-        <td colspan="2" width="16%">Сумма</td>
-      </tr>
-      <tr class="head">
-        <td class="bg-none" width="8%">Заказ</td>
-        <td class="bg-none" width="8%">Резерв</td>
-        <td class="bg-none" width="8%">На согласовании</td>
-        <td class="bg-none">Заказ</td>
-        <td class="bg-none">Резерв</td>
-      </tr>
+    <div class="table-wrap">
+      <table class="table">
+        <tr class="head">
+          <td rowspan="2" width="34" class="text-center">
+            <div>
+              <template v-if="productsSelected.length">
+                <input
+                  id="allCheckboxOrders"
+                  type="checkbox"
+                  class="style-checkbox"
+                  v-model="allProd"
+                >
+                <label for="allCheckboxOrders"></label>
+              </template>
+            </div>
+          </td>
+          <td rowspan="2" width="34%"><div>Номенклатура</div></td>
+          <td rowspan="2" width="8%"><div>Код</div></td>
+          <td colspan="3" width="28%"><div>Количество</div></td>
+          <td rowspan="2" width="8%"><div>Отстаток</div></td>
+          <td rowspan="2" width="8%"><div>Цена</div></td>
+          <td colspan="2" width="16%"><div>Сумма</div></td>
+        </tr>
+        <tr class="head">
+          <td class="bg-none" width="8%"><div>Заказ</div></td>
+          <td class="bg-none" width="8%"><div>Резерв</div></td>
+          <td class="bg-none" width="8%"><div>На согласовании</div></td>
+          <td class="bg-none"><div>Заказ</div></td>
+          <td class="bg-none"><div>Резерв</div></td>
+        </tr>
 
-      <template v-if="productsSelected.length">
-        <tr
-          v-for="(item, index) in productsSelected"
-          :key="item.id"
-        >
-          <td class="text-center">
-            <input
-              :id="`id-${index}`"
-              type="checkbox"
-              class="style-checkbox"
-              @change="setCombineOrderSelected($event, item)"
-              :value="item.combineOrderSelected"
-              :checked="item.combineOrderSelected"
-            >
-            <label :for="`id-${index}`"></label>
-          </td>
-          <td><span @click="showModal(item.code)" class="prod-link">{{ item.title }}</span></td>
-          <td>{{ item.code }}</td>
-          <td>
-            <input
-              type="number"
-              class="order-input"
-              :value="item.order"
-              @input="setOrderProd($event, item)"
-            >
-          </td>
-          <td>{{ item.reserve }}</td>
-          <td>{{ item.remainder }}</td>
-          <td>{{ item.residue }}</td>
-          <td>{{ item.priceBasic }}</td>
-          <td>{{ item.orderPrice }}</td>
-          <td>{{ item.reserve }}</td>
-        </tr>
-      </template>
-      <template v-else>
-        <tr class="td-placeholder">
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr class="td-placeholder--bot">
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      </template>
-    </table>
+        <template v-if="productsSelected.length">
+          <tr
+            v-for="(item, index) in productsSelected"
+            :key="item.id"
+          >
+            <td class="text-center">
+              <input
+                :id="`id-${index}`"
+                type="checkbox"
+                class="style-checkbox"
+                @change="setCombineOrderSelected($event, item)"
+                :value="item.combineOrderSelected"
+                :checked="item.combineOrderSelected"
+              >
+              <label :for="`id-${index}`"></label>
+            </td>
+            <td><span @click="showModal(item.code)" class="prod-link">{{ item.title }}</span></td>
+            <td>{{ item.code }}</td>
+            <td>
+              <input
+                type="number"
+                class="order-input"
+                :value="item.order"
+                @input="setOrderProd($event, item)"
+              >
+            </td>
+            <td>{{ item.reserve }}</td>
+            <td>{{ item.remainder }}</td>
+            <td>{{ item.residue }}</td>
+            <td>{{ item.priceBasic }}</td>
+            <td>{{ item.orderPrice }}</td>
+            <td>{{ item.reserve }}</td>
+          </tr>
+        </template>
+        <template v-else>
+          <tr class="td-placeholder">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="td-placeholder--bot">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </template>
+      </table>
+    </div>
     <portal to="product-head" v-if="modal">
       <modalHead v-if="product" :title="product.title" />
     </portal>
@@ -269,6 +273,53 @@
   cursor: pointer;
   &:hover {
     text-decoration: underline;
+  }
+}
+.table-wrap {
+  overflow: auto;
+  max-height: calc(100vh - 348px);
+  .table {
+    position: relative;
+    tr.head {
+      &:nth-child(1) {
+        td {
+          &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(5), &:nth-child(6)  {
+            > div {
+              min-height: 58px;
+            }
+          }
+          &:nth-child(4), &:nth-child(7) {
+            > div {
+              border-bottom-color: #fff;
+            }
+          }
+        }
+      }
+      td {
+        background: #fff;
+        position: sticky;
+        top: 0;
+        padding: 0;
+        z-index: 1;
+        > div {
+          padding: 5px 8px;
+          margin: -1px -1px -1px 0;
+          background: #fff;
+          border: 1px solid #DBDBDB;
+          border-left: none;
+        }
+      }
+      &:nth-child(2) {
+        td {
+          top: 29px;
+        }
+      }
+    }
+    tr.selected {
+      td {
+        background: #ffc888;
+      }
+    }
   }
 }
 </style>

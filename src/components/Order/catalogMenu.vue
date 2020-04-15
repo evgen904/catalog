@@ -159,6 +159,15 @@ ul {
   list-style: none;
   font-size: 14px;
   color: #313131;
+  &.select-first {
+    > li:first-child {
+      > div {
+        &:nth-child(1).tr {
+          background: #F8F8F8;
+        }
+      }
+    }
+  }
   li {
     &.selected {
       > div {
@@ -244,7 +253,7 @@ ul {
         border: 1px solid #ccc;
         margin-right: -1px;
         margin-bottom: -1px;
-        padding: 12px 8px;
+        padding: 5px 8px;
         &:nth-child(1) {
           width: 33%;
         }

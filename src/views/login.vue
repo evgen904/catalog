@@ -45,7 +45,6 @@
         </div>
         <div class="form--bot">
           <span @click="state = 'forgot'">Забыли пароль?</span>
-          <!--<span @click="state = 'registration'">Регистрация</span>-->
         </div>
       </form>
     </template>
@@ -71,53 +70,6 @@
         </div>
         <div class="form--login">
           <button class="btn-orange" type="submit">Восстановить</button>
-        </div>
-        <div class="form--bot">
-          <span @click="state = 'registration'">Регистрация</span>
-        </div>
-      </form>
-    </template>
-
-    <!--регистрация-->
-    <template v-else-if="state=='registration'">
-      <form @submit.prevent="registration">
-        <div class="form--error">
-          <template v-if="user && user.loginError != ''">
-            {{ user.loginError }}
-          </template>
-        </div>
-        <div class="form--label">
-          <label>
-            <div class="form--label-title">Ваше имя</div>
-            <input
-              type="text"
-            >
-          </label>
-        </div>
-        <div class="form--label">
-          <label>
-            <div class="form--label-title">Ваш e-mail</div>
-            <input
-                type="text"
-            >
-          </label>
-        </div>
-        <div class="form--label">
-          <label>
-            <div class="form--label-title">Пароль</div>
-            <input
-                type="password"
-            >
-          </label>
-        </div>
-        <div class="form--login">
-          <button class="btn-black" type="submit">Зарегестрироваться</button>
-        </div>
-        <div class="form--conditions">
-          Нажимая кнопку «Зарегистрироваться», Вы принимаете условия Пользовательского соглашения.
-        </div>
-        <div class="form--bot registration">
-          <span @click="state = 'auth'">Уже зарегистрированы? &nbsp;&nbsp;Войти тут</span>
         </div>
       </form>
     </template>
@@ -169,9 +121,6 @@
         }
       },
       forgot() {
-
-      },
-      registration() {
 
       }
     }

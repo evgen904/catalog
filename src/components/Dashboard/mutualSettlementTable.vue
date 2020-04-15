@@ -10,24 +10,26 @@
           </tr>
           <tr v-for="(item) in mutualSettlement" :key="item.id">
             <td width="30%">{{ item.date | date }}</td>
-            <td width="70%" class="text-right">{{ item.sum | sum }}</td>
+            <td width="70%" class="text-right" :class="item.reserveStatus">
+              <template v-if="item.reserveStatus=='color-red'">
+                <span
+                  v-tooltip="{
+                    content: (item.reserveStatus=='color-red') ? 'Оплата просрочена' : ''
+                  }"
+                >
+                  {{ item.sum | sum }}
+                </span>
+              </template>
+              <template v-else>
+                {{ item.sum | sum }}
+              </template>
+            </td>
           </tr>
           <tr>
             <td width="30%"><div></div></td>
             <td width="70%" class="text-right"><div>Итог: 100 000 00</div></td>
           </tr>
         </table>
-      </div>
-      <div class="mutual-settlement--legend" v-if="legendMutualSettlements">
-        Легенда:
-        <span
-          :class="{
-            'color-red': !legendMutualSettlements.val,
-            'color-green': legendMutualSettlements.val
-          }"
-        >
-          {{ legendMutualSettlements.status }}
-        </span>
       </div>
     </template>
     <baseLoader v-else />
@@ -36,6 +38,7 @@
 
 <script>
   import { mapState } from "vuex";
+  import { VTooltip } from "v-tooltip";
   import baseLoader from "../Base/baseLoader";
 
   export default {
@@ -43,8 +46,11 @@
     components: {
       baseLoader
     },
+    directives: {
+      tooltip: VTooltip
+    },
     computed: {
-      ...mapState('dashboard', ['mutualSettlement', 'legendMutualSettlements'])
+      ...mapState('dashboard', ['mutualSettlement'])
     }
   }
 </script>
@@ -58,14 +64,8 @@
   .loader {
     height: 200px;
   }
-  &--legend {
-    font-weight: 500;
-    font-size: 12px;
-    color: #313131;
-    padding: 14px 0 0;
-  }
   .table-wrap {
-    height: calc(50vh - 190px);
+    height: calc(50vh - 152px);
     overflow: auto;
     .table {
       position: relative;

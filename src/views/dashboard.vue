@@ -41,11 +41,9 @@
       if (!this.orders.length) {
         this.getOrders();
       }
-      this.getLegendOrders();
-      this.getLegendMutualSettlements();
     },
     methods: {
-      ...mapActions("dashboard", ["getNotifications", "getMutualSettlement", "getOrders", "getLegendOrders", "getLegendMutualSettlements"])
+      ...mapActions("dashboard", ["getNotifications", "getMutualSettlement", "getOrders"])
     }
   }
 </script>
@@ -56,7 +54,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   display: flex;
   width: 100%;
-  height: calc(100vh - 170px);
+  height: calc(100vh - 124px);
   padding: 20px 16px 20px 20px;
   overflow: auto;
   &--left {

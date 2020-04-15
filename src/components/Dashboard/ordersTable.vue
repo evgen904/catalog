@@ -61,7 +61,22 @@
             </td>
             <td>{{ item.idOrder }}</td>
             <td>{{ item.order | sum }}</td>
-            <td :class="item.reserveStatus">{{ item.reserve | sum }}</td>
+            <td :class="item.reserveStatus">
+              <template v-if="item.reserveStatus=='color-red' || item.reserveStatus=='color-green'">
+                <span
+                  v-tooltip="{
+                    content: (
+                      item.reserveStatus=='color-red') ? 'Есть невыполненные' :
+                      (item.reserveStatus=='color-green') ? 'Есть товары на согласовании' : ''
+                  }"
+                >
+                  {{ item.reserve | sum }}
+                </span>
+              </template>
+              <template v-else>
+                {{ item.reserve | sum }}
+              </template>
+            </td>
             <td class="text-right">{{ item.reservationPeriod | date }}</td>
           </tr>
         </table>
@@ -93,6 +108,7 @@
 
 <script>
   import { mapState, mapMutations } from "vuex";
+  import { VTooltip } from "v-tooltip";
   import PopupPanel from "./popupPanel";
   import baseLoader from "../Base/baseLoader";
 
@@ -102,8 +118,11 @@
       PopupPanel,
       baseLoader
     },
+    directives: {
+      tooltip: VTooltip
+    },
     computed: {
-      ...mapState('dashboard', ['orders', 'legendOrders']),
+      ...mapState('dashboard', ['orders']),
       checkboxSelected() {
         let count = 0;
         for (let i=0; i < this.orders.length; i++) {
@@ -137,6 +156,13 @@
       }
     },
     mounted() {
+      // откл. скролл у body по нажатию вверх, вниз
+      let NAVIGATION = [38, 40]
+      document.body.addEventListener("keydown", function(event) {
+        if (-1 != NAVIGATION.indexOf(event.keyCode))
+          event.preventDefault();
+      })
+
       document.onkeyup = () => {
         let key = window.event.keyCode;
         if (key == 13) {
@@ -152,7 +178,7 @@
             this.selectOrder--
             this.$refs.tableOrders.scrollTop = this.$refs.tableOrders.querySelector(
                 ".selected"
-            ).offsetTop-60;
+            ).offsetTop-100;
           }
         }
         if (key == 40) {
@@ -163,7 +189,7 @@
               this.selectOrder++
               this.$refs.tableOrders.scrollTop = this.$refs.tableOrders.querySelector(
                   ".selected"
-              ).offsetTop;
+              ).offsetTop-100;
             }
           }
         }
@@ -185,15 +211,6 @@
   &--btn {
     margin-bottom: 15px;
   }
-  &--legend {
-    font-weight: 500;
-    font-size: 12px;
-    color: #313131;
-    padding: 24px 0 10px;
-    span {
-      margin-right: 10px;
-    }
-  }
   .link-order {
     a {
       color: #313131;
@@ -204,7 +221,7 @@
     }
   }
   .table-wrap {
-    height: calc(100vh - 330px);
+    max-height: calc(100vh - 250px);
     overflow: auto;
     .table {
       position: relative;
@@ -245,7 +262,7 @@
       }
       tr.selected {
         td {
-          background: #e4e4e4;
+          background: #ffc888;
         }
       }
     }

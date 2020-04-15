@@ -1,8 +1,6 @@
 import getOrders from "./getOrders";
 import getMutualSettlement from "./getMutualSettlement";
 import getNotifications from "./getNotifications";
-import getLegendOrders from "./getLegendOrders.js";
-import getLegendMutualSettlements from "./getLegendMutualSettlements";
 
 /**
  * Данные для Dashboard
@@ -12,7 +10,5 @@ import getLegendMutualSettlements from "./getLegendMutualSettlements";
 export default {
   getOrders,
   getMutualSettlement,
-  getNotifications,
-  getLegendOrders,
-  getLegendMutualSettlements
+  getNotifications
 };

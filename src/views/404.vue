@@ -36,9 +36,9 @@
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
   text-align: center;
-  margin: 30px 0 0;
+  margin: 14px 0 0;
   padding: 20px 0;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 120px);
   h4 {
     font-weight: bold;
     font-size: 35px;

@@ -31,6 +31,6 @@
 <style lang="scss" scoped>
 .head {
   display: flex;
-  padding: 18px 0;
+  padding: 8px 0;
 }
 </style>

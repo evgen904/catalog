@@ -4,9 +4,7 @@ import Vue from "vue";
 const state = {
   notifications: [],
   mutualSettlement: [],
-  orders: [],
-  legendOrders: null,
-  legendMutualSettlements: null
+  orders: []
 };
 
 const getters = {};
@@ -47,30 +45,6 @@ const actions = {
       console.log(e);
       throw e
     }
-  },
-  async getLegendOrders({ commit }) {
-    try {
-      const legendOrders = await Dashboard.getLegendOrders();
-
-      if (legendOrders.data && legendOrders.data.data.legendOrders) {
-        commit('setLegendOrders', legendOrders.data.data.legendOrders)
-      }
-    } catch (e) {
-      console.log(e);
-      throw e
-    }
-  },
-  async getLegendMutualSettlements({ commit }) {
-    try {
-      const legendMutualSettlements = await Dashboard.getLegendMutualSettlements();
-
-      if (legendMutualSettlements.data && legendMutualSettlements.data.data) {
-        commit('setLegendMutualSettlements', legendMutualSettlements.data.data)
-      }
-    } catch (e) {
-      console.log(e);
-      throw e
-    }
   }
 };
 
@@ -83,12 +57,6 @@ const mutations = {
   },
   setOrders(state, value) {
     state.orders = value;
-  },
-  setLegendOrders(state, value) {
-    state.legendOrders = value;
-  },
-  setLegendMutualSettlements(state, value) {
-    state.legendMutualSettlements = value;
   },
   setCombineOrderName(state, value) {
     Vue.set(state.orders[value.index], "combineOrder", value.value);

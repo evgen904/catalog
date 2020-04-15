@@ -63,7 +63,7 @@
     height: 200px;
   }
   .table-wrap {
-    height: calc(50vh - 190px);
+    height: calc(50vh - 152px);
     overflow: auto;
     padding-bottom: 1px;
     .table {
