@@ -36,6 +36,7 @@
             v-for="(item, index) in orders"
             :key="item.id"
             :class="{'selected' : index == selectOrder}"
+            @click="selectOrder = index"
           >
             <td class="text-center">
               <input
