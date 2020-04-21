@@ -101,6 +101,18 @@
             <td>{{ item.orderPrice }}</td>
             <td>{{ item.reserve }}</td>
           </tr>
+          <tr class="last-tr">
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div>{{ 654654 | sum }}</div></td>
+            <td><div>{{ 498484 | sum }}</div></td>
+          </tr>
         </template>
         <template v-else>
           <tr class="td-placeholder">
@@ -307,6 +319,7 @@
           background: #fff;
           border: 1px solid #DBDBDB;
           border-left: none;
+          white-space: nowrap;
         }
       }
       &:nth-child(2) {
@@ -318,6 +331,23 @@
     tr.selected {
       td {
         background: #ffc888;
+      }
+    }
+    tr.last-tr {
+      td {
+        position: sticky;
+        z-index: 1;
+        bottom: 0;
+        padding: 0;
+        border-bottom: none;
+        > div {
+          padding: 5px 8px;
+          margin: 0 -1px 0 0;
+          background: #fff;
+          border: 1px solid #DBDBDB;
+          min-height: 29px;
+          border-left: none;
+        }
       }
     }
   }

@@ -56,7 +56,7 @@
         </div>
         <div>{{ prod.reserve }}</div>
         <div>{{ prod.remainder }}</div>
-        <div>{{ prod.byAgreement }}</div>
+        <div><img class="icon-status" :class="{'red': !prod.byAgreement}" :src="require(`../../assets/check-${prod.byAgreement}.svg`)" alt=""></div>
         <div>{{ prod.priceDealer | sum }}</div>
         <div>{{ prod.priceBasic | sum }}</div>
         <div>{{ prod.minibox }}</div>
@@ -163,7 +163,7 @@ ul {
     > li:first-child {
       > div {
         &:nth-child(1).tr {
-          background: #F8F8F8;
+          background: #ffc888;
         }
       }
     }
@@ -172,12 +172,12 @@ ul {
     &.selected {
       > div {
         &:nth-child(1).tr {
-          background: #F8F8F8;
+          background: #ffc888;
         }
       }
     }
     &.tr.product.selected {
-      background: #F8F8F8;
+      background: #ffc888;
     }
     .link-folder {
       -moz-user-select: none;
@@ -327,6 +327,12 @@ ul {
   &:hover,
   &:focus {
     -moz-appearance: textfield;
+  }
+}
+.icon-status {
+  margin-bottom: -4px;
+  &.red {
+    width: 14px;
   }
 }
 </style>

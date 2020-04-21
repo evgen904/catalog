@@ -80,26 +80,15 @@
             </td>
             <td class="text-right">{{ item.reservationPeriod | date }}</td>
           </tr>
+          <tr>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div>{{ 65465456 | sum }}</div></td>
+            <td><div>{{ 9879879 | sum }}</div></td>
+            <td><div></div></td>
+          </tr>
         </table>
-      </div>
-      <div class="orders--legend" v-if="legendOrders">
-        Легенда:
-        <span
-          :class="{
-            'color-red': !legendOrders.goodsOnAgreement.val,
-            'color-green': legendOrders.goodsOnAgreement.val
-          }"
-        >
-        {{ legendOrders.goodsOnAgreement.status }}
-      </span>
-        <span
-          :class="{
-            'color-red': !legendOrders.areOutstanding.val,
-            'color-green': legendOrders.areOutstanding.val
-          }"
-        >
-        {{ legendOrders.areOutstanding.status }}
-      </span>
       </div>
       <PopupPanel :total="orders.length" :checkboxSelected="checkboxSelected" />
     </template>
@@ -198,7 +187,7 @@
     },
     data() {
       return {
-        selectOrder: null
+        selectOrder: 0
       }
     }
   }
@@ -264,6 +253,23 @@
       tr.selected {
         td {
           background: #ffc888;
+        }
+      }
+      tr:last-child {
+        td {
+          position: sticky;
+          z-index: 1;
+          bottom: 0;
+          padding: 0;
+          border-bottom: none;
+          > div {
+            padding: 5px 8px;
+            margin: 0 -1px 0 0;
+            background: #fff;
+            border: 1px solid #DBDBDB;
+            min-height: 29px;
+            border-left: none;
+          }
         }
       }
     }

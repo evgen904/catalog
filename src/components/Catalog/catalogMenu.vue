@@ -29,15 +29,6 @@
       >
         <div>
           <div class="prod-link">
-            <input
-              :id="`id-order-${prod.code}`"
-              type="checkbox"
-              class="style-checkbox"
-              @change="setCombineOrder($event, prod)"
-              :value="prod.combineOrder"
-              :checked="prod.combineOrder"
-            >
-            <label :for="`id-order-${prod.code}`"></label>
             <span @click="showModal(prod.code)" class="prod-title">
               {{ prod.title }}
             </span>
@@ -108,7 +99,7 @@
       }
     },
     methods: {
-      ...mapMutations("catalog", ["setModal", "setCombineOrderName"]),
+      ...mapMutations("catalog", ["setModal"]),
       ...mapActions('catalog', ['getProduct']),
       toggle: function () {
         if (this.isFolder) {
@@ -120,12 +111,6 @@
           this.$emit('make-folder', this.item);
           this.isOpen = true
         }
-      },
-      setCombineOrder(val, elem) {
-        this.setCombineOrderName({
-          index: this.productsState.findIndex(item => item.code === elem.code),
-          value: val.target.checked
-        });
       },
       showModal(codeProduct) {
         this.getProduct(codeProduct);
@@ -146,7 +131,7 @@
       > li:first-child {
         > div {
           &:nth-child(1).tr {
-            background: #F8F8F8;
+            background: #ffc888;
           }
         }
       }
@@ -155,12 +140,12 @@
       &.selected {
         > div {
           &:nth-child(1).tr {
-            background: #F8F8F8;
+            background: #ffc888;
           }
         }
       }
       &.tr.product.selected {
-        background: #F8F8F8;
+        background: #ffc888;
       }
       .link-folder {
         -moz-user-select: none;
@@ -282,7 +267,7 @@
   }
   .prod-title {
     cursor: pointer;
-    padding-left: 16px;
+    padding-left: 20px;
     &:hover {
       text-decoration: underline;
     }
