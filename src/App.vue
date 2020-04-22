@@ -31,6 +31,12 @@
       if (cookies.auth) {
         this.setLoggedIn(true);
       }
+      // откл. скролл у body по нажатию вверх, вниз
+      let NAVIGATION = [38, 40]
+      document.body.addEventListener("keydown", function(event) {
+        if (-1 != NAVIGATION.indexOf(event.keyCode))
+          event.preventDefault();
+      })
     },
     computed: {
       ...mapState('catalog', ['modal']),

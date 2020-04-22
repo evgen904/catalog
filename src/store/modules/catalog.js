@@ -7,7 +7,8 @@ const state = {
   products: [],
   searchProducts: [],
   modal: false,
-  searchText: ''
+  searchText: '',
+  activeTableKeyUp: 'orders'
 };
 
 const getters = {};
@@ -79,6 +80,9 @@ const mutations = {
   },
   setOrder(state, value) {
     Vue.set(state.products[value.index], "order", value.value);
+  },
+  setActiveTableKeyUp(state, value) {
+    state.activeTableKeyUp = value;
   }
 };
 

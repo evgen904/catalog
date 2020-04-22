@@ -55,8 +55,31 @@
       if (!this.products.length) {
         this.getProducts();
       }
-      document.onkeyup = () => {
-        let key = window.event.keyCode;
+      this.activeComponent = true
+
+      if (this.activeComponent) {
+        window.addEventListener("keyup", this.onKeyUp);
+      } else {
+        window.removeEventListener("keyup", this.onKeyUp);
+      }
+    },
+    destroyed() {
+      this.activeComponent = false
+    },
+    computed: {
+      ...mapState('catalog', ['folders', 'products', 'modal'])
+    },
+    data() {
+      return {
+        selectItem: 0,
+        activeComponent: false
+      }
+    },
+    methods: {
+      ...mapMutations("catalog", ["setModal"]),
+      ...mapActions('catalog', ['getFolders', 'getProducts']),
+      onKeyUp(event) {
+        let key = event.which;
 
         if (key == 13) {
           if (this.$refs.catalogMenu.classList.contains('select-first')) {
@@ -122,19 +145,8 @@
             }
           }
         }
+
       }
-    },
-    computed: {
-      ...mapState('catalog', ['folders', 'products', 'modal'])
-    },
-    data() {
-      return {
-        selectItem: 0
-      }
-    },
-    methods: {
-      ...mapMutations("catalog", ["setModal"]),
-      ...mapActions('catalog', ['getFolders', 'getProducts'])
     }
   }
 </script>

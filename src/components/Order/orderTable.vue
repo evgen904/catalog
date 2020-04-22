@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="table-wrap">
-      <table class="table">
+      <table class="table" ref="tableOrders" @click="selectTable">
         <tr class="head">
           <td rowspan="2" width="34" class="text-center">
             <div>
@@ -72,6 +72,8 @@
           <tr
             v-for="(item, index) in productsSelected"
             :key="item.id"
+            :class="{'selected' : index == selectOrder}"
+            @click="selectOrder = index"
           >
             <td class="text-center">
               <input
@@ -168,8 +170,20 @@
         default: null
       }
     },
+    mounted() {
+      this.activeComponent = true
+
+      if (this.activeComponent && this.activeTableKeyUp == 'orders') {
+        window.addEventListener("keyup", this.onKeyUp);
+      } else {
+        window.removeEventListener("keyup", this.onKeyUp);
+      }
+    },
+    destroyed() {
+      this.activeComponent = false
+    },
     computed: {
-      ...mapState('catalog', ['products', 'modal', 'product']),
+      ...mapState('catalog', ['products', 'modal', 'product', 'activeTableKeyUp']),
       productsSelected() {
         return this.products.filter(item => item.combineOrder)
       },
@@ -190,9 +204,65 @@
         }
       }
     },
+    data() {
+      return {
+        selectOrder: 0,
+        activeComponent: false
+      }
+    },
+    watch: {
+      activeTableKeyUp(val) {
+        if (val == 'orders') {
+          window.addEventListener("keyup", this.onKeyUp);
+        } else {
+          window.removeEventListener("keyup", this.onKeyUp);
+        }
+      }
+    },
     methods: {
-      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName", "setOrder", "setModal"]),
+      ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName", "setOrder", "setModal", "setActiveTableKeyUp"]),
       ...mapActions('catalog', ['getProduct']),
+      onKeyUp(event) {
+        let key = event.which;
+        if (key == 13) {
+          if (this.selectOrder !== null) {
+            let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+2].querySelector('.order-input');
+            if (orderInput) {
+              orderInput.focus()
+            }
+          }
+        }
+        if (key == 38) {
+          if (this.selectOrder === null || this.selectOrder <= 0) {
+            this.selectOrder = 0;
+          } else {
+            this.selectOrder--
+            this.$refs.tableOrders.scrollTop = this.$refs.tableOrders.querySelector(
+                ".selected"
+            ).offsetTop-100;
+          }
+          let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+3].querySelector('.order-input');
+          if (orderInput) {
+            orderInput.blur()
+          }
+        }
+        if (key == 40) {
+          if (this.selectOrder === null) {
+            this.selectOrder = 0;
+          } else {
+            if (this.selectOrder < this.productsSelected.length-1) {
+              this.selectOrder++
+              this.$refs.tableOrders.scrollTop = this.$refs.tableOrders.querySelector(
+                  ".selected"
+              ).offsetTop-100;
+            }
+          }
+          let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+1].querySelector('.order-input');
+          if (orderInput) {
+            orderInput.blur()
+          }
+        }
+      },
       setOrderProd(event, elem) {
         if (Number(event.target.value) < 0) {
           event.target.value = 0;
@@ -226,6 +296,9 @@
       showModal(codeProduct) {
         this.getProduct(codeProduct);
         this.setModal(true);
+      },
+      selectTable() {
+        this.setActiveTableKeyUp('orders')
       }
     }
   }

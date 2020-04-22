@@ -143,18 +143,10 @@
           index: this.orders.findIndex(item => item.idOrder === elem.idOrder),
           value: val.target.checked
         });
-      }
-    },
-    mounted() {
-      // откл. скролл у body по нажатию вверх, вниз
-      let NAVIGATION = [38, 40]
-      document.body.addEventListener("keydown", function(event) {
-        if (-1 != NAVIGATION.indexOf(event.keyCode))
-          event.preventDefault();
-      })
+      },
+      onKeyUp(event) {
+        let key = event.which;
 
-      document.onkeyup = () => {
-        let key = window.event.keyCode;
         if (key == 13) {
           if (this.selectOrder !== null) {
             let routeData = this.$router.resolve({name: 'OrderId', params: { id: this.orders[this.selectOrder]['order'] }});
@@ -185,9 +177,22 @@
         }
       }
     },
+    mounted() {
+      this.activeComponent = true
+
+      if (this.activeComponent) {
+        window.addEventListener("keyup", this.onKeyUp);
+      } else {
+        window.removeEventListener("keyup", this.onKeyUp);
+      }
+    },
+    destroyed() {
+      this.activeComponent = false
+    },
     data() {
       return {
-        selectOrder: 0
+        selectOrder: 0,
+        activeComponent: false
       }
     }
   }

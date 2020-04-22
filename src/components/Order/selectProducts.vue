@@ -1,5 +1,5 @@
 <template>
-  <div class="catalog-table" ref="catalogTable">
+  <div class="catalog-table" ref="catalogTable" @click="selectTable">
     <div class="catalog-table--in" v-if="folders.length">
       <div class="catalog-menu--head">
         <div>
@@ -51,86 +51,84 @@
       baseLoader
     },
     mounted() {
-      if (!this.folders.length) {
-        this.getFolders();
+      this.activeComponent = true;
+      if (this.activeComponent) {
+        if (!this.folders.length) {
+          this.getFolders();
+        }
+        if (!this.products.length) {
+          this.getProducts();
+        }
+        this.setModal(false);
       }
-      if (!this.products.length) {
-        this.getProducts();
+      if (this.activeComponent && this.activeTableKeyUp == 'selection') {
+        window.addEventListener("keyup", this.onKeyUp);
+      } else {
+        window.removeEventListener("keyup", this.onKeyUp);
       }
+    },
+    destroyed() {
       this.setModal(false);
-
-      // откл. скролл у body по нажатию вверх, вниз
-      let NAVIGATION = [38, 40]
-      document.body.addEventListener("keydown", function(event) {
-        if (-1 != NAVIGATION.indexOf(event.keyCode))
-          event.preventDefault();
-      })
-
-      // по нажатию вверх, вниз, появляется возможность открывать папки, управлять таблицей
-      document.onkeyup = (e) => {
-        let key = window.event.keyCode;
-
-        if (key == 13) {
-          if (this.$refs.catalogMenu.classList.contains('select-first')) {
-            this.$refs.catalogMenu.classList.remove('select-first')
-            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
-          }
-
-          if (this.selectItem !== null) {
-            let linkFolder = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.link-folder');
-            let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .order-input');
-
-            if (linkFolder) {
-              linkFolder.dispatchEvent(new Event("click"));
-              if (this.modal) {
-                this.setModal(false);
-              }
-            }
-            if (orderInput && !linkFolder) {
-              orderInput.focus()
-            }
-          }
+      this.activeComponent = false;
+      this.setActiveTableKeyUp('orders')
+    },
+    computed: {
+      ...mapState('catalog', ['folders', 'products', 'modal', 'activeTableKeyUp'])
+    },
+    data() {
+      return {
+        selectItem: 0,
+        activeComponent: false
+      }
+    },
+    watch: {
+      activeTableKeyUp(val) {
+        if (val == 'selection') {
+          window.addEventListener("keyup", this.onKeyUp);
+        } else {
+          window.removeEventListener("keyup", this.onKeyUp);
         }
-        if (key == 38) {
-          e.preventDefault();
-          if (this.$refs.catalogMenu.classList.contains('select-first')) {
-            this.$refs.catalogMenu.classList.remove('select-first')
-          }
+      }
+    },
+    methods: {
+      ...mapActions('catalog', ['getFolders', 'getProducts']),
+      ...mapMutations("catalog", ["setModal", "setActiveTableKeyUp"]),
+      onKeyUp(event) {
+        // по нажатию вверх, вниз, появляется возможность открывать папки, управлять таблицей
+        let key = event.which;
 
-          if (this.selectItem === null || this.selectItem <= 0) {
-            this.selectItem = 0;
-            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
-          } else {
-            this.selectItem--
+        if (this.$refs.catalogMenu) {
+          if (key == 13) {
+            if (this.$refs.catalogMenu.classList.contains('select-first')) {
+              this.$refs.catalogMenu.classList.remove('select-first')
+              this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+            }
 
-            for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
-              if (this.selectItem == i) {
-                this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
-                this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop-80;
-              } else {
-                this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+            if (this.selectItem !== null) {
+              let linkFolder = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.link-folder');
+              let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .order-input');
+
+              if (linkFolder) {
+                linkFolder.dispatchEvent(new Event("click"));
+                if (this.modal) {
+                  this.setModal(false);
+                }
+              }
+              if (orderInput && !linkFolder) {
+                orderInput.focus()
               }
             }
           }
+          if (key == 38) {
+            if (this.$refs.catalogMenu.classList.contains('select-first')) {
+              this.$refs.catalogMenu.classList.remove('select-first')
+            }
 
-          let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .order-input');
-          if (orderInput) {
-            orderInput.blur()
-          }
-        }
-        if (key == 40) {
-          e.preventDefault();
-          if (this.$refs.catalogMenu.classList.contains('select-first')) {
-            this.$refs.catalogMenu.classList.remove('select-first')
-          }
-
-          if (this.selectItem === null) {
-            this.selectItem = 0;
-            this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
-          } else {
-
-            if (this.selectItem < this.$refs.catalogMenu.querySelectorAll('li').length-1) {
-              this.selectItem++
+            if (this.selectItem === null || this.selectItem <= 0) {
+              this.selectItem = 0;
+              this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+            } else {
+              this.selectItem--
 
               for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
                 if (this.selectItem == i) {
@@ -141,29 +139,47 @@
                 }
               }
             }
-          }
 
-          let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem].querySelector('.products .order-input');
-          if (orderInput) {
-            orderInput.blur()
+            let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem+1].querySelector('.products .order-input');
+            if (orderInput) {
+              orderInput.blur()
+            }
+          }
+          if (key == 40) {
+            if (this.$refs.catalogMenu.classList.contains('select-first')) {
+              this.$refs.catalogMenu.classList.remove('select-first')
+            }
+
+            if (this.selectItem === null) {
+              this.selectItem = 0;
+              this.$refs.catalogMenu.querySelectorAll('li')[0].classList.add('selected')
+            } else {
+
+              if (this.selectItem < this.$refs.catalogMenu.querySelectorAll('li').length-1) {
+                this.selectItem++
+
+                for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+                  if (this.selectItem == i) {
+                    this.$refs.catalogMenu.querySelectorAll('li')[i].classList.add('selected')
+                    this.$refs.catalogTable.scrollTop = this.$refs.catalogMenu.querySelectorAll('li')[i].offsetTop-80;
+                  } else {
+                    this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+                  }
+                }
+              }
+            }
+
+            let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem-1].querySelector('.products .order-input');
+            if (orderInput) {
+              orderInput.blur()
+            }
           }
         }
+
+      },
+      selectTable() {
+        this.setActiveTableKeyUp('selection')
       }
-    },
-    destroyed() {
-      this.setModal(false);
-    },
-    computed: {
-      ...mapState('catalog', ['folders', 'products', 'modal'])
-    },
-    data() {
-      return {
-        selectItem: 0
-      }
-    },
-    methods: {
-      ...mapActions('catalog', ['getFolders', 'getProducts']),
-      ...mapMutations("catalog", ["setModal"]),
     }
   }
 </script>
