@@ -24,7 +24,7 @@
             <div></div>
           </div>
         </div>
-        <ul class="catalog-menu select-first" ref="catalogMenu">
+        <ul class="catalog-menu select-first" ref="catalogMenu" @click="selectProd($event)">
           <CatalogMenu
             v-for="item in folders"
             :key="item.id"
@@ -58,9 +58,9 @@
       this.activeComponent = true
 
       if (this.activeComponent) {
-        window.addEventListener("keyup", this.onKeyUp);
+        window.addEventListener("keydown", this.onKeyUp);
       } else {
-        window.removeEventListener("keyup", this.onKeyUp);
+        window.removeEventListener("keydown", this.onKeyUp);
       }
     },
     destroyed() {
@@ -78,6 +78,28 @@
     methods: {
       ...mapMutations("catalog", ["setModal"]),
       ...mapActions('catalog', ['getFolders', 'getProducts']),
+      selectProd(event) {
+        if (this.$refs.catalogMenu.classList.contains('select-first')) {
+          this.$refs.catalogMenu.classList.remove('select-first')
+        }
+        let indexTr = 0
+        for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+          this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+          indexTr++
+        }
+        if (indexTr == this.$refs.catalogMenu.querySelectorAll('li').length) {
+          event.target.closest('li').classList.add('selected')
+
+          let indexActiveLi = 0
+          for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+            if (this.$refs.catalogMenu.querySelectorAll('li')[i].classList.contains('selected')) {
+              indexActiveLi = i
+              break
+            }
+          }
+          this.selectItem = indexActiveLi
+        }
+      },
       onKeyUp(event) {
         let key = event.which;
 

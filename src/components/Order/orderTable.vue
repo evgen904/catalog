@@ -73,7 +73,7 @@
             v-for="(item, index) in productsSelected"
             :key="item.id"
             :class="{'selected' : index == selectOrder}"
-            @click="selectOrder = index"
+            @click="selectOrderTr(index)"
           >
             <td class="text-center">
               <input
@@ -92,8 +92,10 @@
               <input
                 type="number"
                 class="order-input"
+                :class="{'focus':index == activeInput}"
                 :value="item.order"
                 @input="setOrderProd($event, item)"
+                @click="activeInput = index"
               >
             </td>
             <td>{{ item.reserve }}</td>
@@ -174,9 +176,9 @@
       this.activeComponent = true
 
       if (this.activeComponent && this.activeTableKeyUp == 'orders') {
-        window.addEventListener("keyup", this.onKeyUp);
+        window.addEventListener("keydown", this.onKeyUp);
       } else {
-        window.removeEventListener("keyup", this.onKeyUp);
+        window.removeEventListener("keydown", this.onKeyUp);
       }
     },
     destroyed() {
@@ -207,28 +209,45 @@
     data() {
       return {
         selectOrder: 0,
-        activeComponent: false
+        activeComponent: false,
+        activeInput: null
       }
     },
     watch: {
       activeTableKeyUp(val) {
         if (val == 'orders') {
-          window.addEventListener("keyup", this.onKeyUp);
+          window.addEventListener("keydown", this.onKeyUp);
         } else {
-          window.removeEventListener("keyup", this.onKeyUp);
+          window.removeEventListener("keydown", this.onKeyUp);
+        }
+      },
+      activeInput(val) {
+        let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[val+2].querySelector('.order-input');
+        if (orderInput) {
+          orderInput.focus()
         }
       }
     },
     methods: {
       ...mapMutations("catalog", ["setCombineOrderSel", "setCombineOrderName", "setOrder", "setModal", "setActiveTableKeyUp"]),
       ...mapActions('catalog', ['getProduct']),
+      selectOrderTr(index) {
+        this.selectOrder = index
+        this.activeInput = index
+      },
       onKeyUp(event) {
         let key = event.which;
         if (key == 13) {
           if (this.selectOrder !== null) {
             let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+2].querySelector('.order-input');
             if (orderInput) {
-              orderInput.focus()
+              if (!orderInput.classList.contains('focus')) {
+                orderInput.focus()
+                orderInput.classList.add('focus')
+              } else {
+                orderInput.blur()
+                orderInput.classList.remove('focus')
+              }
             }
           }
         }
@@ -244,6 +263,7 @@
           let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+3].querySelector('.order-input');
           if (orderInput) {
             orderInput.blur()
+            orderInput.classList.remove('focus')
           }
         }
         if (key == 40) {
@@ -260,6 +280,7 @@
           let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+1].querySelector('.order-input');
           if (orderInput) {
             orderInput.blur()
+            orderInput.classList.remove('focus')
           }
         }
       },

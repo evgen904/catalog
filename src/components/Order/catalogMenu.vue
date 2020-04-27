@@ -1,6 +1,6 @@
 <template>
   <li :class="`level-${item.level}`">
-    <div class="tr">
+    <div class="tr" @dblclick="toggle">
       <div>
         <span
           class="link-folder"

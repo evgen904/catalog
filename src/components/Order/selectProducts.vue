@@ -27,7 +27,7 @@
           <div></div>
         </div>
       </div>
-      <ul class="catalog-menu select-first" ref="catalogMenu">
+      <ul class="catalog-menu select-first" ref="catalogMenu" @click="selectProd($event)">
         <CatalogMenu
           v-for="item in folders"
           :key="item.id"
@@ -62,10 +62,11 @@
         this.setModal(false);
       }
       if (this.activeComponent && this.activeTableKeyUp == 'selection') {
-        window.addEventListener("keyup", this.onKeyUp);
+        window.addEventListener("keydown", this.onKeyUp);
       } else {
-        window.removeEventListener("keyup", this.onKeyUp);
+        window.removeEventListener("keydown", this.onKeyUp);
       }
+      this.setActiveTableKeyUp('selection')
     },
     destroyed() {
       this.setModal(false);
@@ -84,15 +85,45 @@
     watch: {
       activeTableKeyUp(val) {
         if (val == 'selection') {
-          window.addEventListener("keyup", this.onKeyUp);
+          window.addEventListener("keydown", this.onKeyUp);
         } else {
-          window.removeEventListener("keyup", this.onKeyUp);
+          window.removeEventListener("keydown", this.onKeyUp);
         }
       }
     },
     methods: {
       ...mapActions('catalog', ['getFolders', 'getProducts']),
       ...mapMutations("catalog", ["setModal", "setActiveTableKeyUp"]),
+      selectProd(event) {
+        if (this.$refs.catalogMenu.classList.contains('select-first')) {
+          this.$refs.catalogMenu.classList.remove('select-first')
+        }
+        let indexTr = 0
+        for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+          this.$refs.catalogMenu.querySelectorAll('li')[i].classList.remove('selected')
+          indexTr++
+        }
+        if (indexTr == this.$refs.catalogMenu.querySelectorAll('li').length) {
+          if (event.target.closest('li')) {
+            event.target.closest('li').classList.add('selected')
+
+            let indexActiveLi = 0
+            for (let i = 0; i < this.$refs.catalogMenu.querySelectorAll('li').length; i++) {
+              if (this.$refs.catalogMenu.querySelectorAll('li')[i].classList.contains('selected')) {
+                indexActiveLi = i
+                break
+              }
+            }
+            this.selectItem = indexActiveLi
+
+          }
+          let orderInput = event.target.closest('.tr').querySelector('.products .order-input')
+          if (orderInput) {
+            orderInput.focus()
+            orderInput.classList.add('focus')
+          }
+        }
+      },
       onKeyUp(event) {
         // по нажатию вверх, вниз, появляется возможность открывать папки, управлять таблицей
         let key = event.which;
@@ -115,7 +146,13 @@
                 }
               }
               if (orderInput && !linkFolder) {
-                orderInput.focus()
+                if (!orderInput.classList.contains('focus')) {
+                  orderInput.focus()
+                  orderInput.classList.add('focus')
+                } else {
+                  orderInput.blur()
+                  orderInput.classList.remove('focus')
+                }
               }
             }
           }
@@ -143,6 +180,7 @@
             let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem+1].querySelector('.products .order-input');
             if (orderInput) {
               orderInput.blur()
+              orderInput.classList.remove('focus')
             }
           }
           if (key == 40) {
@@ -172,8 +210,21 @@
             let orderInput = this.$refs.catalogMenu.querySelectorAll('li')[this.selectItem-1].querySelector('.products .order-input');
             if (orderInput) {
               orderInput.blur()
+              orderInput.classList.remove('focus')
             }
           }
+          // if (key == 27) {
+          //   if (this.$route.params.id) {
+          //     this.$router.push({
+          //       name: 'OrderId',
+          //       params: { id: this.$route.params.id }
+          //     })
+          //   } else {
+          //     this.$router.push({
+          //       name: 'Order'
+          //     })
+          //   }
+          // }
         }
 
       },

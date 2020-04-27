@@ -181,9 +181,9 @@
       this.activeComponent = true
 
       if (this.activeComponent) {
-        window.addEventListener("keyup", this.onKeyUp);
+        window.addEventListener("keydown", this.onKeyUp);
       } else {
-        window.removeEventListener("keyup", this.onKeyUp);
+        window.removeEventListener("keydown", this.onKeyUp);
       }
     },
     destroyed() {

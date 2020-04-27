@@ -64,7 +64,7 @@
   }
   &--table {
     overflow: auto;
-    max-height: calc(100vh - 312px);
+    max-height: calc(100vh - 256px);
     margin-bottom: 18px;
     padding-bottom: 1px;
   }
