@@ -1,6 +1,6 @@
 # good-lock
 
-https://good-lock904.herokuapp.com/
+https://catalog-a56cc.web.app/
 
 ## Project setup
 ```
