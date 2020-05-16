@@ -31,15 +31,6 @@
       >
         <div>
           <div class="prod-link">
-            <input
-              :id="`id-order-${prod.code}`"
-              type="checkbox"
-              class="style-checkbox"
-              @change="setCombineOrder($event, prod)"
-              :value="prod.combineOrder"
-              :checked="prod.combineOrder"
-            >
-            <label :for="`id-order-${prod.code}`"></label>
             <span @click="showModal(prod.code)" class="prod-title">
               {{ prod.title }}
             </span>
@@ -305,7 +296,7 @@ ul {
 }
 .prod-title {
   cursor: pointer;
-  padding-left: 16px;
+  padding-left: 20px;
   &:hover {
     text-decoration: underline;
   }

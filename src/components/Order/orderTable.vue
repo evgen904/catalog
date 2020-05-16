@@ -234,6 +234,10 @@
       selectOrderTr(index) {
         this.selectOrder = index
         this.activeInput = index
+        let orderInput = this.$refs.tableOrders.querySelectorAll('tr')[this.selectOrder+2].querySelector('.order-input');
+        if (orderInput) {
+          orderInput.focus()
+        }
       },
       onKeyUp(event) {
         let key = event.which;

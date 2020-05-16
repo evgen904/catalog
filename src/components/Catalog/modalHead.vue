@@ -1,8 +1,8 @@
 <template>
   <div class="head">
     <div class="head--path">
-      <router-link :to="{name:'Dashboard'}">Главная</router-link> /
-      <router-link :to="{name:'Catalog'}">Каталог товаров</router-link> /
+      <span @click="linkPush('Dashboard')">Главная</span> /
+      <span @click="linkPush('Catalog')">Каталог товаров</span> /
       {{ title }}
     </div>
     <div class="head--title">
@@ -12,12 +12,21 @@
 </template>
 
 <script>
+  import { mapMutations } from "vuex";
+
   export default {
     name: "modalHead",
     props: {
       title: {
         type: String,
         default: ''
+      }
+    },
+    methods: {
+      ...mapMutations("catalog", ["setModal"]),
+      linkPush(link) {
+        this.$router.push({ name: link })
+        this.setModal(false)
       }
     }
   }
@@ -30,6 +39,10 @@
     font-size: 13px;
     color: #a1a1a1;
     margin-bottom: 20px;
+    span {
+      cursor: pointer;
+      color: #f6921e;
+    }
   }
   &--title {
     font-weight: normal;

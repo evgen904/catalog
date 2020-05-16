@@ -72,12 +72,6 @@ export default () => {
                     reserveStatus: "none"
                   },
                   {
-                    id: 9,
-                    date: "2020-02-16T12:12:12",
-                    sum: 239267.64,
-                    reserveStatus: "none"
-                  },
-                  {
                     id: 10,
                     date: "2020-02-16T12:12:12",
                     sum: 239267.64,
@@ -103,6 +97,12 @@ export default () => {
                   },
                   {
                     id: 14,
+                    date: "2020-02-16T12:12:12",
+                    sum: 239267.64,
+                    reserveStatus: "none"
+                  },
+                  {
+                    id: 15,
                     date: "2020-02-16T12:12:12",
                     sum: 239267.64,
                     reserveStatus: "none"
