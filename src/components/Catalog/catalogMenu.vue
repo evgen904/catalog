@@ -1,5 +1,8 @@
 <template>
-  <li :class="`level-${item.level}`">
+  <li
+    :class="`level-${item.level}`"
+    v-if="showFolder"
+  >
     <div class="tr" @dblclick="toggle">
       <div>
         <span
@@ -81,8 +84,15 @@
       }
     },
     computed: {
-      ...mapState('catalog', ['modal', 'product', 'searchText', 'searchProducts']),
+      ...mapState('catalog', ['modal', 'product', 'searchText', 'searchProducts', 'searchFolders']),
       ...mapState('catalog', { productsState: 'products' }),
+      showFolder() {
+        if (this.searchFolders.length) {
+          return this.searchFolders.find(folder => folder == this.item.idFolder) ? true : false
+        } else {
+          return true
+        }
+      },
       productsSelected() {
         if (this.searchProducts.length) {
           return this.searchProducts;
@@ -96,6 +106,13 @@
       isFolder: function () {
         return this.item.children &&
             this.item.children.length || this.productsFolder.length
+      }
+    },
+    watch: {
+      searchFolders(val) {
+        if (val.length) {
+          this.isOpen = true
+        }
       }
     },
     methods: {

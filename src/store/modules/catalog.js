@@ -6,6 +6,7 @@ const state = {
   product: null,
   products: [],
   searchProducts: [],
+  searchFolders: [],
   modal: false,
   searchText: '',
   activeTableKeyUp: 'orders'
@@ -77,6 +78,9 @@ const mutations = {
   },
   setSearchProducts(state, value) {
     state.searchProducts = value;
+  },
+  setSearchFolders(state, value) {
+    state.searchFolders = value;
   },
   setOrder(state, value) {
     Vue.set(state.products[value.index], "order", value.value);

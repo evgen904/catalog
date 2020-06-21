@@ -47,24 +47,35 @@
             }
             this.setSearchProducts(resultSearch);
 
-
+            // собираем список id категорий, которые нужно отобразить
             idFolders = _.sortedUniq(idFolders);
-
-            // for (let folder of idFolders) {
-            //
-            //   for (let item in this.folders) {
-            //
-            //     if (this.folders[item]['idFolder'] == folder) {
-            //
-            //     }
-            //
-            //
-            //   }
-            //
-            //
-            // }
-
-
+            const searchFolderId = []
+            for (let folder of idFolders) {
+              for (let folderLevelOne of this.folders) {
+                if (folderLevelOne.idFolder == folder) {
+                  searchFolderId.push(folder)
+                }
+                if (folderLevelOne.children && folderLevelOne.children.length) {
+                  for (let folderLevelTwo of folderLevelOne.children) {
+                    if (folderLevelTwo.idFolder == folder) {
+                      searchFolderId.push(folderLevelOne.idFolder)
+                      searchFolderId.push(folder)
+                    }
+                    if (folderLevelTwo.children && folderLevelTwo.children.length) {
+                      for (let folderLevelThree of folderLevelTwo.children) {
+                        if (folderLevelThree.idFolder == folder) {
+                          searchFolderId.push(folderLevelOne.idFolder)
+                          searchFolderId.push(folderLevelTwo.idFolder)
+                          searchFolderId.push(folder)
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            // полученный список передаем в store/modules/catalog => state.searchFolders
+            this.setSearchFolders(_.uniq(searchFolderId))
 
           } else {
             this.setSearchProducts([]);
@@ -72,8 +83,15 @@
         }
       }
     },
+    watch: {
+      searchProducts(val) {
+        if (!val.length) {
+          this.setSearchFolders([])
+        }
+      }
+    },
     methods: {
-      ...mapMutations("catalog", ["setSearchText", "setSearchProducts"])
+      ...mapMutations("catalog", ["setSearchText", "setSearchProducts", "setSearchFolders"])
     }
   }
 </script>
