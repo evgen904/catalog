@@ -183,6 +183,7 @@
     },
     destroyed() {
       this.activeComponent = false
+      window.removeEventListener("keydown", this.onKeyUp);
     },
     computed: {
       ...mapState('catalog', ['products', 'modal', 'product', 'activeTableKeyUp']),

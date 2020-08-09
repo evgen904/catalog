@@ -2,7 +2,7 @@
   <div class="orders">
     <h2>Заказы</h2>
     <div class="orders--btn">
-      <router-link class="btn orange" :to="{name: 'Order'}" target="_blank">
+      <router-link class="btn orange" :to="{name: 'Order'}">
         <img src="@/assets/plus.svg" alt="">
         Создать заказ
       </router-link>
@@ -188,6 +188,7 @@
     },
     destroyed() {
       this.activeComponent = false
+      window.removeEventListener("keydown", this.onKeyUp);
     },
     data() {
       return {
