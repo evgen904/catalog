@@ -138,6 +138,7 @@
     },
     methods: {
       ...mapMutations('dashboard', ['setCombineOrderName']),
+      ...mapMutations("catalog", ["setModal"]),
       setCombineOrder(val, elem) {
         this.setCombineOrderName({
           index: this.orders.findIndex(item => item.idOrder === elem.idOrder),
@@ -189,6 +190,7 @@
     destroyed() {
       this.activeComponent = false
       window.removeEventListener("keydown", this.onKeyUp);
+      this.setModal(false)
     },
     data() {
       return {

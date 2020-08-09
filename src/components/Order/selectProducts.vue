@@ -73,6 +73,7 @@
       this.activeComponent = false;
       this.setActiveTableKeyUp('orders')
       window.removeEventListener("keydown", this.onKeyUp);
+      this.setModal(false)
     },
     computed: {
       ...mapState('catalog', ['folders', 'products', 'modal', 'activeTableKeyUp'])

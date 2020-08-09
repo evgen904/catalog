@@ -66,6 +66,7 @@
     destroyed() {
       this.activeComponent = false
       window.removeEventListener("keydown", this.onKeyUp);
+      this.setModal(false)
     },
     computed: {
       ...mapState('catalog', ['folders', 'products', 'modal'])
